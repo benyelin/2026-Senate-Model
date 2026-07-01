@@ -35,3 +35,7 @@ ME-Senate,ME,Senate,Siena,A+,New York Times,media,,False,,,2026-06-19,2026-06-26
 TX-Senate,TX,Senate,Siena,A+,NY Times,media,,False,,,2026-06-19,2026-06-27,656,LV,Talarico,Paxton,,,47.0,47.0,0.0,6.0,0.0,,47.0,47.0,0.0,0.0,1.0,False,No partisan pollster adjustment,0.0
 MT-Senate,MT,Senate,GrayHouse,B,,party,R,False,R,,2026-06-23,2026-06-24,500,LV,Bankhead,Alme,Bodnar,,26.25,39.75,17.0,0.0,17.0,,25.0,41.0,-16.0,2.5,0.5,True,R-sponsored internal/campaign poll: applied +2.5 point Dem-margin adjustment and 0.50 weight multiplier,-13.5
 ME-Senate,ME,Senate,Beacon/Shaw,B,Fox News,media,,False,,,2026-06-23,2026-06-27,800,RV,Platner,Collins,,,47.0,50.0,0.0,0.0,3.0,,47.0,50.0,-3.0,0.0,1.0,False,No partisan pollster adjustment,-3.0
+AK-Senate,AK,Senate,Siena,A+,NY Times,media,,False,,,2026-07-15,2026-07-29,593,LV,Peltola,Sullivan,,,45.0,47.0,0.0,0.0,8.0,,45.0,47.0,-2.0,0.0,1.0,False,No partisan pollster adjustment,-2.0
+IA-Senate,IA,Senate,Siena,A+,NY Times,media,,False,,,2026-07-15,2026-07-27,600,LV,Turek,Hinson,,,46.0,48.0,0.0,0.0,6.0,,46.0,48.0,-2.0,0.0,1.0,False,No partisan pollster adjustment,-2.0
+NC-Senate,NC,Senate,Siena,A+,NY Times,media,,False,,,2026-07-16,2026-07-27,601,LV,Cooper,Whatley,,,50.0,43.0,0.0,0.0,7.0,,50.0,43.0,7.0,0.0,1.0,False,No partisan pollster adjustment,7.0
+OH-Senate,OH,Senate,Siena,A+,NY Times,media,,False,,,2026-06-16,2026-07-28,601,LV,Brown,Husted,,,47.0,50.0,0.0,0.0,3.0,,47.0,50.0,-3.0,0.0,1.0,False,No partisan pollster adjustment,-3.0
