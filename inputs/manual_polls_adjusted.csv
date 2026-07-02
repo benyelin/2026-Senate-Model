@@ -39,3 +39,5 @@ AK-Senate,AK,Senate,Siena,A+,NY Times,media,,False,,,2026-07-15,2026-07-29,593,L
 IA-Senate,IA,Senate,Siena,A+,NY Times,media,,False,,,2026-07-15,2026-07-27,600,LV,Turek,Hinson,,,46.0,48.0,0.0,0.0,6.0,,46.0,48.0,-2.0,0.0,1.0,False,No partisan pollster adjustment,-2.0
 NC-Senate,NC,Senate,Siena,A+,NY Times,media,,False,,,2026-07-16,2026-07-27,601,LV,Cooper,Whatley,,,50.0,43.0,0.0,0.0,7.0,,50.0,43.0,7.0,0.0,1.0,False,No partisan pollster adjustment,7.0
 OH-Senate,OH,Senate,Siena,A+,NY Times,media,,False,,,2026-06-16,2026-07-28,601,LV,Brown,Husted,,,47.0,50.0,0.0,0.0,3.0,,47.0,50.0,-3.0,0.0,1.0,False,No partisan pollster adjustment,-3.0
+GA-Senate,GA,Senate,Beacon/Shaw,A,Fox News,media,,False,,,2026-06-23,2026-06-27,1002,RV,Ossoff,Collins,,,56.0,43.0,0.0,0.0,1.0,,56.0,43.0,13.0,0.0,1.0,False,No partisan pollster adjustment,13.0
+IA-Senate,IA,Senate,Beacon/Shaw,A,Fox News,media,,False,,,2026-06-23,2026-07-27,1003,RV,Turek,Hinson,,,50.0,46.0,0.0,0.0,4.0,,50.0,46.0,4.0,0.0,1.0,False,No partisan pollster adjustment,4.0
