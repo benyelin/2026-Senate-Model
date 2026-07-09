@@ -76,10 +76,8 @@ def update_race_inputs_from_polls(
     # If a nominee withdraws and replacement is pending, keep the polls archived
     # in manual_polls.csv/manual_polls_clean.csv, but exclude that state's current
     # polling from generated polling averages until replacement-specific polling exists.
-    candidate_status_overrides = Path(input_dir) / "candidate_status_overrides.csv"
-
-    if candidate_status_overrides.exists():
-        overrides = pd.read_csv(candidate_status_overrides)
+    if CANDIDATE_STATUS_OVERRIDES.exists():
+        overrides = pd.read_csv(CANDIDATE_STATUS_OVERRIDES)
 
         if {"state", "exclude_current_polling"}.issubset(overrides.columns):
             overrides["state"] = overrides["state"].astype(str).str.strip().str.upper()

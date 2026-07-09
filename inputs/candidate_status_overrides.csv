@@ -1,0 +1,2 @@
+state,candidate_status,affected_candidate,exclude_current_polling,uncertainty_penalty,notes
+ME,replacement_pending,Graham Platner,TRUE,1.5,"Graham Platner withdrew from the Maine Senate race on 2026-07-08/09. Current Platner-era Maine polling is archived but excluded from the model until a replacement Democratic nominee is selected and polled."
