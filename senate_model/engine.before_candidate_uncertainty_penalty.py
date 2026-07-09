@@ -215,21 +215,6 @@ def run_forecast(
             * race_table["tier_error_multiplier"].astype(float)
         ).to_numpy(dtype=float)
 
-    # Apply candidate-status uncertainty penalties.
-    # Example: replacement-pending races can add extra race-level uncertainty
-    # without changing the central model margin.
-    if "candidate_uncertainty_penalty" in race_table.columns:
-        candidate_uncertainty_penalty = pd.to_numeric(
-            race_table["candidate_uncertainty_penalty"],
-            errors="coerce"
-        ).fillna(0.0).to_numpy(dtype=float)
-    else:
-        candidate_uncertainty_penalty = np.zeros(n_races, dtype=float)
-
-    race_uncertainty = race_uncertainty + candidate_uncertainty_penalty
-    race_table["candidate_uncertainty_penalty"] = candidate_uncertainty_penalty
-    race_table["race_uncertainty_sd"] = race_uncertainty
-
     # Generate race-specific error using the calibrated uncertainty.
     race_error = rng.normal(
         0.0,
@@ -275,8 +260,6 @@ def run_forecast(
         "elasticity",
         "tier_error_multiplier",
         "dem_win_counts_for_seat_change",
-        "candidate_uncertainty_penalty",
-        "race_uncertainty_sd",
     ]].copy()
 
     race_stats["simulated_dem_win_prob"] = dem_wins.mean(axis=0)
