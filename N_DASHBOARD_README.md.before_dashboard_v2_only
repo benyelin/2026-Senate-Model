@@ -17,7 +17,7 @@ python run_full_pipeline.py --as-of 2026-05-22 --days-out 165 --sims 50000
 ## Launch the dashboard
 
 ```bash
-streamlit run dashboard_app_v2.py
+streamlit run dashboard_app.py
 ```
 
 ## Dashboard tabs

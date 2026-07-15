@@ -80,7 +80,7 @@ This package adds `bayesian_update.py` and `senate_model/bayesian_updater.py`. S
 
 ## N dashboard
 
-This package adds `dashboard_app_v2.py` and `run_full_pipeline.py`. See `N_DASHBOARD_README.md`.
+This package adds `dashboard_app.py` and `run_full_pipeline.py`. See `N_DASHBOARD_README.md`.
 
 
 ## O1 full race universe

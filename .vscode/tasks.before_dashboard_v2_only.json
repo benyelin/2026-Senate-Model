@@ -37,7 +37,7 @@
     {
       "label": "Launch Dashboard",
       "type": "shell",
-      "command": "streamlit run dashboard_app_v2.py",
+      "command": "streamlit run dashboard_app.py",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",

@@ -104,18 +104,6 @@ def fmt_num(x, digits=2):
     return f"{x:.{digits}f}"
 
 
-def fmt_seat_range(p25, p75):
-    p25 = as_float(p25)
-    p75 = as_float(p75)
-    if pd.isna(p25) or pd.isna(p75):
-        return "—"
-    return f"{p25:.0f}–{p75:.0f}"
-
-
-def fmt_margin_range(p25, p75):
-    return f"{fmt_margin(p25)} to {fmt_margin(p75)}"
-
-
 def normalize_state(df):
     if not df.empty and "state" in df.columns:
         df = df.copy()
@@ -206,89 +194,89 @@ tab_overview, tab_races, tab_drivers, tab_scenarios, tab_manual_polls, tab_diagn
 with tab_overview:
     st.subheader("Topline Forecast")
 
-    c1, c2, c3, c4, c5, c6 = st.columns(6)
+    c1, c2, c3, c4, c5 = st.columns(5)
 
     c1.metric("Dem Control Odds", fmt_pct(summary_row.get("dem_control_probability")))
     c2.metric("Expected Dem Seats", fmt_num(summary_row.get("expected_dem_seats"), 2))
     c3.metric("Median Dem Seats", fmt_num(summary_row.get("median_dem_seats"), 0))
-    c4.metric("Middle 50% Seats", fmt_seat_range(summary_row.get("dem_seats_p25"), summary_row.get("dem_seats_p75")))
-    c5.metric("National Environment", fmt_margin(summary_row.get("national_environment_margin")))
-    c6.metric("Days Out", fmt_num(summary_row.get("days_out"), 0))
+    c4.metric("National Environment", fmt_margin(summary_row.get("national_environment_margin")))
+    c5.metric("Days Out", fmt_num(summary_row.get("days_out"), 0))
 
     st.divider()
 
-    st.subheader("Seat Distribution")
+    left, right = st.columns([1.2, 1])
 
-    if seat_distribution.empty:
-        st.info("No seat distribution file found.")
-    else:
-        sd = seat_distribution.copy()
+    with left:
+        st.subheader("Seat Distribution")
 
-        # Try common column names
-        x_col = None
-        y_col = None
+        if seat_distribution.empty:
+            st.info("No seat distribution file found.")
+        else:
+            sd = seat_distribution.copy()
 
-        for col in ["dem_seats", "seats", "Democratic seats"]:
-            if col in sd.columns:
-                x_col = col
-                break
+            # Try common column names
+            x_col = None
+            y_col = None
 
-        for col in ["probability", "share", "frequency"]:
-            if col in sd.columns:
-                y_col = col
-                break
+            for col in ["dem_seats", "seats", "Democratic seats"]:
+                if col in sd.columns:
+                    x_col = col
+                    break
 
-        if x_col and y_col:
-            sd = sd.copy()
-            sd["Control"] = sd[x_col].apply(
-                lambda x: "Democratic Senate" if float(x) >= SENATE_CONTROL_THRESHOLD else "Republican Senate"
-            )
+            for col in ["probability", "share", "frequency"]:
+                if col in sd.columns:
+                    y_col = col
+                    break
 
-            fig = px.bar(
-                sd,
-                x=x_col,
-                y=y_col,
-                color="Control",
-                color_discrete_map={
-                    "Democratic Senate": DEM_COLOR,
-                    "Republican Senate": GOP_COLOR,
-                },
-                labels={
-                    x_col: "Democratic seats",
-                    y_col: "Probability",
-                },
-                title="Simulated Democratic Seat Distribution",
-            )
-            fig.update_layout(yaxis_tickformat=".0%")
-            st.plotly_chart(fig, use_container_width=True)
+            if x_col and y_col:
+                sd = sd.copy()
+                sd["Control"] = sd[x_col].apply(
+                    lambda x: "Democratic Senate" if float(x) >= SENATE_CONTROL_THRESHOLD else "Republican Senate"
+                )
 
-    st.divider()
-    st.subheader("Most Competitive Races")
+                fig = px.bar(
+                    sd,
+                    x=x_col,
+                    y=y_col,
+                    color="Control",
+                    color_discrete_map={
+                        "Democratic Senate": DEM_COLOR,
+                        "Republican Senate": GOP_COLOR,
+                    },
+                    labels={
+                        x_col: "Democratic seats",
+                        y_col: "Probability",
+                    },
+                    title="Simulated Democratic Seat Distribution",
+                )
+                fig.update_layout(yaxis_tickformat=".0%")
+                st.plotly_chart(fig, use_container_width=True)
 
-    comp = race_stats.copy()
-    comp["simulated_dem_win_prob"] = pd.to_numeric(
-        comp.get("simulated_dem_win_prob"),
-        errors="coerce"
-    )
-    comp["competitiveness"] = (comp["simulated_dem_win_prob"] - 0.5).abs()
-    comp = comp.sort_values("competitiveness").head(12)
 
-    display = []
-    for _, row in comp.iterrows():
-        display.append(
-            {
-                "State": row.get("state", ""),
-                "Rating": race_rating_from_prob(row.get("simulated_dem_win_prob")),
-                "Dem candidate": row.get("dem_candidate", ""),
-                "GOP candidate": row.get("gop_candidate", ""),
-                "Dem odds": fmt_pct(row.get("simulated_dem_win_prob")),
-                "Model margin": fmt_margin(row.get("model_margin_dem")),
-                "Middle 50% margin": fmt_margin_range(row.get("margin_p25_dem"), row.get("margin_p75_dem")),
-                "Avg sim margin": fmt_margin(row.get("avg_simulated_margin_dem")),
-            }
+    with right:
+        comp = race_stats.copy()
+        comp["simulated_dem_win_prob"] = pd.to_numeric(
+            comp.get("simulated_dem_win_prob"),
+            errors="coerce"
         )
+        comp["competitiveness"] = (comp["simulated_dem_win_prob"] - 0.5).abs()
+        comp = comp.sort_values("competitiveness").head(12)
 
-    st.dataframe(pd.DataFrame(display), use_container_width=True, hide_index=True)
+        display = []
+        for _, row in comp.iterrows():
+            display.append(
+                {
+                    "State": row.get("state", ""),
+                    "Rating": race_rating_from_prob(row.get("simulated_dem_win_prob")),
+                    "Dem candidate": row.get("dem_candidate", ""),
+                    "GOP candidate": row.get("gop_candidate", ""),
+                    "Dem odds": fmt_pct(row.get("simulated_dem_win_prob")),
+                    "Model margin": fmt_margin(row.get("model_margin_dem")),
+                    "Avg sim margin": fmt_margin(row.get("avg_simulated_margin_dem")),
+                }
+            )
+
+        st.dataframe(pd.DataFrame(display), use_container_width=True, hide_index=True)
 
 
     st.divider()
@@ -421,7 +409,6 @@ with tab_races:
                     "Holder": row.get("current_holder", ""),
                     "Dem odds": fmt_pct(row.get("simulated_dem_win_prob")),
                     "Model margin": fmt_margin(row.get("model_margin_dem")),
-                    "Middle 50% margin": fmt_margin_range(row.get("margin_p25_dem"), row.get("margin_p75_dem")),
                     "Fundamentals": fmt_margin(row.get("fundamentals_margin_dem")),
                     "Polling": fmt_margin(row.get("polling_margin_dem")),
                     "Tipping share": fmt_pct(row.get("tipping_share_of_control_sims")),

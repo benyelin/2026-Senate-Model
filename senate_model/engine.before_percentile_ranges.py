@@ -249,9 +249,6 @@ def run_forecast(
         "days_out": days_out,
         "expected_dem_seats": float(np.mean(dem_seats)),
         "median_dem_seats": float(np.median(dem_seats)),
-        "dem_seats_p25": float(np.percentile(dem_seats, 25)),
-        "dem_seats_p50": float(np.percentile(dem_seats, 50)),
-        "dem_seats_p75": float(np.percentile(dem_seats, 75)),
         "dem_control_probability": float(np.mean(control)),
         "dem_control_threshold": config.control_threshold,
         "dem_baseline_seats": config.dem_baseline_seats,
@@ -284,9 +281,6 @@ def run_forecast(
 
     race_stats["simulated_dem_win_prob"] = dem_wins.mean(axis=0)
     race_stats["avg_simulated_margin_dem"] = simulated_margins.mean(axis=0)
-    race_stats["margin_p25_dem"] = np.percentile(simulated_margins, 25, axis=0)
-    race_stats["margin_p50_dem"] = np.percentile(simulated_margins, 50, axis=0)
-    race_stats["margin_p75_dem"] = np.percentile(simulated_margins, 75, axis=0)
 
     # Tipping-ish diagnostic: among control simulations, identify the closest positive
     # Democratic pickup margin. Safely skip simulations with no positive pickup.

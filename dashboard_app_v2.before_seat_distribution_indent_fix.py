@@ -220,9 +220,9 @@ with tab_overview:
     st.subheader("Seat Distribution")
 
     if seat_distribution.empty:
-        st.info("No seat distribution file found.")
+    st.info("No seat distribution file found.")
     else:
-        sd = seat_distribution.copy()
+    sd = seat_distribution.copy()
 
         # Try common column names
         x_col = None

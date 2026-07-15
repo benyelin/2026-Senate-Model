@@ -31,14 +31,14 @@ This is intentionally conservative because aggregator pages differ by race and m
 ```bash
 python3 import_aggregators.py --national --races --presidential-approval 38.4
 python3 run_full_pipeline.py --as-of 2026-05-22 --days-out 165 --sims 50000
-streamlit run dashboard_app_v2.py
+streamlit run dashboard_app.py
 ```
 
 Or combined:
 
 ```bash
 python3 run_full_pipeline.py --import-aggregators --presidential-approval 38.4 --as-of 2026-05-22 --days-out 165 --sims 50000
-streamlit run dashboard_app_v2.py
+streamlit run dashboard_app.py
 ```
 
 ## Important caveat

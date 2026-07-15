@@ -224,43 +224,43 @@ with tab_overview:
     else:
         sd = seat_distribution.copy()
 
-        # Try common column names
-        x_col = None
-        y_col = None
+            # Try common column names
+            x_col = None
+            y_col = None
 
-        for col in ["dem_seats", "seats", "Democratic seats"]:
-            if col in sd.columns:
-                x_col = col
-                break
+            for col in ["dem_seats", "seats", "Democratic seats"]:
+                if col in sd.columns:
+                    x_col = col
+                    break
 
-        for col in ["probability", "share", "frequency"]:
-            if col in sd.columns:
-                y_col = col
-                break
+            for col in ["probability", "share", "frequency"]:
+                if col in sd.columns:
+                    y_col = col
+                    break
 
-        if x_col and y_col:
-            sd = sd.copy()
-            sd["Control"] = sd[x_col].apply(
-                lambda x: "Democratic Senate" if float(x) >= SENATE_CONTROL_THRESHOLD else "Republican Senate"
-            )
+            if x_col and y_col:
+                sd = sd.copy()
+                sd["Control"] = sd[x_col].apply(
+                    lambda x: "Democratic Senate" if float(x) >= SENATE_CONTROL_THRESHOLD else "Republican Senate"
+                )
 
-            fig = px.bar(
-                sd,
-                x=x_col,
-                y=y_col,
-                color="Control",
-                color_discrete_map={
-                    "Democratic Senate": DEM_COLOR,
-                    "Republican Senate": GOP_COLOR,
-                },
-                labels={
-                    x_col: "Democratic seats",
-                    y_col: "Probability",
-                },
-                title="Simulated Democratic Seat Distribution",
-            )
-            fig.update_layout(yaxis_tickformat=".0%")
-            st.plotly_chart(fig, use_container_width=True)
+                fig = px.bar(
+                    sd,
+                    x=x_col,
+                    y=y_col,
+                    color="Control",
+                    color_discrete_map={
+                        "Democratic Senate": DEM_COLOR,
+                        "Republican Senate": GOP_COLOR,
+                    },
+                    labels={
+                        x_col: "Democratic seats",
+                        y_col: "Probability",
+                    },
+                    title="Simulated Democratic Seat Distribution",
+                )
+                fig.update_layout(yaxis_tickformat=".0%")
+                st.plotly_chart(fig, use_container_width=True)
 
     st.divider()
     st.subheader("Most Competitive Races")

@@ -8,14 +8,14 @@ Recommended commands:
 
 ```bash
 python3 run_full_pipeline.py --sims 50000
-streamlit run dashboard_app_v2.py
+streamlit run dashboard_app.py
 ```
 
 Or, with aggregator import:
 
 ```bash
 python3 run_full_pipeline.py --import-aggregators --presidential-approval 38.4 --sims 50000
-streamlit run dashboard_app_v2.py
+streamlit run dashboard_app.py
 ```
 
 ## VS Code tasks
