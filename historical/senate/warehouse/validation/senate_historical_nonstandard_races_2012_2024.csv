@@ -1,0 +1,6 @@
+race_id,cycle,state,election_type,dem_candidate,gop_candidate,dem_votes,gop_votes,actual_margin_dem,winner_party,major_party_contested,manual_review,backtest_exclusion_reason,source_status
+2014_AL,2014,AL,regular,,JEFF SESSIONS,0,795606,-100.0,R,False,False,Republican unopposed,official
+2016_CA,2016,CA,regular,KAMALA D. HARRIS,,7542753,0,100.0,D,False,False,Top-two election,official
+2018_CA,2018,CA,regular,DIANNE FEINSTEIN,,6019422,0,100.0,D,False,False,Top-two election,official
+2020_AR,2020,AR,regular,,TOM COTTON,0,793871,-100.0,R,False,False,Republican unopposed,official
+2022_AK,2022,AK,regular,,,0,0,,,False,True,Ranked-choice race; certified final-round major-party margin not yet ingested,official

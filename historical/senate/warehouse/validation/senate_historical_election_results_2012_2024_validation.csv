@@ -1,0 +1,8 @@
+cycle,race_rows,unique_states,regular_elections,special_elections,major_party_contested,backtest_scorable,excluded_from_backtest,manual_review,missing_margin,scorable_missing_margin,duplicate_race_ids,two_party_sum_failures,margin_failures,unofficial_races
+2012,33,33,33,0,33,33,0,0,0,0,0,0,0,0
+2014,36,34,33,3,35,35,1,0,0,0,0,0,0,0
+2016,34,34,34,0,33,33,1,0,0,0,0,0,0,0
+2018,35,33,33,2,34,34,1,0,0,0,0,0,0,1
+2020,35,34,33,2,34,34,1,0,0,0,0,0,0,1
+2022,35,33,33,2,34,34,1,1,1,0,0,0,0,1
+2024,35,33,33,2,35,35,0,0,0,0,0,0,0,4
