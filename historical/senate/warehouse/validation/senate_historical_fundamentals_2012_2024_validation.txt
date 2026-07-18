@@ -1,0 +1,39 @@
+Senate Historical Fundamentals 2012-2024 Validation
+=======================================================
+
+Baselines source: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_baselines_2012_2024.csv
+Baselines SHA-256: 3bbbcce25281b38e0e769c7a94a41a74ce930caeb420baecf9ac286a98b24ad3
+
+National-environment source: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_national_environment_2012_2024.csv
+National-environment SHA-256: 682542480e67513e143ff9f3847f61d2b6e0aaaf149b3f02b1c52d5110107ef5
+
+Input baseline rows: 243
+Output rows: 243
+Duplicate baseline race IDs: 0
+Duplicate output race IDs: 0
+Duplicate environment cycles: 0
+Missing environment matches: 0
+Missing expected cycles: none
+Unexpected cycles: none
+Baseline identity failures: 0
+Invalid incumbent encodings: 0
+Invalid open-seat encodings: 0
+Invalid midterm encodings: 0
+Invalid midterm/cycle alignments: 0
+Scorable rows: 234
+Unscorable rows: 9
+
+Cycle summary:
+ cycle  races  scorable  generic_ballot_margin_dem  presidential_approval  approval_net
+  2012     33        32                       -0.2                   52.0           7.0
+  2014     36        35                       -2.4                   42.0         -11.0
+  2016     34        33                        0.6                   53.0           8.0
+  2018     35        33                        7.3                   40.0         -14.0
+  2020     35        33                        6.8                   46.0          -6.0
+  2022     35        34                       -1.2                   41.3         -12.9
+  2024     35        34                       -0.3                   41.0         -15.0
+
+No forecasting coefficients were applied.
+This dataset contains historical observations and model-ready feature encodings only.
+
+Validation: PASSED

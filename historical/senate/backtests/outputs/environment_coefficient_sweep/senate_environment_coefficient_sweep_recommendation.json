@@ -1,0 +1,21 @@
+{
+  "absolute_mean_error": 1.6021243231426059,
+  "approval_coefficient": 0.0,
+  "brier": 0.07435149086349499,
+  "complexity_penalty": 0.0,
+  "component_count": 1,
+  "generic_ballot_coefficient": 0.9,
+  "mae": 7.768308721420263,
+  "mean_error": 1.6021243231426059,
+  "midterm_coefficient": 0.0,
+  "model_family": "generic_only",
+  "model_family_label": "Generic ballot only",
+  "model_id": "generic_only__gb_0_90",
+  "near_best_tolerance": 0.01,
+  "performance_score": 0.2518518518518518,
+  "rmse": 11.402810546087508,
+  "selection_rule": "Among models within the configured relative tolerance of the best five-metric percentile score, minimize performance score plus a fixed penalty for each component beyond generic ballot.",
+  "simplicity_aware_score": 0.2518518518518518,
+  "simplicity_penalty_per_extra_component": 0.03,
+  "winner_accuracy": 0.9017094017094017
+}

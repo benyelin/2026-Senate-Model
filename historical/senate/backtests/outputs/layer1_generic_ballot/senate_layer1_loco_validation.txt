@@ -1,0 +1,41 @@
+Senate Layer 1 Generic-Ballot LOCO Backtest
+============================================================
+
+Input: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv
+Input SHA-256: f57da69128189e0d9b626e10f00bc2349dd2b7f1d39e6b307b5e5b4f7ba46875
+
+Cycles: 2012, 2014, 2016, 2018, 2020, 2022, 2024
+Scorable historical races: 234
+Out-of-sample predictions: 234
+Missing predictions: 0
+Duplicate race predictions: 0
+Incorrect holdout assignments: 0
+Probability bounds failures: 0
+
+Overall out-of-sample metrics:
+MAE: 8.2529
+RMSE: 11.8467
+Brier: 0.08362
+Directional accuracy: 87.1795%
+Out-of-sample R-squared: 0.7667
+
+Changes from Layer 0:
+MAE change: -0.7202
+RMSE change: -0.6949
+Brier change: -0.00338
+Directional-accuracy change: -0.8547%
+R-squared change: +0.0282
+
+Fold metrics:
+ holdout_cycle  training_rows  test_rows  intercept  presidential_slope  generic_ballot_slope  training_residual_sd       mae      rmse    brier  directional_accuracy  r_squared
+          2012            202         32  -2.683176            1.003579              1.254944             10.862307 10.984958 13.903253 0.133252              0.781250   0.649923
+          2014            199         35  -2.420239            1.022662              1.283363             11.218732  8.105915 11.874129 0.067249              0.885714   0.743625
+          2016            201         33  -1.101851            0.987265              1.116157             10.563252 10.662566 15.307981 0.083032              0.848485   0.708115
+          2018            201         33  -2.315765            1.050933              0.736016             11.184394  9.754487 13.321678 0.121749              0.848485   0.534766
+          2020            201         33  -1.696598            1.004594              1.502941             11.549681  7.044038 10.465270 0.074437              0.909091   0.781469
+          2022            200         34  -2.069379            1.006208              1.193781             11.667713  6.389540  8.992591 0.058461              0.882353   0.870680
+          2024            200         34  -1.816110            1.037451              1.185195             11.886877  5.073071  7.209174 0.051383              0.941176   0.885530
+
+All coefficients were estimated without the held-out election cycle.
+
+Validation: PASSED

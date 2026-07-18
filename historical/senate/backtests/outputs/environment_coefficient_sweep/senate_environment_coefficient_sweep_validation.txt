@@ -1,0 +1,25 @@
+Senate Environment Coefficient Sweep Validation
+===============================================
+
+Input: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv
+Input SHA-256: f41d9f16165c0849d65e50a55b665a40bd3795750b67de4b76de4c6faf30b65f
+Scorable observations: 234
+Cycles: 2012, 2014, 2016, 2018, 2020, 2022, 2024
+Specifications: 27
+Pareto-optimal specifications: 16
+Approval adjustment source: local fallback: (45 - approval) / 3
+Midterm source: midterm_indicator
+
+PASS — model specification count: expected=27, observed=27
+PASS — prediction row count: expected=6318, observed=6318
+PASS — cycle result row count: expected=189, observed=189
+PASS — all coefficient values represented: coefficient grid mismatch
+PASS — all model families represented: model-family mismatch
+PASS — metrics finite: one or more non-finite summary metrics
+PASS — winner accuracy bounded: winner accuracy outside [0, 1]
+PASS — Brier score bounded: Brier score outside [0, 1]
+PASS — Pareto set nonempty: pareto_models=16
+PASS — exactly one recommendation: recommended_count=1
+PASS — recommendation exists in summary: model_id=generic_only__gb_0_90
+
+VALIDATION STATUS: PASSED

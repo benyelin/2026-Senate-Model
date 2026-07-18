@@ -1,0 +1,42 @@
+Senate Layer 2 Approval LOCO Backtest
+============================================================
+
+Input: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv
+Input SHA-256: f57da69128189e0d9b626e10f00bc2349dd2b7f1d39e6b307b5e5b4f7ba46875
+
+Cycles: 2012, 2014, 2016, 2018, 2020, 2022, 2024
+Scorable historical races: 234
+Out-of-sample predictions: 234
+Missing predictions: 0
+Duplicate race predictions: 0
+Incorrect holdout assignments: 0
+Probability bounds failures: 0
+
+Overall out-of-sample metrics:
+MAE: 8.6363
+RMSE: 12.3119
+Brier: 0.09048
+Directional accuracy: 86.3248%
+Out-of-sample R-squared: 0.7481
+
+Changes from Layer 1:
+MAE change: +0.3834
+RMSE change: +0.4652
+Brier change: +0.00686
+Directional-accuracy change: -0.8547%
+R-squared change: -0.0187
+
+Fold metrics:
+ holdout_cycle  training_rows  test_rows  intercept  presidential_slope  generic_ballot_slope  approval_slope  training_residual_sd       mae      rmse    brier  directional_accuracy  r_squared
+          2012            202         32  -3.534695            1.003240              1.586638       -0.135824             10.851509 11.666974 14.571470 0.150694              0.750000   0.615464
+          2014            199         35  -2.327597            1.021749              1.227309        0.026385             11.245287  8.123001 11.883764 0.067365              0.885714   0.743209
+          2016            201         33   0.477587            0.975506              0.491189        0.266227             10.430279 12.336362 16.974156 0.111287              0.818182   0.641117
+          2018            201         33  -2.421217            1.051846              0.786252       -0.025306             11.210775  9.811694 13.384665 0.122354              0.848485   0.530356
+          2020            201         33  -1.864894            1.005714              1.633573       -0.047985             11.572676  7.310767 10.692645 0.076713              0.909091   0.771870
+          2022            200         34  -1.993114            1.005208              1.132949        0.030641             11.694950  6.422554  9.008850 0.059386              0.882353   0.870212
+          2024            200         34  -1.838373            1.038147              1.210601       -0.012815             11.916836  5.080510  7.236810 0.050895              0.941176   0.884651
+
+Approval is Democratic-oriented: positive values favor Democrats and negative values favor Republicans.
+All coefficients were estimated without the held-out election cycle.
+
+Validation: PASSED

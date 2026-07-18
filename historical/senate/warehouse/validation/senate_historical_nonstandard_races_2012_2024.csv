@@ -1,6 +1,10 @@
 race_id,cycle,state,election_type,dem_candidate,gop_candidate,dem_votes,gop_votes,actual_margin_dem,winner_party,major_party_contested,manual_review,backtest_exclusion_reason,source_status
+2012_ME,2012,ME,regular,CYNTHIA ANN DILL,"CHARLES E. SUMMERS, JR.",92900,215399,-39.733829821050335,R,True,False,Independent winner; D-R margin does not represent race outcome,official
 2014_AL,2014,AL,regular,,JEFF SESSIONS,0,795606,-100.0,R,False,False,Republican unopposed,official
 2016_CA,2016,CA,regular,KAMALA D. HARRIS,,7542753,0,100.0,D,False,False,Top-two election,official
 2018_CA,2018,CA,regular,DIANNE FEINSTEIN,,6019422,0,100.0,D,False,False,Top-two election,official
+2018_ME,2018,ME,regular,ZAK RINGELSTEIN,ERIC L. BRAKEY,66268,223502,-54.26165579597611,R,True,False,Independent winner; D-R margin does not represent race outcome,official
 2020_AR,2020,AR,regular,,TOM COTTON,0,793871,-100.0,R,False,False,Republican unopposed,official
+2020_GA_SPECIAL,2020,GA,special,RAPHAEL WARNOCK,KELLY LOEFFLER,1617035,1273214,11.89589547474975,D,True,False,November all-party special election; runoff result required,official
 2022_AK,2022,AK,regular,,,0,0,,,False,True,Ranked-choice race; certified final-round major-party margin not yet ingested,official
+2024_ME,2024,ME,regular,DAVID ALLEN COSTELLO,DEMI KOUZOUNAS,88875,284434,-52.38528939832685,R,True,False,Independent winner; D-R margin does not represent race outcome,official

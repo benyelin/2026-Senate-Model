@@ -1,0 +1,28 @@
+Senate Historical Presidential Results Validation
+=================================================
+
+Source file: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/raw/presidential/source_downloads/mit_us_president_1976_2024/1976-2024-president.csv
+Source SHA-256: 9936410a6dd4ecc8be7fe202c6dff5b5f8fee59d88f35ab542ed12879941dcb7
+Source DOI: 10.7910/DVN/42MVDX
+
+Target years: [2008, 2012, 2016, 2020, 2024]
+Expected rows: 250
+Output rows: 250
+Duplicate keys: 0
+Missing state-years: 0
+Missing Democratic votes: 0
+Missing Republican votes: 0
+Missing margins: 0
+Nonpositive major-party vote totals: 0
+Invalid two-party shares: 0
+Maximum two-party share sum error: 0.000000000000
+
+Rows by year:
+year
+2008    50
+2012    50
+2016    50
+2020    50
+2024    50
+
+Validation: PASSED

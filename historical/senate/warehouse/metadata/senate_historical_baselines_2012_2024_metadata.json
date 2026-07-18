@@ -1,0 +1,39 @@
+{
+  "dataset_name": "senate_historical_baselines_2012_2024",
+  "description": "Historical Senate election results merged with the most recent completed presidential election baseline available before each race.",
+  "primary_key": [
+    "race_id"
+  ],
+  "join_keys": {
+    "election_results": [
+      "cycle",
+      "state"
+    ],
+    "presidential_baselines": [
+      "forecast_cycle",
+      "state_po"
+    ]
+  },
+  "row_count": 243,
+  "cycles": [
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "overperformance_formula": "actual_margin_dem - presidential_margin_dem",
+  "incumbency_source": "audited_senate_seat_lineage",
+  "lookahead_protection": true,
+  "input_files": {
+    "election_results": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_election_results_enriched_2012_2024.csv",
+    "presidential_baselines": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_presidential_baselines_by_cycle.csv"
+  },
+  "input_sha256": {
+    "election_results": "d55eee8d795764e039b13850b4af0f0901186ec75a8d9d93a8134865a3d69570",
+    "presidential_baselines": "dc995a5276ee49d344beb954212f4cca6d27fcde10a2192578be8a8a46798d91"
+  },
+  "validation_status": "passed"
+}

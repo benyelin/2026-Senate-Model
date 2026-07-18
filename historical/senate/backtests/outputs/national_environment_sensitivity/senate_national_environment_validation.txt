@@ -1,0 +1,36 @@
+Senate National-Environment Sensitivity Backtest
+============================================================================
+
+Input: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv
+Input SHA-256: f57da69128189e0d9b626e10f00bc2349dd2b7f1d39e6b307b5e5b4f7ba46875
+Cycles: 2012, 2014, 2016, 2018, 2020, 2022, 2024
+Scorable races per model: 234
+Models tested: 9
+Expected predictions: 2106
+Actual predictions: 2106
+Duplicate model/race predictions: 0
+Incorrect holdout assignments: 0
+Probability bounds failures: 0
+
+Overall model comparison:
+                                     model_name      mae      rmse    brier  directional_accuracy  r_squared  mae_change_vs_generic  rmse_change_vs_generic  brier_change_vs_generic  average_rank
+                                 generic_ballot 8.252865 11.846711 0.083618              0.871795   0.766737               0.000000                0.000000                 0.000000      1.400000
+          generic_ballot_plus_fixed_midterm_1pt 8.252865 11.846711 0.083618              0.871795   0.766737               0.000000                0.000000                 0.000000      1.400000
+          generic_ballot_plus_estimated_midterm 8.252865 11.846711 0.083638              0.871795   0.766737              -0.000000                0.000000                 0.000020      1.600000
+                    composite_environment_index 8.310172 11.932835 0.084974              0.871795   0.763333               0.057307                0.086124                 0.001355      3.600000
+              approval_and_disapproval_separate 8.319603 12.016622 0.087567              0.867521   0.759998               0.066738                0.169911                 0.003949      5.600000
+                                  baseline_only 8.973050 12.541633 0.087001              0.880342   0.738568               0.720185                0.694922                 0.003383      6.600000
+                              approval_net_only 8.784002 12.448516 0.089697              0.871795   0.742436               0.531137                0.601805                 0.006079      6.600000
+               generic_ballot_plus_approval_net 8.636297 12.311883 0.090475              0.863248   0.748059               0.383432                0.465172                 0.006857      6.800000
+generic_ballot_plus_approval_plus_fixed_midterm 8.636297 12.311883 0.090475              0.863248   0.748059               0.383432                0.465172                 0.006857      6.800000
+
+Best MAE: generic_ballot_plus_estimated_midterm
+Best RMSE: generic_ballot
+Best Brier: generic_ballot
+Best average rank: generic_ballot
+
+Negative MAE/RMSE/Brier changes versus generic_ballot indicate improvement.
+The fixed midterm model applies exactly one Democratic-margin point toward the president's out-party in midterm years.
+Composite standardization is estimated using training cycles only in each fold.
+
+Validation: PASSED

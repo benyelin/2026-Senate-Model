@@ -1,0 +1,24 @@
+{
+  "dataset_name": "senate_historical_presidential_results",
+  "source_name": "MIT Election Data and Science Lab, U.S. President 1976-2024",
+  "source_doi": "10.7910/DVN/42MVDX",
+  "source_file": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/raw/presidential/source_downloads/mit_us_president_1976_2024/1976-2024-president.csv",
+  "source_sha256": "9936410a6dd4ecc8be7fe202c6dff5b5f8fee59d88f35ab542ed12879941dcb7",
+  "coverage_years": [
+    2008,
+    2012,
+    2016,
+    2020,
+    2024
+  ],
+  "geographic_level": "state",
+  "excluded_geographies": [
+    "District of Columbia"
+  ],
+  "primary_key": [
+    "year",
+    "state_po"
+  ],
+  "row_count": 250,
+  "validation_status": "passed"
+}

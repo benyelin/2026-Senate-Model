@@ -1,0 +1,21 @@
+{
+  "dataset_name": "senate_presidential_baselines_by_cycle",
+  "source_dataset": "senate_historical_presidential_results",
+  "primary_key": [
+    "forecast_cycle",
+    "state_po"
+  ],
+  "cycle_to_presidential_year": {
+    "2012": 2008,
+    "2014": 2012,
+    "2016": 2012,
+    "2018": 2016,
+    "2020": 2016,
+    "2022": 2020,
+    "2024": 2020
+  },
+  "baseline_method": "most_recent_completed_presidential_election",
+  "lookahead_protection": true,
+  "row_count": 350,
+  "validation_status": "passed"
+}

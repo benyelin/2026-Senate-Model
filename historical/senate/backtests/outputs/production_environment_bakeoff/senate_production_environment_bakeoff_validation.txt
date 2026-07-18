@@ -1,0 +1,29 @@
+Senate Production National-Environment Formula Bake-Off
+========================================================================================
+
+Input: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv
+Input SHA-256: f41d9f16165c0849d65e50a55b665a40bd3795750b67de4b76de4c6faf30b65f
+Historical baseline column: presidential_margin_dem
+Approval adjustment implementation: local fallback: (45 - approval) / 3
+Cycles: 2012, 2014, 2016, 2018, 2020, 2022, 2024
+Scorable races: 234
+Probability scale: 6.000
+
+Overall formula comparison:
+                                       formula_label  races      mae      rmse    brier  winner_accuracy  mean_error_dem  mae_rank  rmse_rank  brier_rank
+     Current: 0.85 GB + 0.50 approval + 0.50 midterm    234 7.730347 11.401844 0.075309         0.893162        1.632103         1          2           3
+                               1.00 × generic ballot    234 7.772637 11.398120 0.075157         0.897436        1.749005         2          1           2
+                               0.85 × generic ballot    234 7.781004 11.410144 0.074899         0.901709        1.528684         3          3           1
+   1.190420 × generic ballot (full-sample reference)    234 7.846584 11.425970 0.075939         0.897436        2.028694         4          4           4
+Generic ballot + midterm with LOCO-calibrated slopes    234 8.019741 11.519404 0.078137         0.888889        0.527166         5          5           5
+           Generic ballot with LOCO-calibrated slope    234 8.228217 11.767457 0.079053         0.897436        1.698502         6          6           6
+
+LOCO coefficient stability:
+                               model  generic_mean  generic_sd  generic_min  generic_max  midterm_mean  midterm_sd  midterm_min  midterm_max
+             generic_loco_calibrated      0.979803    0.246992     0.550400     1.402446      0.000000    0.000000     0.000000     0.000000
+generic_plus_midterm_loco_calibrated      0.652317    0.214104     0.359281     1.073537      3.279044    0.832228     1.821588     4.239642
+
+Interpretation rule: choose using the strictly out-of-sample formulas. Treat the fixed 1.190420 result as a production reference, not independent validation.
+
+Duplicate race-cycle-formula rows: 0
+Validation: PASSED

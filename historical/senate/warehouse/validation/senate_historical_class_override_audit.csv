@@ -1,0 +1,12 @@
+race_id,cycle,state,senate_class,assignment_method,notes
+2014_HI,2014,HI,1,special_election_override,Special election for the Class 1 seat
+2014_OK_SPECIAL,2014,OK,3,special_election_override,Special election for the Class 3 seat
+2014_SC_SPECIAL,2014,SC,3,special_election_override,Special election for the Class 3 seat
+2018_MN_SPECIAL,2018,MN,2,special_election_override,Special election for the Class 2 seat
+2018_MS_SPECIAL,2018,MS,2,special_election_override,Special election for the Class 2 seat
+2020_AZ,2020,AZ,3,special_election_override,Special election for the Class 3 seat
+2020_GA_SPECIAL,2020,GA,3,special_election_override,Special election for the Class 3 seat
+2022_CA_SPECIAL,2022,CA,3,special_election_override,Special election for the Class 3 seat
+2022_OK_SPECIAL,2022,OK,2,special_election_override,Special election for the Class 2 seat
+2024_CA_SPECIAL,2024,CA,1,special_election_override,Special election for the Class 1 seat
+2024_NE_SPECIAL,2024,NE,2,special_election_override,Special election for the Class 2 seat

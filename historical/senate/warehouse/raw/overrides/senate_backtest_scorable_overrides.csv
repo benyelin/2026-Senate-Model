@@ -1,6 +1,10 @@
 race_id,backtest_scorable,reason
+2012_ME,False,Independent winner; D-R margin does not represent race outcome
 2014_AL,False,Republican unopposed
 2016_CA,False,Top-two election
 2018_CA,False,Top-two election
+2018_ME,False,Independent winner; D-R margin does not represent race outcome
 2020_AR,False,Republican unopposed
+2020_GA_SPECIAL,False,November all-party special election; runoff result required
 2022_AK,False,Ranked-choice race; certified final-round major-party margin not yet ingested
+2024_ME,False,Independent winner; D-R margin does not represent race outcome

@@ -1,0 +1,31 @@
+{
+  "input_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv",
+  "input_sha256": "f41d9f16165c0849d65e50a55b665a40bd3795750b67de4b76de4c6faf30b65f",
+  "cycles": [
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "scorable_races": 234,
+  "probability_scale": 6.0,
+  "baseline_source_column": "presidential_margin_dem",
+  "approval_adjustment_source": "local fallback: (45 - approval) / 3",
+  "column_mapping": {
+    "race_id": "race_id",
+    "cycle": "cycle",
+    "state": "state",
+    "actual_margin_dem": "actual_margin_dem",
+    "baseline_margin_dem": "presidential_margin_dem",
+    "generic_ballot_margin_dem": "generic_ballot_margin_dem",
+    "presidential_approval": "presidential_approval",
+    "president_party": "president_party",
+    "midterm_adjustment_dem": "midterm_indicator"
+  },
+  "method": "Production-style prediction equals historical baseline plus candidate national-environment formula. Calibrated coefficients are estimated without an intercept on six cycles and applied to the held-out cycle.",
+  "full_sample_1_190420_warning": "The 1.190420 formula is reported only as a production reference because its coefficient was estimated from all seven cycles and is not strictly out-of-sample.",
+  "validation_status": "PASSED"
+}

@@ -1,0 +1,45 @@
+{
+  "model": "layer2_approval",
+  "validation_method": "leave_one_cycle_out",
+  "input_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv",
+  "input_sha256": "f57da69128189e0d9b626e10f00bc2349dd2b7f1d39e6b307b5e5b4f7ba46875",
+  "cycles": [
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "scorable_races": 234,
+  "overall_metrics": {
+    "mae": 8.636297266054575,
+    "rmse": 12.311883203787367,
+    "brier": 0.09047527431450864,
+    "directional_accuracy": 0.8632478632478633,
+    "r_squared": 0.7480585509633908
+  },
+  "layer1_metrics": {
+    "mae": 8.252865134131952,
+    "rmse": 11.846710980034903,
+    "brier": 0.08361831528751663,
+    "directional_accuracy": 0.8717948717948718,
+    "r_squared": 0.7667367965771321
+  },
+  "changes_from_layer1": {
+    "mae_change": 0.38343213192262304,
+    "rmse_change": 0.4651722237524645,
+    "brier_change": 0.006856959026992002,
+    "directional_accuracy_change": -0.008547008547008517,
+    "r_squared_change": -0.018678245613741318
+  },
+  "mean_fold_coefficients": {
+    "intercept": -1.9289004689417955,
+    "presidential_slope": 1.0144868539798086,
+    "generic_ballot_slope": 1.152644614160505,
+    "approval_slope": 0.014474616105303246,
+    "training_residual_sd": 11.274615797481863
+  },
+  "validation_status": "PASSED"
+}

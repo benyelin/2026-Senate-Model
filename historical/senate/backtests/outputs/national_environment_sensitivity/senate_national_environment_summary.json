@@ -1,0 +1,30 @@
+{
+  "input_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv",
+  "input_sha256": "f57da69128189e0d9b626e10f00bc2349dd2b7f1d39e6b307b5e5b4f7ba46875",
+  "cycles": [
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "scorable_races": 234,
+  "models_tested": [
+    "baseline_only",
+    "generic_ballot",
+    "approval_net_only",
+    "generic_ballot_plus_approval_net",
+    "generic_ballot_plus_fixed_midterm_1pt",
+    "generic_ballot_plus_estimated_midterm",
+    "generic_ballot_plus_approval_plus_fixed_midterm",
+    "approval_and_disapproval_separate",
+    "composite_environment_index"
+  ],
+  "best_mae_model": "generic_ballot_plus_estimated_midterm",
+  "best_rmse_model": "generic_ballot",
+  "best_brier_model": "generic_ballot",
+  "best_average_rank_model": "generic_ballot",
+  "validation_status": "PASSED"
+}

@@ -1,0 +1,27 @@
+Senate Layer 1 Production Calibration
+============================================================================
+
+Input: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv
+Input SHA-256: f57da69128189e0d9b626e10f00bc2349dd2b7f1d39e6b307b5e5b4f7ba46875
+Cycles: 2012, 2014, 2016, 2018, 2020, 2022, 2024
+Scorable races: 234
+Duplicate race IDs: 0
+
+Full-sample coefficients and stability:
+                     term  estimate  standard_error  analytic_ci_95_lower  analytic_ci_95_upper  loco_mean  loco_sd  loco_min  loco_max
+                intercept -1.993166        0.799402             -3.559994             -0.426337  -2.014731 0.528973 -2.683176 -1.101851
+  presidential_margin_dem  1.017218        0.034659              0.949286              1.085150   1.016099 0.022101  0.987265  1.050933
+generic_ballot_margin_dem  1.190420        0.205980              0.786700              1.594140   1.181771 0.231655  0.736016  1.502941
+
+Full-sample fit:
+MAE: 7.670014
+RMSE: 11.238366
+Residual SD: 11.311107
+R-squared: 0.790078
+Adjusted R-squared: 0.788261
+
+Important: these are full-sample production-candidate estimates. The previously reported LOCO metrics remain the proper out-of-sample performance estimates.
+
+Important: do not insert the fitted intercept into production until baseline double-counting has been evaluated.
+
+Validation: PASSED

@@ -1,0 +1,35 @@
+Senate Layer 0 Presidential-Baseline LOCO Backtest
+============================================================
+
+Input: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv
+Input SHA-256: f57da69128189e0d9b626e10f00bc2349dd2b7f1d39e6b307b5e5b4f7ba46875
+
+Cycles: 2012, 2014, 2016, 2018, 2020, 2022, 2024
+Scorable historical races: 234
+Completed folds: 7
+Out-of-sample predictions: 234
+Missing predictions: 0
+Duplicate race predictions: 0
+Incorrect holdout assignments: 0
+Probability bounds failures: 0
+
+Overall out-of-sample metrics:
+MAE: 8.9731
+RMSE: 12.5416
+Brier: 0.08700
+Directional accuracy: 88.0342%
+Out-of-sample R-squared: 0.7386
+
+Fold metrics:
+ holdout_cycle  training_rows  test_rows  intercept  presidential_slope  training_residual_sd       mae      rmse    brier  directional_accuracy  r_squared
+          2012            202         32  -0.567785            0.987036             11.851116 10.367383 13.421728 0.113123              0.843750   0.673752
+          2014            199         35   0.289370            0.990763             12.044102  8.367607 12.347463 0.074545              0.914286   0.722778
+          2016            201         33   0.653265            0.965177             11.387863 11.232540 15.922517 0.091297              0.848485   0.684209
+          2018            201         33  -1.965221            1.037607             11.362977 13.178806 16.548799 0.163166              0.727273   0.282062
+          2020            201         33  -0.806455            1.001986             12.446184  7.410936  9.644514 0.068286              0.878788   0.814402
+          2022            200         34   0.177780            0.981310             12.451850  6.680250  9.720149 0.053938              0.970588   0.848908
+          2024            200         34   0.225538            1.017165             12.693554  5.817868  7.707973 0.048374              0.970588   0.869142
+
+All predictions are generated using coefficients estimated without the held-out election cycle.
+
+Validation: PASSED

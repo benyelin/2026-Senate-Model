@@ -1,0 +1,8 @@
+cycle,race_rows,regular_races,special_races,expected_regular_class,regular_class_mismatches,missing_class,invalid_class,duplicate_race_ids,valid_concurrent_special_regular_pairs,invalid_duplicate_seats_same_cycle
+2012,33,33,0,1,0,0,0,0,0,0
+2014,36,33,3,2,0,0,0,0,0,0
+2016,34,34,0,3,0,0,0,0,0,0
+2018,35,33,2,1,0,0,0,0,0,0
+2020,35,33,2,2,0,0,0,0,0,0
+2022,35,33,2,3,0,0,0,0,1,0
+2024,35,33,2,1,0,0,0,0,1,0

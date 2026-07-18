@@ -1,0 +1,25 @@
+Senate Presidential Baselines by Cycle Validation
+=================================================
+
+Source: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_presidential_results.csv
+
+Cycle mapping: {2012: 2008, 2014: 2012, 2016: 2012, 2018: 2016, 2020: 2016, 2022: 2020, 2024: 2020}
+Expected rows: 350
+Output rows: 350
+Duplicate cycle-state keys: 0
+Incorrect year assignments: 0
+Rows using same-cycle or future results: 0
+Missing presidential margins: 0
+Invalid lookahead-protection flags: 0
+
+Rows by cycle:
+forecast_cycle
+2012    50
+2014    50
+2016    50
+2018    50
+2020    50
+2022    50
+2024    50
+
+Validation: PASSED

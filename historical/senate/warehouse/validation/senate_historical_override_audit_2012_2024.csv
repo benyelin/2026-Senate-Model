@@ -8,8 +8,12 @@ senate_candidate_alignment_overrides.csv,2022_UT,EVAN MCMULLIN,party_standard,I,
 senate_candidate_alignment_overrides.csv,2024_NE_REGULAR,DAN OSBORN,party_standard,Other,D,1,Democratic-backed independent
 senate_candidate_alignment_overrides.csv,2024_VT,BERNIE SANDERS,party_standard,I,D,1,Democratic caucus independent
 senate_race_metadata_overrides.csv,2022_AK,,manual_review,False,True,1,Ranked-choice election requiring certified final-round results
+senate_backtest_scorable_overrides.csv,2012_ME,,backtest_scorable,True,False,1,Independent winner; D-R margin does not represent race outcome
 senate_backtest_scorable_overrides.csv,2014_AL,,backtest_scorable,False,False,1,Republican unopposed
 senate_backtest_scorable_overrides.csv,2016_CA,,backtest_scorable,False,False,1,Top-two election
 senate_backtest_scorable_overrides.csv,2018_CA,,backtest_scorable,False,False,1,Top-two election
+senate_backtest_scorable_overrides.csv,2018_ME,,backtest_scorable,True,False,1,Independent winner; D-R margin does not represent race outcome
 senate_backtest_scorable_overrides.csv,2020_AR,,backtest_scorable,False,False,1,Republican unopposed
+senate_backtest_scorable_overrides.csv,2020_GA_SPECIAL,,backtest_scorable,True,False,1,November all-party special election; runoff result required
 senate_backtest_scorable_overrides.csv,2022_AK,,backtest_scorable,False,False,1,Ranked-choice race; certified final-round major-party margin not yet ingested
+senate_backtest_scorable_overrides.csv,2024_ME,,backtest_scorable,True,False,1,Independent winner; D-R margin does not represent race outcome

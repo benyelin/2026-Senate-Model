@@ -1,0 +1,39 @@
+{
+  "model_name": "senate_layer1_presidential_baseline_plus_generic_ballot",
+  "calibration_status": "candidate_for_production_review",
+  "input_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv",
+  "input_sha256": "f57da69128189e0d9b626e10f00bc2349dd2b7f1d39e6b307b5e5b4f7ba46875",
+  "calibration_cycles": [
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "scorable_races": 234,
+  "formula": "predicted_margin_dem = intercept + presidential_margin_coefficient * presidential_margin_dem + generic_ballot_coefficient * generic_ballot_margin_dem",
+  "coefficients": {
+    "intercept": -1.9931655491283664,
+    "presidential_margin_dem": 1.0172179271627706,
+    "generic_ballot_margin_dem": 1.190419926641335
+  },
+  "residual_sd": 11.311106917078517,
+  "in_sample_metrics": {
+    "mae": 7.670014016255646,
+    "rmse": 11.238365925165462,
+    "r_squared": 0.7900784682975155,
+    "adjusted_r_squared": 0.7882609658585329
+  },
+  "production_integration_note": "Do not automatically add the fitted intercept to the existing production national-environment field. Determine whether the district or state baseline already incorporates the structural intercept before integration.",
+  "approval_component": {
+    "recommended_status": "exclude_from_retained_layer1",
+    "reason": "Approval-based specifications did not improve leave-one-cycle-out performance over generic ballot."
+  },
+  "midterm_component": {
+    "recommended_status": "unresolved_pending_identifiable_test",
+    "reason": "The prior fixed-shift test was aliased with the fold intercept."
+  },
+  "validation_status": "PASSED"
+}

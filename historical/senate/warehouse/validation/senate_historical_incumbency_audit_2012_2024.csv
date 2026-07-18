@@ -1,0 +1,244 @@
+race_id,cycle,election_date,state,senate_class,seat_id,special_election,dem_candidate,gop_candidate,incumbent_name,incumbent_party,incumbent_running,open_seat,lineage_incumbent_name,lineage_incumbent_party,lineage_incumbent_term_how,lineage_appointed_incumbent,lineage_incumbent_running,lineage_open_seat,lineage_incumbent_candidate_party,lineage_dem_candidate_match_score,lineage_gop_candidate_match_score,lineage_candidate_match_method,lineage_officeholder_count,lineage_officeholder_status,audit_existing_name_match_score,audit_incumbent_name_agrees,audit_incumbent_party_agrees,audit_incumbent_running_agrees,audit_open_seat_agrees,incumbency_audit_flag
+2012_AZ,2012,2012-11-06,AZ,1,AZ_CLASS_1,False,RICHARD CARMONA,JEFF FLAKE,,,,,Jon Kyl,R,,False,False,True,,0.1,0.1941,no_confident_match,1,single_match,,,,,,False
+2012_CA,2012,2012-11-06,CA,1,CA_CLASS_1,False,DIANNE FEINSTEIN,ELIZABETH EMKEN,,,,,Dianne Feinstein,D,,False,True,False,D,1.0,0.1065,strong_name_match,1,single_match,,,,,,False
+2012_CT,2012,2012-11-06,CT,1,CT_CLASS_1,False,CHRISTOPHER S. MURPHY,LINDA E. MCMAHON,,,,,Joseph I. Lieberman,D,,False,False,True,,0.1737,0.2,no_confident_match,1,single_match,,,,,,False
+2012_DE,2012,2012-11-06,DE,1,DE_CLASS_1,False,THOMAS R. CARPER,KEVIN WADE,,,,,Thomas R. Carper,D,,False,True,False,D,1.0,0.088,strong_name_match,1,single_match,,,,,,False
+2012_FL,2012,2012-11-06,FL,1,FL_CLASS_1,False,BILL NELSON,CONNIE MACK,,,,,Bill Nelson,D,,False,True,False,D,1.0,0.1,strong_name_match,1,single_match,,,,,,False
+2012_HI,2012,2012-11-06,HI,1,HI_CLASS_1,False,MAZIE K. HIRONO,LINDA LINGLE,,,,,Daniel K. Akaka,D,,False,False,True,,0.3257,0.1692,no_confident_match,1,single_match,,,,,,False
+2012_IN,2012,2012-11-06,IN,1,IN_CLASS_1,False,JOE DONNELLY,RICHARD E. MOURDOCK,,,,,Richard G. Lugar,R,,False,False,True,,0.0815,0.4567,no_confident_match,1,single_match,,,,,,False
+2012_MA,2012,2012-11-06,MA,1,MA_CLASS_1,False,ELIZABETH A. WARREN,SCOTT P. BROWN,,,,,Scott P. Brown,R,,False,True,False,R,0.1774,1.0,strong_name_match,1,single_match,,,,,,False
+2012_MD,2012,2012-11-06,MD,1,MD_CLASS_1,False,BENJAMIN L. CARDIN,DANIEL JOHN BONGINO,,,,,Benjamin L. Cardin,D,,False,True,False,D,1.0,0.1222,strong_name_match,1,single_match,,,,,,False
+2012_ME,2012,2012-11-06,ME,1,ME_CLASS_1,False,CYNTHIA ANN DILL,"CHARLES E. SUMMERS, JR.",,,,,Olympia J. Snowe,R,,False,False,True,,0.1774,0.1719,no_confident_match,1,single_match,,,,,,False
+2012_MI,2012,2012-11-06,MI,1,MI_CLASS_1,False,DEBBIE STABENOW,PETE HOEKSTRA,,,,,Debbie Stabenow,D,,False,True,False,D,1.0,0.2357,strong_name_match,1,single_match,,,,,,False
+2012_MN,2012,2012-11-06,MN,1,MN_CLASS_1,False,AMY KLOBUCHAR,KURT BILLS,,,,,Amy Klobuchar,D,,False,True,False,D,1.0,0.0957,strong_name_match,1,single_match,,,,,,False
+2012_MO,2012,2012-11-06,MO,1,MO_CLASS_1,False,CLAIRE MCCASKILL,W. TODD AKIN,,,,,Claire McCaskill,D,,False,True,False,D,1.0,0.1222,strong_name_match,1,single_match,,,,,,False
+2012_MS,2012,2012-11-06,MS,1,MS_CLASS_1,False,"ALBERT N. GORE, JR.",ROGER F. WICKER,,,,,Roger F. Wicker,R,appointment,True,True,False,R,0.2037,1.0,strong_name_match,1,single_match,,,,,,False
+2012_MT,2012,2012-11-06,MT,1,MT_CLASS_1,False,JON TESTER,DENNY REHBERG,,,,,Jon Tester,D,,False,True,False,D,1.0,0.2391,strong_name_match,1,single_match,,,,,,False
+2012_ND,2012,2012-11-06,ND,1,ND_CLASS_1,False,HEIDI HEITKAMP,RICK BERG,,,,,Kent Conrad,D,,False,False,True,,0.088,0.165,no_confident_match,1,single_match,,,,,,False
+2012_NE,2012,2012-11-06,NE,1,NE_CLASS_1,False,BOB KERREY,DEB FISCHER,,,,,Ben Nelson,D,,False,False,True,,0.165,0.1048,no_confident_match,1,single_match,,,,,,False
+2012_NJ,2012,2012-11-06,NJ,1,NJ_CLASS_1,False,ROBERT MENENDEZ,JOE KYRILLOS,,,,,Robert Menendez,D,,False,True,False,D,1.0,0.0815,strong_name_match,1,single_match,,,,,,False
+2012_NM,2012,2012-11-06,NM,1,NM_CLASS_1,False,MARTIN HEINRICH,HEATHER A. WILSON,,,,,Jeff Bingaman,D,,False,False,True,,0.1179,0.1517,no_confident_match,1,single_match,,,,,,False
+2012_NV,2012,2012-11-06,NV,1,NV_CLASS_1,False,SHELLEY BERKLEY,DEAN HELLER,,,,,Dean Heller,R,appointment,True,True,False,R,0.2538,1.0,strong_name_match,1,single_match,,,,,,False
+2012_NY,2012,2012-11-06,NY,1,NY_CLASS_1,False,KIRSTEN E. GILLIBRAND,WENDY LONG,,,,,Kirsten E. Gillibrand,D,appointment,True,True,False,D,1.0,0.1467,strong_name_match,1,single_match,,,,,,False
+2012_OH,2012,2012-11-06,OH,1,OH_CLASS_1,False,SHERROD BROWN,JOSH MANDEL,,,,,Sherrod Brown,D,,False,True,False,D,1.0,0.1375,strong_name_match,1,single_match,,,,,,False
+2012_PA,2012,2012-11-06,PA,1,PA_CLASS_1,False,"ROBERT P. CASEY, JR.",TOM SMITH,,,,,"Robert P. Casey, Jr.",D,,False,True,False,D,1.0,0.0957,strong_name_match,1,single_match,,,,,,False
+2012_RI,2012,2012-11-06,RI,1,RI_CLASS_1,False,SHELDON WHITEHOUSE,BENJAMIN BARRETT HINCKLEY III,,,,,Sheldon Whitehouse,D,,False,True,False,D,1.0,0.1535,strong_name_match,1,single_match,,,,,,False
+2012_TN,2012,2012-11-06,TN,1,TN_CLASS_1,False,MARK E. CLAYTON,BOB CORKER,,,,,Bob Corker,R,,False,True,False,R,0.1375,1.0,strong_name_match,1,single_match,,,,,,False
+2012_TX,2012,2012-11-06,TX,1,TX_CLASS_1,False,PAUL SADLER,TED CRUZ,,,,,Kay Bailey Hutchison,R,,False,False,True,,0.1774,0.0786,no_confident_match,1,single_match,,,,,,False
+2012_UT,2012,2012-11-06,UT,1,UT_CLASS_1,False,SCOTT HOWELL,ORRIN G. HATCH,,,,,Orrin G. Hatch,R,,False,True,False,R,0.132,1.0,strong_name_match,1,single_match,,,,,,False
+2012_VA,2012,2012-11-06,VA,1,VA_CLASS_1,False,TIMOTHY M. KAINE,GEORGE F. ALLEN,,,,,Jim Webb,D,,False,False,True,,0.1913,0.1,no_confident_match,1,single_match,,,,,,False
+2012_VT,2012,2012-11-06,VT,1,VT_CLASS_1,False,BERNARD SANDERS,JOHN MACGOVERN,,,,,Bernard Sanders,D,,False,True,False,D,1.0,0.1138,strong_name_match,1,single_match,,,,,,False
+2012_WA,2012,2012-11-06,WA,1,WA_CLASS_1,False,MARIA CANTWELL,MICHAEL BAUMGARTNER,,,,,Maria Cantwell,D,,False,True,False,D,1.0,0.1667,strong_name_match,1,single_match,,,,,,False
+2012_WI,2012,2012-11-06,WI,1,WI_CLASS_1,False,TAMMY BALDWIN,TOMMY G. THOMPSON,,,,,Herb Kohl,D,,False,False,True,,0.1,0.088,no_confident_match,1,single_match,,,,,,False
+2012_WV,2012,2012-11-06,WV,1,WV_CLASS_1,False,JOE MANCHIN III,JOHN R. RAESE,,,,,"Joe Manchin, III",D,,False,True,False,D,1.0,0.1435,strong_name_match,1,single_match,,,,,,False
+2012_WY,2012,2012-11-06,WY,1,WY_CLASS_1,False,TIM CHESNUT,JOHN BARRASSO,,,,,John Barrasso,R,appointment,True,True,False,R,0.0917,1.0,strong_name_match,1,single_match,,,,,,False
+2014_AK,2014,2014-11-04,AK,2,AK_CLASS_2,False,MARK BEGICH,DAN SULLIVAN,,,,,Mark Begich,D,,False,True,False,D,1.0,0.1435,strong_name_match,1,single_match,,,,,,False
+2014_AL,2014,2014-11-04,AL,2,AL_CLASS_2,False,,JEFF SESSIONS,,,,,Jeff Sessions,R,,False,True,False,R,0.0,1.0,strong_name_match,1,single_match,,,,,,False
+2014_AR,2014,2014-11-04,AR,2,AR_CLASS_2,False,MARK L. PRYOR,TOM COTTON,,,,,Mark L. Pryor,D,,False,True,False,D,1.0,0.15,strong_name_match,1,single_match,,,,,,False
+2014_CO,2014,2014-11-04,CO,2,CO_CLASS_2,False,MARK UDALL,CORY GARDNER,,,,,Mark Udall,D,,False,True,False,D,1.0,0.15,strong_name_match,1,single_match,,,,,,False
+2014_DE,2014,2014-11-04,DE,2,DE_CLASS_2,False,CHRISTOPHER A. COONS,KEVIN WADE,,,,,Christopher A. Coons,D,,False,True,False,D,1.0,0.0759,strong_name_match,1,single_match,,,,,,False
+2014_GA,2014,2014-11-04,GA,2,GA_CLASS_2,False,M. MICHELLE NUNN,DAVID A. PERDUE,,,,,Saxby Chambliss,R,,False,False,True,,0.1467,0.1138,no_confident_match,1,single_match,,,,,,False
+2014_HI,2014,2014-11-04,HI,1,HI_CLASS_1,True,BRIAN SCHATZ,CAM CAVASSO,,,,,Mazie K. Hirono,D,,False,False,True,,0.0846,0.132,no_confident_match,1,single_match,,,,,,False
+2014_IA,2014,2014-11-04,IA,2,IA_CLASS_2,False,BRUCE BRALEY,JONI ERNST,,,,,Tom Harkin,D,,False,False,True,,0.1,0.055,no_confident_match,1,single_match,,,,,,False
+2014_ID,2014,2014-11-04,ID,2,ID_CLASS_2,False,NELS MITCHELL,JAMES E. RISCH,,,,,James E. Risch,R,,False,True,False,R,0.2538,1.0,strong_name_match,1,single_match,,,,,,False
+2014_IL,2014,2014-11-04,IL,2,IL_CLASS_2,False,RICHARD J. DURBIN,"JAMES D. ""JIM"" OBERWEIS",,,,,Richard J. Durbin,D,,False,True,False,D,1.0,0.2139,strong_name_match,1,single_match,,,,,,False
+2014_KS,2014,2014-11-04,KS,2,KS_CLASS_2,False,GREG ORMAN,PAT ROBERTS,,,,,Pat Roberts,R,,False,True,False,R,0.0524,1.0,strong_name_match,1,single_match,,,,,,False
+2014_KY,2014,2014-11-04,KY,2,KY_CLASS_2,False,ALISON LUNDERGAN GRIMES,MICH MCCONNELL,,,,,Mitch McConnell,R,,False,True,False,R,0.1447,0.831,confirmed_name_match,1,single_match,,,,,,False
+2014_LA,2014,2014-11-04,LA,2,LA_CLASS_2,False,MARY L. LANDRIEU,BILL CASSIDY,,,,,Mary L. Landrieu,D,,False,True,False,D,1.0,0.163,strong_name_match,1,single_match,,,,,,False
+2014_MA,2014,2014-11-04,MA,2,MA_CLASS_2,False,EDWARD J. MARKEY,BRIAN J. HERR,,,,,Edward J. Markey,D,,False,True,False,D,1.0,0.2937,strong_name_match,1,single_match,,,,,,False
+2014_ME,2014,2014-11-04,ME,2,ME_CLASS_2,False,SHENNA BELLOWS,SUSAN M. COLLINS,,,,,Susan M. Collins,R,,False,True,False,R,0.2276,1.0,strong_name_match,1,single_match,,,,,,False
+2014_MI,2014,2014-11-04,MI,2,MI_CLASS_2,False,GARY C. PETERS,TERRI LYNN LAND,,,,,Carl Levin,D,,False,False,True,,0.1913,0.176,no_confident_match,1,single_match,,,,,,False
+2014_MN,2014,2014-11-04,MN,2,MN_CLASS_2,False,AL FRANKEN,MIKE MCFADDEN,,,,,Al Franken,D,,False,True,False,D,1.0,0.1435,strong_name_match,1,single_match,,,,,,False
+2014_MS,2014,2014-11-04,MS,2,MS_CLASS_2,False,TRAVIS W. CHILDERS,THAD COCHRAN,,,,,Thad Cochran,R,,False,True,False,R,0.2276,1.0,strong_name_match,1,single_match,,,,,,False
+2014_MT,2014,2014-11-04,MT,2,MT_CLASS_2,False,AMANDA CURTIS,STEVE DAINES,,,,,John E. Walsh,D,appointment,True,False,True,,0.132,0.1833,no_confident_match,1,single_match,,,,,,False
+2014_NC,2014,2014-11-04,NC,2,NC_CLASS_2,False,KAY R. HAGAN,THOM TILLIS,,,,,Kay R. Hagan,D,,False,True,False,D,1.0,0.05,strong_name_match,1,single_match,,,,,,False
+2014_NE,2014,2014-11-04,NE,2,NE_CLASS_2,False,DAVE DOMINA,BEN SASSE,,,,,Mike Johanns,R,,False,False,True,,0.1435,0.2095,no_confident_match,1,single_match,,,,,,False
+2014_NH,2014,2014-11-04,NH,2,NH_CLASS_2,False,JEANNE SHAHEEN,SCOTT P. BROWN,,,,,Jeanne Shaheen,D,,False,True,False,D,1.0,0.0407,strong_name_match,1,single_match,,,,,,False
+2014_NJ,2014,2014-11-04,NJ,2,NJ_CLASS_2,False,CORY A. BOOKER,JEFF BELL,,,,,Cory A. Booker,D,,False,True,False,D,1.0,0.15,strong_name_match,1,single_match,,,,,,False
+2014_NM,2014,2014-11-04,NM,2,NM_CLASS_2,False,TOM UDALL,ALLEN E. WEH,,,,,Tom Udall,D,,False,True,False,D,1.0,0.165,strong_name_match,1,single_match,,,,,,False
+2014_OK_REGULAR,2014,2014-11-04,OK,2,OK_CLASS_2,False,MATT SILVERSTEIN,JAMES M. INHOFE,,,,,James M. Inhofe,R,,False,True,False,R,0.1833,1.0,strong_name_match,1,single_match,,,,,,False
+2014_OK_SPECIAL,2014,2014-11-04,OK,3,OK_CLASS_3,True,CONNIE JOHNSON,JAMES LANKFORD,,,,,Tom Coburn,R,,False,False,True,,0.1375,0.0917,no_confident_match,1,single_match,,,,,,False
+2014_OR,2014,2014-11-04,OR,2,OR_CLASS_2,False,JEFF MERKLEY,MONICA WEHBY,,,,,Jeff Merkley,D,,False,True,False,D,1.0,0.0917,strong_name_match,1,single_match,,,,,,False
+2014_RI,2014,2014-11-04,RI,2,RI_CLASS_2,False,JACK REED,MARK S. ZACCARIA,,,,,Jack Reed,D,,False,True,False,D,1.0,0.1375,strong_name_match,1,single_match,,,,,,False
+2014_SC_REGULAR,2014,2014-11-04,SC,2,SC_CLASS_2,False,BRAD HUTTO,LINDSEY GRAHAM,,,,,Lindsey Graham,R,,False,True,False,R,0.1375,1.0,strong_name_match,1,single_match,,,,,,False
+2014_SC_SPECIAL,2014,2014-11-04,SC,3,SC_CLASS_3,True,JOYCE DICKERSON,TIM SCOTT,,,,,Tim Scott,R,appointment,True,True,False,R,0.1375,1.0,strong_name_match,1,single_match,,,,,,False
+2014_SD,2014,2014-11-04,SD,2,SD_CLASS_2,False,RICK WEILAND,MIKE ROUNDS,,,,,Tim Johnson,D,,False,False,True,,0.1435,0.25,no_confident_match,1,single_match,,,,,,False
+2014_TN,2014,2014-11-04,TN,2,TN_CLASS_2,False,GORDON BALL,LAMAR ALEXANDER,,,,,Lamar Alexander,R,,False,True,False,R,0.1692,1.0,strong_name_match,1,single_match,,,,,,False
+2014_TX,2014,2014-11-04,TX,2,TX_CLASS_2,False,DAVID M. ALAMEEL,JOHN CORNYN,,,,,John Cornyn,R,,False,True,False,R,0.0423,1.0,strong_name_match,1,single_match,,,,,,False
+2014_VA,2014,2014-11-04,VA,2,VA_CLASS_2,False,MARK R. WARNER,ED. W. GILLESPIE,,,,,Mark R. Warner,D,,False,True,False,D,1.0,0.1222,strong_name_match,1,single_match,,,,,,False
+2014_WV,2014,2014-11-04,WV,2,WV_CLASS_2,False,NATALIE TENNANT,SHELLEY MOORE CAPITO,,,,,"John D. Rockefeller, IV",D,,False,False,True,,0.1,0.1737,no_confident_match,1,single_match,,,,,,False
+2014_WY,2014,2014-11-04,WY,2,WY_CLASS_2,False,CHARLIE HARDY,MICHAEL B. ENZI,,,,,Michael B. Enzi,R,,False,True,False,R,0.2037,1.0,strong_name_match,1,single_match,,,,,,False
+2016_AK,2016,2016-11-08,AK,3,AK_CLASS_3,False,RAY METCALFE,LISA MURKOWSKI,,,,,Lisa Murkowski,R,,False,True,False,R,0.1269,1.0,strong_name_match,1,single_match,,,,,,False
+2016_AL,2016,2016-11-08,AL,3,AL_CLASS_3,False,RON CRUMPTON,RICHARD C. SHELBY,,,,,Richard C. Shelby,R,,False,True,False,R,0.1179,1.0,strong_name_match,1,single_match,,,,,,False
+2016_AR,2016,2016-11-08,AR,3,AR_CLASS_3,False,CONNER ELDRIDGE,JOHN BOOZMAN,,,,,John Boozman,R,,False,True,False,R,0.1222,1.0,strong_name_match,1,single_match,,,,,,False
+2016_AZ,2016,2016-11-08,AZ,3,AZ_CLASS_3,False,ANN KIRKPATRICK,JOHN MCCAIN,,,,,John McCain,R,,False,True,False,R,0.1269,1.0,strong_name_match,1,single_match,,,,,,False
+2016_CA,2016,2016-11-08,CA,3,CA_CLASS_3,False,KAMALA D. HARRIS,,,,,,Barbara Boxer,D,,False,False,True,,0.1179,0.0,no_confident_match,1,single_match,,,,,,False
+2016_CO,2016,2016-11-08,CO,3,CO_CLASS_3,False,MICHAEL F. BENNET,DARRYL GLENN,,,,,Michael F. Bennet,D,,False,True,False,D,1.0,0.2357,strong_name_match,1,single_match,,,,,,False
+2016_CT,2016,2016-11-08,CT,3,CT_CLASS_3,False,RICHARD BLUMENTHAL,DAN CARTER,,,,,Richard Blumenthal,D,,False,True,False,D,1.0,0.1571,strong_name_match,1,single_match,,,,,,False
+2016_FL,2016,2016-11-08,FL,3,FL_CLASS_3,False,PATRICK MURPHY,MARCO RUBIO,,,,,Marco Rubio,R,,False,True,False,R,0.088,1.0,strong_name_match,1,single_match,,,,,,False
+2016_GA,2016,2016-11-08,GA,3,GA_CLASS_3,False,JIM BARKSDALE,JOHNNY ISAKSON,,,,,Johnny Isakson,R,,False,True,False,R,0.2037,1.0,strong_name_match,1,single_match,,,,,,False
+2016_HI,2016,2016-11-08,HI,3,HI_CLASS_3,False,BRIAN SCHATZ,JOHN CARROLL,,,,,Brian Schatz,D,,False,True,False,D,1.0,0.1833,strong_name_match,1,single_match,,,,,,False
+2016_IA,2016,2016-11-08,IA,3,IA_CLASS_3,False,PATTY JUDGE,CHUCK GRASSLEY,,,,,Chuck Grassley,R,,False,True,False,R,0.132,1.0,strong_name_match,1,single_match,,,,,,False
+2016_ID,2016,2016-11-08,ID,3,ID_CLASS_3,False,JERRY STURGILL,MIKE CRAPO,,,,,Mike Crapo,R,,False,True,False,R,0.0458,1.0,strong_name_match,1,single_match,,,,,,False
+2016_IL,2016,2016-11-08,IL,3,IL_CLASS_3,False,TAMMY DUCKWORTH,MARK KIRK,,,,,Mark Kirk,R,,False,True,False,R,0.0917,1.0,strong_name_match,1,single_match,,,,,,False
+2016_IN,2016,2016-11-08,IN,3,IN_CLASS_3,False,EVAN BAYH,TODD C. YOUNG,,,,,Daniel Coats,R,,False,False,True,,0.2095,0.1833,no_confident_match,1,single_match,,,,,,False
+2016_KS,2016,2016-11-08,KS,3,KS_CLASS_3,False,PATRICK WIESNER,JERRY MORAN,,,,,Jerry Moran,R,,False,True,False,R,0.0846,1.0,strong_name_match,1,single_match,,,,,,False
+2016_KY,2016,2016-11-08,KY,3,KY_CLASS_3,False,JIM GRAY,RAND PAUL,,,,,Rand Paul,R,,False,True,False,R,0.1294,1.0,strong_name_match,1,single_match,,,,,,False
+2016_LA,2016,2016-11-08,LA,3,LA_CLASS_3,False,FOSTER CAMPBELL,JOHN KENNEDY,,,,,David Vitter,R,,False,False,True,,0.1222,0.0458,no_confident_match,1,single_match,,,,,,False
+2016_MD,2016,2016-11-08,MD,3,MD_CLASS_3,False,CHRIS VAN HOLLEN,KATHY SZELIGA,,,,,Barbara A. Mikulski,D,,False,False,True,,0.0971,0.071,no_confident_match,1,single_match,,,,,,False
+2016_MO,2016,2016-11-08,MO,3,MO_CLASS_3,False,JASON KANDER,ROY BLUNT,,,,,Roy Blunt,R,,False,True,False,R,0.0524,1.0,strong_name_match,1,single_match,,,,,,False
+2016_NC,2016,2016-11-08,NC,3,NC_CLASS_3,False,DEBORAH K. ROSS,RICHARD BURR,,,,,Richard Burr,R,,False,True,False,R,0.1269,1.0,strong_name_match,1,single_match,,,,,,False
+2016_ND,2016,2016-11-08,ND,3,ND_CLASS_3,False,ELIOT GLASSHEIM,JOHN HOEVEN,,,,,John Hoeven,R,,False,True,False,R,0.1269,1.0,strong_name_match,1,single_match,,,,,,False
+2016_NH,2016,2016-11-08,NH,3,NH_CLASS_3,False,MAGGIE HASSAN,KELLY AYOTTE,,,,,Kelly Ayotte,R,,False,True,False,R,0.132,1.0,strong_name_match,1,single_match,,,,,,False
+2016_NV,2016,2016-11-08,NV,3,NV_CLASS_3,False,CATHERINE CORTEZ MASTO,JOSEPH J. HECK,,,,,Harry Reid,D,,False,False,True,,0.0688,0.1435,no_confident_match,1,single_match,,,,,,False
+2016_NY,2016,2016-11-08,NY,3,NY_CLASS_3,False,CHARLES E. SCHUMER,WENDY LONG,,,,,Charles E. Schumer,D,,False,True,False,D,1.0,0.0407,strong_name_match,1,single_match,,,,,,False
+2016_OH,2016,2016-11-08,OH,3,OH_CLASS_3,False,TED STRICKLAND,ROB PORTMAN,,,,,Rob Portman,R,,False,True,False,R,0.132,1.0,strong_name_match,1,single_match,,,,,,False
+2016_OK,2016,2016-11-08,OK,3,OK_CLASS_3,False,MIKE WORKMAN,JAMES LANKFORD,,,,,James Lankford,R,,False,True,False,R,0.2115,1.0,strong_name_match,1,single_match,,,,,,False
+2016_OR,2016,2016-11-08,OR,3,OR_CLASS_3,False,RON WYDEN,MARK CALLAHAN,,,,,Ron Wyden,D,,False,True,False,D,1.0,0.1,strong_name_match,1,single_match,,,,,,False
+2016_PA,2016,2016-11-08,PA,3,PA_CLASS_3,False,KATIE MCGINTY,PATRICK J. TOOMEY,,,,,Patrick J. Toomey,R,,False,True,False,R,0.2276,1.0,strong_name_match,1,single_match,,,,,,False
+2016_SC,2016,2016-11-08,SC,3,SC_CLASS_3,False,THOMAS DIXON,TIM SCOTT,,,,,Tim Scott,R,,False,True,False,R,0.1571,1.0,strong_name_match,1,single_match,,,,,,False
+2016_SD,2016,2016-11-08,SD,3,SD_CLASS_3,False,JAY WILLIAMS,JOHN R. THUNE,,,,,John Thune,R,,False,True,False,R,0.1,0.95,strong_name_match,1,single_match,,,,,,False
+2016_UT,2016,2016-11-08,UT,3,UT_CLASS_3,False,MISTY K. SNOW,MIKE LEE,,,,,Mike Lee,R,,False,True,False,R,0.22,1.0,strong_name_match,1,single_match,,,,,,False
+2016_VT,2016,2016-11-08,VT,3,VT_CLASS_3,False,PATRICK J. LEAHY,SCOTT MILNE,,,,,Patrick J. Leahy,D,,False,True,False,D,1.0,0.1692,strong_name_match,1,single_match,,,,,,False
+2016_WA,2016,2016-11-08,WA,3,WA_CLASS_3,False,PATTY MURRAY,CHRIS VANCE,,,,,Patty Murray,D,,False,True,False,D,1.0,0.0478,strong_name_match,1,single_match,,,,,,False
+2016_WI,2016,2016-11-08,WI,3,WI_CLASS_3,False,RUSS FEINGOLD,RON JOHNSON,,,,,Ron Johnson,R,,False,True,False,R,0.0917,1.0,strong_name_match,1,single_match,,,,,,False
+2018_AZ,2018,2018-11-06,AZ,1,AZ_CLASS_1,False,KYRSTEN SINEMA,MARTHA MCSALLY,,,,,Jeff Flake,R,,False,False,True,,0.1375,0.0917,no_confident_match,1,single_match,,,,,,False
+2018_CA,2018,2018-11-06,CA,1,CA_CLASS_1,False,DIANNE FEINSTEIN,,,,,,Dianne Feinstein,D,,False,True,False,D,1.0,0.0,strong_name_match,1,single_match,,,,,,False
+2018_CT,2018,2018-11-06,CT,1,CT_CLASS_1,False,CHRISTOPHER S MURPHY,MATTHEW COREY,,,,,Christopher Murphy,D,,False,True,False,D,0.9711,0.1774,strong_name_match,1,single_match,,,,,,False
+2018_DE,2018,2018-11-06,DE,1,DE_CLASS_1,False,THOMAS R CARPER,ROBERT B ARLETT,,,,,Thomas R. Carper,D,,False,True,False,D,1.0,0.22,strong_name_match,1,single_match,,,,,,False
+2018_FL,2018,2018-11-06,FL,1,FL_CLASS_1,False,BILL NELSON,RICK SCOTT,,,,,Bill Nelson,D,,False,True,False,D,1.0,0.2095,strong_name_match,1,single_match,,,,,,False
+2018_HI,2018,2018-11-06,HI,1,HI_CLASS_1,False,MAZIE K. HIRONO,RON CURTIS,,,,,Mazie K. Hirono,D,,False,True,False,D,1.0,0.1375,strong_name_match,1,single_match,,,,,,False
+2018_IN,2018,2018-11-06,IN,1,IN_CLASS_1,False,JOE DONNELLY,MIKE BRAUN,,,,,Joe Donnelly,D,,False,True,False,D,1.0,0.15,strong_name_match,1,single_match,,,,,,False
+2018_MA,2018,2018-11-06,MA,1,MA_CLASS_1,False,ELIZABETH A. WARREN,GEOFF DIEHL,,,,,Elizabeth Warren,D,,False,True,False,D,0.9676,0.0815,strong_name_match,1,single_match,,,,,,False
+2018_MD,2018,2018-11-06,MD,1,MD_CLASS_1,False,BEN CARDIN,TONY CAMPBELL,,,,,Benjamin L. Cardin,D,,False,False,True,,0.6699,0.1467,no_confident_match,1,single_match,,,,,,False
+2018_ME,2018,2018-11-06,ME,1,ME_CLASS_1,False,ZAK RINGELSTEIN,ERIC L. BRAKEY,,,,,"Angus S. King, Jr.",D,,False,False,True,,0.2037,0.088,no_confident_match,1,single_match,,,,,,False
+2018_MI,2018,2018-11-06,MI,1,MI_CLASS_1,False,DEBBIE STABENOW,JOHN JAMES,,,,,Debbie Stabenow,D,,False,True,False,D,1.0,0.088,strong_name_match,1,single_match,,,,,,False
+2018_MN_REGULAR,2018,2018-11-06,MN,1,MN_CLASS_1,False,AMY KLOBUCHAR,JIM NEWBERGER,,,,,Amy Klobuchar,D,,False,True,False,D,1.0,0.1692,strong_name_match,1,single_match,,,,,,False
+2018_MN_SPECIAL,2018,2018-11-06,MN,2,MN_CLASS_2,True,TINA SMITH,KARIN HOUSLEY,,,,,Tina Smith,D,appointment,True,True,False,D,1.0,0.1913,strong_name_match,1,single_match,,,,,,False
+2018_MO,2018,2018-11-06,MO,1,MO_CLASS_1,False,CLAIRE MCCASKILL,JOSH HAWLEY,,,,,Claire McCaskill,D,,False,True,False,D,1.0,0.0815,strong_name_match,1,single_match,,,,,,False
+2018_MS_REGULAR,2018,2018-11-06,MS,1,MS_CLASS_1,False,DAVID BARIA,ROGER F. WICKER,,,,,Roger F. Wicker,R,,False,True,False,R,0.088,1.0,strong_name_match,1,single_match,,,,,,False
+2018_MS_SPECIAL,2018,2018-11-06,MS,2,MS_CLASS_2,True,MIKE ESPY,CINDY HYDE-SMITH,,,,,Cindy Hyde-Smith,R,appointment,True,True,False,R,0.176,1.0,strong_name_match,1,single_match,,,,,,False
+2018_MT,2018,2018-11-06,MT,1,MT_CLASS_1,False,JON TESTER,MATT ROSENDALE,,,,,Jon Tester,D,,False,True,False,D,1.0,0.1375,strong_name_match,1,single_match,,,,,,False
+2018_ND,2018,2018-11-06,ND,1,ND_CLASS_1,False,HEIDI HEITKAMP,KEVIN CRAMER,,,,,Heidi Heitkamp,D,,False,True,False,D,1.0,0.2115,strong_name_match,1,single_match,,,,,,False
+2018_NE,2018,2018-11-06,NE,1,NE_CLASS_1,False,JANE RAYBOULD,DEB FISCHER,,,,,Deb Fischer,R,,False,True,False,R,0.0458,1.0,strong_name_match,1,single_match,,,,,,False
+2018_NJ,2018,2018-11-06,NJ,1,NJ_CLASS_1,False,ROBERT MENENDEZ,BOB HUGIN,,,,,Robert Menendez,D,,False,True,False,D,1.0,0.1833,strong_name_match,1,single_match,,,,,,False
+2018_NM,2018,2018-11-06,NM,1,NM_CLASS_1,False,MARTIN T HEINRICH,MICK RICH,,,,,Martin Heinrich,D,,False,True,False,D,0.9656,0.3208,strong_name_match,1,single_match,,,,,,False
+2018_NV,2018,2018-11-06,NV,1,NV_CLASS_1,False,JACKY ROSEN,DEAN HELLER,,,,,Dean Heller,R,,False,True,False,R,0.1,1.0,strong_name_match,1,single_match,,,,,,False
+2018_NY,2018,2018-11-06,NY,1,NY_CLASS_1,False,KIRSTEN E. GILLIBRAND,CHELE CHIAVACCI FARLEY,,,,,Kirsten E. Gillibrand,D,,False,True,False,D,1.0,0.131,strong_name_match,1,single_match,,,,,,False
+2018_OH,2018,2018-11-06,OH,1,OH_CLASS_1,False,SHERROD BROWN,JIM RENACCI,,,,,Sherrod Brown,D,,False,True,False,D,1.0,0.0917,strong_name_match,1,single_match,,,,,,False
+2018_PA,2018,2018-11-06,PA,1,PA_CLASS_1,False,ROBERT P CASEY JR,LOUIS J. BARLETTA,,,,,"Robert P. Casey, Jr.",D,,False,True,False,D,1.0,0.1467,strong_name_match,1,single_match,,,,,,False
+2018_RI,2018,2018-11-06,RI,1,RI_CLASS_1,False,SHELDON WHITEHOUSE,"ROBERT G. FLANDERS, JR.",,,,,Sheldon Whitehouse,D,,False,True,False,D,1.0,0.0314,strong_name_match,1,single_match,,,,,,False
+2018_TN,2018,2018-11-06,TN,1,TN_CLASS_1,False,PHIL BREDESEN,MARSHA BLACKBURN,,,,,Bob Corker,R,,False,False,True,,0.1435,0.1269,no_confident_match,1,single_match,,,,,,False
+2018_TX,2018,2018-11-06,TX,1,TX_CLASS_1,False,BETO O'ROURKE,TED CRUZ,,,,,Ted Cruz,R,,False,True,False,R,0.1048,1.0,strong_name_match,1,single_match,,,,,,False
+2018_UT,2018,2018-11-06,UT,1,UT_CLASS_1,False,JENNY WILSON,MITT ROMNEY,,,,,Orrin G. Hatch,R,,False,False,True,,0.088,0.0917,no_confident_match,1,single_match,,,,,,False
+2018_VA,2018,2018-11-06,VA,1,VA_CLASS_1,False,TIMOTHY M. KAINE,COREY A. STEWART,,,,,Tim Kaine,D,,False,False,True,,0.675,0.0917,no_confident_match,1,single_match,,,,,,False
+2018_VT,2018,2018-11-06,VT,1,VT_CLASS_1,False,BERNIE SANDERS,LAWRENCE ZUPAN,,,,,Bernard Sanders,D,,False,True,False,D,0.7552,0.1897,confirmed_name_match,1,single_match,,,,,,False
+2018_WA,2018,2018-11-06,WA,1,WA_CLASS_1,False,MARIA CANTWELL,SUSAN HUTCHISON,,,,,Maria Cantwell,D,,False,True,False,D,1.0,0.1138,strong_name_match,1,single_match,,,,,,False
+2018_WI,2018,2018-11-06,WI,1,WI_CLASS_1,False,TAMMY BALDWIN,LEAH VUKMIR,,,,,Tammy Baldwin,D,,False,True,False,D,1.0,0.1375,strong_name_match,1,single_match,,,,,,False
+2018_WV,2018,2018-11-06,WV,1,WV_CLASS_1,False,JOE MANCHIN,PATRICK MORRISEY,,,,,"Joe Manchin, III",D,,False,True,False,D,1.0,0.1222,strong_name_match,1,single_match,,,,,,False
+2018_WY,2018,2018-11-06,WY,1,WY_CLASS_1,False,GARY TRAUNER,JOHN BARRASSO,,,,,John Barrasso,R,,False,True,False,R,0.176,1.0,strong_name_match,1,single_match,,,,,,False
+2020_AK,2020,2020-11-03,AK,2,AK_CLASS_2,False,AL GROSS,DAN SULLIVAN,,,,,Dan Sullivan,R,,False,True,False,R,0.165,1.0,strong_name_match,1,single_match,,,,,,False
+2020_AL,2020,2020-11-03,AL,2,AL_CLASS_2,False,DOUG JONES,TOMMY TUBERVILLE,,,,,Doug Jones,D,,False,True,False,D,1.0,0.1269,strong_name_match,1,single_match,,,,,,False
+2020_AR,2020,2020-11-03,AR,2,AR_CLASS_2,False,,TOM COTTON,,,,,Tom Cotton,R,,False,True,False,R,0.0,1.0,strong_name_match,1,single_match,,,,,,False
+2020_AZ,2020,2020-11-03,AZ,3,AZ_CLASS_3,True,MARK KELLY,MARTHA MCSALLY,,,,,Martha McSally,R,appointment,True,True,False,R,0.3208,1.0,strong_name_match,1,single_match,,,,,,False
+2020_CO,2020,2020-11-03,CO,2,CO_CLASS_2,False,JOHN W. HICKENLOOPER,CORY GARDNER,,,,,Cory Gardner,R,,False,True,False,R,0.1419,1.0,strong_name_match,1,single_match,,,,,,False
+2020_DE,2020,2020-11-03,DE,2,DE_CLASS_2,False,CHRISTOPHER A. COONS,LAUREN WITZKE,,,,,Christopher A. Coons,D,,False,True,False,D,1.0,0.1375,strong_name_match,1,single_match,,,,,,False
+2020_GA_REGULAR,2020,2020-11-03,GA,2,GA_CLASS_2,False,JON OSSOFF,DAVID A. PERDUE,,,,,David Perdue,R,,False,True,False,R,0.05,0.9577,strong_name_match,1,single_match,,,,,,False
+2020_GA_SPECIAL,2020,2020-11-03,GA,3,GA_CLASS_3,True,RAPHAEL WARNOCK,KELLY LOEFFLER,,,,,Kelly Loeffler,R,appointment,True,True,False,R,0.1517,1.0,strong_name_match,1,single_match,,,,,,False
+2020_IA,2020,2020-11-03,IA,2,IA_CLASS_2,False,THERESA GREENFIELD,JONI ERNST,,,,,Joni Ernst,R,,False,True,False,R,0.1179,1.0,strong_name_match,1,single_match,,,,,,False
+2020_ID,2020,2020-11-03,ID,2,ID_CLASS_2,False,PAULETTE JORDAN,JIM RISCH,,,,,James E. Risch,R,,False,False,True,,0.1964,0.6625,no_confident_match,1,single_match,,,,,,False
+2020_IL,2020,2020-11-03,IL,2,IL_CLASS_2,False,RICHARD J. DURBIN,MARK C. CURRAN JR.,,,,,Richard J. Durbin,D,,False,True,False,D,1.0,0.2655,strong_name_match,1,single_match,,,,,,False
+2020_KS,2020,2020-11-03,KS,2,KS_CLASS_2,False,BARBARA BOLLIER,ROGER MARSHALL,,,,,Pat Roberts,R,,False,False,True,,0.2115,0.22,no_confident_match,1,single_match,,,,,,False
+2020_KY,2020,2020-11-03,KY,2,KY_CLASS_2,False,AMY MCGRATH,MITCH MCCONNELL,,,,,Mitch McConnell,R,,False,True,False,R,0.1692,1.0,strong_name_match,1,single_match,,,,,,False
+2020_LA,2020,2020-11-03,LA,2,LA_CLASS_2,False,ADRIAN PERKINS,"""BILL"" CASSIDY",,,,,Bill Cassidy,R,,False,True,False,R,0.1269,1.0,strong_name_match,1,single_match,,,,,,False
+2020_MA,2020,2020-11-03,MA,2,MA_CLASS_2,False,EDWARD J. MARKEY,KEVIN J. O'CONNER,,,,,Edward J. Markey,D,,False,True,False,D,1.0,0.2524,strong_name_match,1,single_match,,,,,,False
+2020_ME,2020,2020-11-03,ME,2,ME_CLASS_2,False,SARA I. GIDEON,SUSAN MARGARET COLLINS,,,,,Susan M. Collins,R,,False,True,False,R,0.1179,0.8209,confirmed_name_match,1,single_match,,,,,,False
+2020_MI,2020,2020-11-03,MI,2,MI_CLASS_2,False,GARY PETERS,JOHN JAMES,,,,,Gary C. Peters,D,,False,True,False,D,0.9542,0.1435,strong_name_match,1,single_match,,,,,,False
+2020_MN,2020,2020-11-03,MN,2,MN_CLASS_2,False,TINA SMITH,JASON LEWIS,,,,,Tina Smith,D,,False,True,False,D,1.0,0.1048,strong_name_match,1,single_match,,,,,,False
+2020_MS,2020,2020-11-03,MS,2,MS_CLASS_2,False,MIKE ESPY,CINDY HYDE-SMITH,,,,,Cindy Hyde-Smith,R,,False,True,False,R,0.176,1.0,strong_name_match,1,single_match,,,,,,False
+2020_MT,2020,2020-11-03,MT,2,MT_CLASS_2,False,STEVE BULLOCK,STEVE DAINES,,,,,Steve Daines,R,,False,True,False,R,0.414,1.0,strong_name_match,1,single_match,,,,,,False
+2020_NC,2020,2020-11-03,NC,2,NC_CLASS_2,False,CAL CUNNINGHAM,THOM TILLIS,,,,,Thom Tillis,R,,False,True,False,R,0.088,1.0,strong_name_match,1,single_match,,,,,,False
+2020_NE,2020,2020-11-03,NE,2,NE_CLASS_2,False,CHRIS JANICEK,BEN SASSE,,,,,Ben Sasse,R,,False,True,False,R,0.05,1.0,strong_name_match,1,single_match,,,,,,False
+2020_NH,2020,2020-11-03,NH,2,NH_CLASS_2,False,JEANNE SHAHEEN,CORKY MESSNER,,,,,Jeanne Shaheen,D,,False,True,False,D,1.0,0.1222,strong_name_match,1,single_match,,,,,,False
+2020_NJ,2020,2020-11-03,NJ,2,NJ_CLASS_2,False,CORY BOOKER,"RIKIN ""RIK"" MEHTA",,,,,Cory A. Booker,D,,False,True,False,D,0.9542,0.1179,strong_name_match,1,single_match,,,,,,False
+2020_NM,2020,2020-11-03,NM,2,NM_CLASS_2,False,BEN R. LUJAN,MARK V. RONCHETTI,,,,,Tom Udall,D,,False,False,True,,0.165,0.0478,no_confident_match,1,single_match,,,,,,False
+2020_OK,2020,2020-11-03,OK,2,OK_CLASS_2,False,ABBY BROYLES,JIM INHOFE,,,,,James M. Inhofe,R,,False,False,True,,0.1269,0.675,no_confident_match,1,single_match,,,,,,False
+2020_OR,2020,2020-11-03,OR,2,OR_CLASS_2,False,JEFF MERKLEY,JO RAE PERKINS,,,,,Jeff Merkley,D,,False,True,False,D,1.0,0.2538,strong_name_match,1,single_match,,,,,,False
+2020_RI,2020,2020-11-03,RI,2,RI_CLASS_2,False,JOHN F. REED,ALLEN R. WATERS,,,,,Jack Reed,D,,False,False,True,,0.5925,0.1913,no_confident_match,1,single_match,,,,,,False
+2020_SC,2020,2020-11-03,SC,2,SC_CLASS_2,False,JAIME HARRISON,LINDSEY GRAHAM,,,,,Lindsey Graham,R,,False,True,False,R,0.1964,1.0,strong_name_match,1,single_match,,,,,,False
+2020_SD,2020,2020-11-03,SD,2,SD_CLASS_2,False,DAN AHLERS,MIKE ROUNDS,,,,,Mike Rounds,R,,False,True,False,R,0.1571,1.0,strong_name_match,1,single_match,,,,,,False
+2020_TN,2020,2020-11-03,TN,2,TN_CLASS_2,False,MARQUITA BRADSHAW,BILL HAGERTY,,,,,Lamar Alexander,R,,False,False,True,,0.2063,0.163,no_confident_match,1,single_match,,,,,,False
+2020_TX,2020,2020-11-03,TX,2,TX_CLASS_2,False,"MARY ""MJ"" HEGAR",JOHN CORNYN,,,,,John Cornyn,R,,False,True,False,R,0.1375,1.0,strong_name_match,1,single_match,,,,,,False
+2020_VA,2020,2020-11-03,VA,2,VA_CLASS_2,False,MARK R. WARNER,DANIEL M. GADE,,,,,Mark R. Warner,D,,False,True,False,D,1.0,0.1269,strong_name_match,1,single_match,,,,,,False
+2020_WV,2020,2020-11-03,WV,2,WV_CLASS_2,False,PAULA JEAN SWEARENGIN,SHELLEY MOORE CAPITO,,,,,Shelley Moore Capito,R,,False,True,False,R,0.1341,1.0,strong_name_match,1,single_match,,,,,,False
+2020_WY,2020,2020-11-03,WY,2,WY_CLASS_2,False,MERAV BEN DAVID,CYNTHIA M. LUMMIS,,,,,Michael B. Enzi,R,,False,False,True,,0.2655,0.0733,no_confident_match,1,single_match,,,,,,False
+2022_AK,2022,2022-11-08,AK,3,AK_CLASS_3,False,,,,,,,Lisa Murkowski,R,,False,True,False,R,0.0,0.0,manual_override,1,single_match,,,,,,False
+2022_AL,2022,2022-11-08,AL,3,AL_CLASS_3,False,WILL BOYD,KATIE BRITT,,,,,Richard C. Shelby,R,,False,False,True,,0.088,0.0815,no_confident_match,1,single_match,,,,,,False
+2022_AR,2022,2022-11-08,AR,3,AR_CLASS_3,False,NATALIE JAMES,JOHN BOOZMAN,,,,,John Boozman,R,,False,True,False,R,0.088,1.0,strong_name_match,1,single_match,,,,,,False
+2022_AZ,2022,2022-11-08,AZ,3,AZ_CLASS_3,False,MARK KELLY,BLAKE MASTERS,,,,,Mark Kelly,D,special-election,False,True,False,D,1.0,0.1435,strong_name_match,1,single_match,,,,,,False
+2022_CA_REGULAR,2022,2022-11-08,CA,3,CA_CLASS_3,False,ALEX PADILLA,MARK P. MEUSER,,,,,Alex Padilla,D,appointment,True,True,False,D,1.0,0.132,strong_name_match,1,single_match,,,,,,False
+2022_CA_SPECIAL,2022,2022-11-08,CA,3,CA_CLASS_3,True,ALEX PADILLA,MARK P. MEUSER,,,,,Alex Padilla,D,appointment,True,True,False,D,1.0,0.132,strong_name_match,1,single_match,,,,,,False
+2022_CO,2022,2022-11-08,CO,3,CO_CLASS_3,False,MICHAEL BENNET,JOE O'DEA,,,,,Michael F. Bennet,D,,False,True,False,D,0.9633,0.044,strong_name_match,1,single_match,,,,,,False
+2022_FL,2022,2022-11-08,FL,3,FL_CLASS_3,False,VAL DEMINGS,MARCO RUBIO,,,,,Marco Rubio,R,,False,True,False,R,0.1,1.0,strong_name_match,1,single_match,,,,,,False
+2022_GA,2022,2022-11-08,GA,3,GA_CLASS_3,False,RAPHAEL WARNOCK,HERSCHEL JUNIOR WALKER,,,,,Raphael G. Warnock,D,special-election,False,True,False,D,0.9656,0.2538,strong_name_match,1,single_match,,,,,,False
+2022_HI,2022,2022-11-08,HI,3,HI_CLASS_3,False,"SCHATZ, BRIAN","MCDERMOTT, BOB",,,,,Brian Schatz,D,,False,True,False,D,0.725,0.044,confirmed_name_match,1,single_match,,,,,,False
+2022_IA,2022,2022-11-08,IA,3,IA_CLASS_3,False,MICHAEL FRANKEN,CHUCK GRASSLEY,,,,,Chuck Grassley,R,,False,True,False,R,0.2276,1.0,strong_name_match,1,single_match,,,,,,False
+2022_ID,2022,2022-11-08,ID,3,ID_CLASS_3,False,DAVID ROTH,MIKE CRAPO,,,,,Mike Crapo,R,,False,True,False,R,0.22,1.0,strong_name_match,1,single_match,,,,,,False
+2022_IL,2022,2022-11-08,IL,3,IL_CLASS_3,False,TAMMY DUCKWORTH,KATHY SALVI,,,,,Tammy Duckworth,D,,False,True,False,D,1.0,0.1269,strong_name_match,1,single_match,,,,,,False
+2022_IN,2022,2022-11-08,IN,3,IN_CLASS_3,False,"THOMAS M. MCDERMOTT, JR.",TODD YOUNG,,,,,Todd Young,R,,False,True,False,R,0.1571,1.0,strong_name_match,1,single_match,,,,,,False
+2022_KS,2022,2022-11-08,KS,3,KS_CLASS_3,False,MARK R. HOLLAND,JERRY MORAN,,,,,Jerry Moran,R,,False,True,False,R,0.264,1.0,strong_name_match,1,single_match,,,,,,False
+2022_KY,2022,2022-11-08,KY,3,KY_CLASS_3,False,CHARLES BOOKER,RAND PAUL,,,,,Rand Paul,R,,False,True,False,R,0.0957,1.0,strong_name_match,1,single_match,,,,,,False
+2022_LA,2022,2022-11-08,LA,3,LA_CLASS_3,False,"GARY CHAMBERS, JR.",JOHN KENNEDY,,,,,John Kennedy,R,,False,True,False,R,0.088,1.0,strong_name_match,1,single_match,,,,,,False
+2022_MD,2022,2022-11-08,MD,3,MD_CLASS_3,False,CHRIS VAN HOLLEN,CHRIS CHAFFEE,,,,,Chris Van Hollen,D,,False,True,False,D,1.0,0.4159,strong_name_match,1,single_match,,,,,,False
+2022_MO,2022,2022-11-08,MO,3,MO_CLASS_3,False,TRUDY BUSCH VALENTINE,ERIC SCHMITT,,,,,Roy Blunt,R,,False,False,True,,0.2567,0.1571,no_confident_match,1,single_match,,,,,,False
+2022_NC,2022,2022-11-08,NC,3,NC_CLASS_3,False,CHERI BEASLEY,TED BUDD,,,,,Richard Burr,R,,False,False,True,,0.176,0.22,no_confident_match,1,single_match,,,,,,False
+2022_ND,2022,2022-11-08,ND,3,ND_CLASS_3,False,KATRINA CHRISTIANSEN,JOHN HOEVEN,,,,,John Hoeven,R,,False,True,False,R,0.1419,1.0,strong_name_match,1,single_match,,,,,,False
+2022_NH,2022,2022-11-08,NH,3,NH_CLASS_3,False,MAGGIE HASSAN,DONALD C. BOLDUC,,,,,Margaret Wood Hassan,D,,False,False,True,,0.6292,0.0943,no_confident_match,1,single_match,,,,,,False
+2022_NV,2022,2022-11-08,NV,3,NV_CLASS_3,False,"CORTEZ MASTO, CATHERINE","LAXALT, ADAM PAUL",,,,,Catherine Cortez Masto,D,,False,True,False,D,0.75,0.1447,confirmed_name_match,1,single_match,,,,,,False
+2022_NY,2022,2022-11-08,NY,3,NY_CLASS_3,False,CHARLES E. SCHUMER,JOE PINION,,,,,Charles E. Schumer,D,,False,True,False,D,1.0,0.0815,strong_name_match,1,single_match,,,,,,False
+2022_OH,2022,2022-11-08,OH,3,OH_CLASS_3,False,TIM RYAN,JD VANCE,,,,,Rob Portman,R,,False,False,True,,0.1737,0.1737,no_confident_match,1,single_match,,,,,,False
+2022_OK_REGULAR,2022,2022-11-08,OK,3,OK_CLASS_3,False,MADISON HORN,JAMES LANKFORD,,,,,James Lankford,R,,False,True,False,R,0.2115,1.0,strong_name_match,1,single_match,,,,,,False
+2022_OK_SPECIAL,2022,2022-11-08,OK,2,OK_CLASS_2,True,KENDRA HORN,MARKWAYNE MULLIN,,,,,James M. Inhofe,R,,False,False,True,,0.176,0.22,no_confident_match,1,single_match,,,,,,False
+2022_OR,2022,2022-11-08,OR,3,OR_CLASS_3,False,WYDEN RON,PERKINS JO RAE,,,,,Ron Wyden,D,,False,True,False,D,0.7556,0.1913,confirmed_name_match,1,single_match,,,,,,False
+2022_PA,2022,2022-11-08,PA,3,PA_CLASS_3,False,JOHN K FETTERMAN,MEHMET C OZ,,,,,Patrick J. Toomey,R,,False,False,True,,0.1375,0.0815,no_confident_match,1,single_match,,,,,,False
+2022_SC,2022,2022-11-08,SC,3,SC_CLASS_3,False,KRYSTLE MATTHEWS,TIM SCOTT,,,,,Tim Scott,R,,False,True,False,R,0.176,1.0,strong_name_match,1,single_match,,,,,,False
+2022_SD,2022,2022-11-08,SD,3,SD_CLASS_3,False,BRIAN L BENGS,JOHN R THUNE,,,,,John Thune,R,,False,True,False,R,0.1435,0.95,strong_name_match,1,single_match,,,,,,False
+2022_UT,2022,2022-11-08,UT,3,UT_CLASS_3,False,EVAN MCMULLIN,MIKE LEE,,,,,Mike Lee,R,,False,True,False,R,0.1048,1.0,strong_name_match,1,single_match,,,,,,False
+2022_VT,2022,2022-11-08,VT,3,VT_CLASS_3,False,PETER WELCH,GERALD MALLOY,,,,,Patrick J. Leahy,D,,False,False,True,,0.2115,0.1571,no_confident_match,1,single_match,,,,,,False
+2022_WA,2022,2022-11-08,WA,3,WA_CLASS_3,False,PATTY MURRAY,TIFFANY SMILEY,,,,,Patty Murray,D,,False,True,False,D,1.0,0.2115,strong_name_match,1,single_match,,,,,,False
+2022_WI,2022,2022-11-08,WI,3,WI_CLASS_3,False,MANDELA BARNES,RON JOHNSON,,,,,Ron Johnson,R,,False,True,False,R,0.132,1.0,strong_name_match,1,single_match,,,,,,False
+2024_AZ,2024,2024-11-05,AZ,1,AZ_CLASS_1,False,RUBEN GALLEGO,KARI LAKE,,,,,Kyrsten Sinema,D,,False,False,True,,0.2037,0.1435,no_confident_match,1,single_match,,,,,,False
+2024_CA_REGULAR,2024,2024-11-05,CA,1,CA_CLASS_1,False,ADAM B. SCHIFF,STEVE GARVEY,,,,,Laphonza R. Butler,D,appointment,True,False,True,,0.1467,0.1138,no_confident_match,1,single_match,,,,,,False
+2024_CA_SPECIAL,2024,2024-11-05,CA,1,CA_CLASS_1,True,ADAM B. SCHIFF,STEVE GARVEY,,,,,Laphonza R. Butler,D,appointment,True,False,True,,0.1467,0.1138,no_confident_match,1,single_match,,,,,,False
+2024_CT,2024,2024-11-05,CT,1,CT_CLASS_1,False,CHRISTOPHER S. MURPHY,MATTHEW M. COREY,,,,,Christopher Murphy,D,,False,True,False,D,0.9711,0.2333,strong_name_match,1,single_match,,,,,,False
+2024_DE,2024,2024-11-05,DE,1,DE_CLASS_1,False,LISA BLUNT ROCHESTER,ERIC HANSEN,,,,,Thomas R. Carper,D,,False,False,True,,0.1886,0.0846,no_confident_match,1,single_match,,,,,,False
+2024_FL,2024,2024-11-05,FL,1,FL_CLASS_1,False,DEBBIE MUCARSEL-POWELL,RICK SCOTT,,,,,Rick Scott,R,,False,True,False,R,0.1031,1.0,strong_name_match,1,single_match,,,,,,False
+2024_HI,2024,2024-11-05,HI,1,HI_CLASS_1,False,MAZIE K. HIRONO,BOB MCDERMOTT,,,,,Mazie K. Hirono,D,,False,True,False,D,1.0,0.163,strong_name_match,1,single_match,,,,,,False
+2024_IN,2024,2024-11-05,IN,1,IN_CLASS_1,False,VALERIE MCCRAY,JIM BANKS,,,,,Mike Braun,R,,False,False,True,,0.2292,0.2895,no_confident_match,1,single_match,,,,,,False
+2024_MA,2024,2024-11-05,MA,1,MA_CLASS_1,False,ELIZABETH ANN WARREN,JOHN DEATON,,,,,Elizabeth Warren,D,,False,True,False,D,0.9389,0.163,strong_name_match,1,single_match,,,,,,False
+2024_MD,2024,2024-11-05,MD,1,MD_CLASS_1,False,ANGELA ALSOBROOKS,LARRY HOGAN,,,,,Benjamin L. Cardin,D,,False,False,True,,0.0647,0.1571,no_confident_match,1,single_match,,,,,,False
+2024_ME,2024,2024-11-05,ME,1,ME_CLASS_1,False,DAVID ALLEN COSTELLO,DEMI KOUZOUNAS,,,,,"Angus S. King, Jr.",D,,False,False,True,,0.1031,0.1269,no_confident_match,1,single_match,,,,,,False
+2024_MI,2024,2024-11-05,MI,1,MI_CLASS_1,False,ELISSA SLOTKIN,MIKE ROGERS,,,,,Debbie Stabenow,D,,False,False,True,,0.2276,0.1692,no_confident_match,1,single_match,,,,,,False
+2024_MN,2024,2024-11-05,MN,1,MN_CLASS_1,False,AMY KLOBUCHAR,ROYCE WHITE,,,,,Amy Klobuchar,D,,False,True,False,D,1.0,0.1375,strong_name_match,1,single_match,,,,,,False
+2024_MO,2024,2024-11-05,MO,1,MO_CLASS_1,False,LUCAS KUNCE,JOSH HAWLEY,,,,,Josh Hawley,R,,False,True,False,R,0.15,1.0,strong_name_match,1,single_match,,,,,,False
+2024_MS,2024,2024-11-05,MS,1,MS_CLASS_1,False,TY PINKINS,ROGER F. WICKER,,,,,Roger F. Wicker,R,,False,True,False,R,0.1375,1.0,strong_name_match,1,single_match,,,,,,False
+2024_MT,2024,2024-11-05,MT,1,MT_CLASS_1,False,JON TESTER,TIM SHEEHY,,,,,Jon Tester,D,,False,True,False,D,1.0,0.165,strong_name_match,1,single_match,,,,,,False
+2024_ND,2024,2024-11-05,ND,1,ND_CLASS_1,False,KATRINA CHRISTIANSEN,KEVIN CRAMER,,,,,Kevin Cramer,R,,False,True,False,R,0.275,1.0,strong_name_match,1,single_match,,,,,,False
+2024_NE_REGULAR,2024,2024-11-05,NE,1,NE_CLASS_1,False,DAN OSBORN,DEB FISCHER,,,,,Deb Fischer,R,,False,True,False,R,0.1571,1.0,strong_name_match,1,single_match,,,,,,False
+2024_NE_SPECIAL,2024,2024-11-05,NE,2,NE_CLASS_2,True,PRESTON LOVE JR.,PETE RICKETTS,,,,,Pete Ricketts,R,appointment,True,True,False,R,0.176,1.0,strong_name_match,1,single_match,,,,,,False
+2024_NJ,2024,2024-11-05,NJ,1,NJ_CLASS_1,False,ANDY KIM,CURTIS BASHAW,,,,,George S. Helmy,D,appointment,True,False,True,,0.1,0.163,no_confident_match,1,single_match,,,,,,False
+2024_NM,2024,2024-11-05,NM,1,NM_CLASS_1,False,MARTIN HEINRICH,NELLA LOUISE DOMENICI,,,,,Martin Heinrich,D,,False,True,False,D,1.0,0.1222,strong_name_match,1,single_match,,,,,,False
+2024_NV,2024,2024-11-05,NV,1,NV_CLASS_1,False,JACKY S. ROSEN,SAM BROWN,,,,,Jacky Rosen,D,,False,True,False,D,0.9542,0.275,strong_name_match,1,single_match,,,,,,False
+2024_NY,2024,2024-11-05,NY,1,NY_CLASS_1,False,KIRSTEN E. GILLIBRAND,MICHAEL D. SAPRAICONE,,,,,Kirsten E. Gillibrand,D,,False,True,False,D,1.0,0.1375,strong_name_match,1,single_match,,,,,,False
+2024_OH,2024,2024-11-05,OH,1,OH_CLASS_1,False,SHERROD BROWN,BERNIE MORENO,,,,,Sherrod Brown,D,,False,True,False,D,1.0,0.1692,strong_name_match,1,single_match,,,,,,False
+2024_PA,2024,2024-11-05,PA,1,PA_CLASS_1,False,ROBERT P CASEY JR,DAVE MCCORMICK,,,,,"Robert P. Casey, Jr.",D,,False,True,False,D,1.0,0.0786,strong_name_match,1,single_match,,,,,,False
+2024_RI,2024,2024-11-05,RI,1,RI_CLASS_1,False,SHELDON WHITEHOUSE,PATRICIA MORGAN,,,,,Sheldon Whitehouse,D,,False,True,False,D,1.0,0.0667,strong_name_match,1,single_match,,,,,,False
+2024_TN,2024,2024-11-05,TN,1,TN_CLASS_1,False,GLORIA JOHNSON,MARSHA BLACKBURN,,,,,Marsha Blackburn,R,,False,True,False,R,0.1467,1.0,strong_name_match,1,single_match,,,,,,False
+2024_TX,2024,2024-11-05,TX,1,TX_CLASS_1,False,COLIN ALLRED,TED CRUZ,,,,,Ted Cruz,R,,False,True,False,R,0.11,1.0,strong_name_match,1,single_match,,,,,,False
+2024_UT,2024,2024-11-05,UT,1,UT_CLASS_1,False,CAROLINE GLEICH,JOHN CURTIS,,,,,Mitt Romney,R,,False,False,True,,0.1692,0.05,no_confident_match,1,single_match,,,,,,False
+2024_VA,2024,2024-11-05,VA,1,VA_CLASS_1,False,TIMOTHY M. KAINE,HUNG CAO,,,,,Tim Kaine,D,,False,False,True,,0.675,0.1294,no_confident_match,1,single_match,,,,,,False
+2024_VT,2024,2024-11-05,VT,1,VT_CLASS_1,False,BERNIE SANDERS,GERALD MALLOY,,,,,Bernard Sanders,D,,False,True,False,D,0.7552,0.2357,confirmed_name_match,1,single_match,,,,,,False
+2024_WA,2024,2024-11-05,WA,1,WA_CLASS_1,False,MARIA CANTWELL,DR RAUL GARCIA,,,,,Maria Cantwell,D,,False,True,False,D,1.0,0.1571,strong_name_match,1,single_match,,,,,,False
+2024_WI,2024,2024-11-05,WI,1,WI_CLASS_1,False,TAMMY BALDWIN,ERIC HOVDE,,,,,Tammy Baldwin,D,,False,True,False,D,1.0,0.0957,strong_name_match,1,single_match,,,,,,False
+2024_WV,2024,2024-11-05,WV,1,WV_CLASS_1,False,GLENN ELLIOTT,JIM JUSTICE,,,,,"Joe Manchin, III",D,,False,False,True,,0.0458,0.1,no_confident_match,1,single_match,,,,,,False
+2024_WY,2024,2024-11-05,WY,1,WY_CLASS_1,False,SCOTT D MORROW,JOHN BARRASSO,,,,,John Barrasso,R,,False,True,False,R,0.2037,1.0,strong_name_match,1,single_match,,,,,,False

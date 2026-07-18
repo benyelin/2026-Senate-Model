@@ -1,0 +1,52 @@
+Senate Historical Baselines 2012-2024 Validation
+==================================================
+
+Election source: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_election_results_enriched_2012_2024.csv
+Election source SHA-256: d55eee8d795764e039b13850b4af0f0901186ec75a8d9d93a8134865a3d69570
+Baseline source: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_presidential_baselines_by_cycle.csv
+Baseline source SHA-256: dc995a5276ee49d344beb954212f4cca6d27fcde10a2192578be8a8a46798d91
+
+Expected rows: 243
+Output rows: 243
+Unmatched races: 0
+Duplicate race IDs: 0
+Missing presidential baselines: 0
+Missing actual margins: 1
+Missing overperformance values: 1
+Rows using same-cycle or future presidential results: 0
+Inconsistent overperformance values: 0
+Open-seat/incumbent-running conflicts: 0
+Scorable rows missing required inputs: 0
+
+Rows by cycle:
+cycle
+2012    33
+2014    36
+2016    34
+2018    35
+2020    35
+2022    35
+2024    35
+
+Scorable rows by cycle:
+cycle
+2012    32
+2014    35
+2016    33
+2018    33
+2020    33
+2022    34
+2024    34
+
+Democratic Senate overperformance by cycle:
+       races    mean  median  minimum  maximum
+cycle                                         
+2012      32  1.2402  1.5693 -22.3725  38.1820
+2014      35 -3.5987 -3.1023 -52.6967  13.3723
+2016      33 -6.3837 -4.4951 -44.2222  13.3093
+2018      33 10.4281  9.4772  -9.1131  47.7115
+2020      33  2.9340  4.0737 -31.0973  16.5584
+2022      34 -3.1857 -1.8323 -36.1129  16.3878
+2024      34 -2.9786 -1.9731 -21.9516  12.8740
+
+Validation: PASSED

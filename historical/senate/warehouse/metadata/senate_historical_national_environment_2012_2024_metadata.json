@@ -1,0 +1,20 @@
+{
+  "dataset": "senate_historical_national_environment_2012_2024",
+  "source_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/raw/national_environment/senate_historical_election_day_environment_sources.csv",
+  "source_sha256": "1e50d5286860e2d6caae7cfd3f0b04bb5b05d96c53aafc3006e9e2039a7e1fdc",
+  "output_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_national_environment_2012_2024.csv",
+  "validation_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/senate_historical_national_environment_2012_2024_validation.txt",
+  "expected_cycles": [
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "row_count": 7,
+  "formula_coefficients_applied": false,
+  "description": "Raw election-day national environment observations. No forecasting coefficients or modeled contributions are applied.",
+  "validation_status": "PASSED"
+}

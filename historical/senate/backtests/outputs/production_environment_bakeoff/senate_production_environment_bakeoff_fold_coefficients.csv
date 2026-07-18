@@ -1,0 +1,15 @@
+holdout_cycle,model,generic_ballot_coefficient,midterm_coefficient,training_races
+2012,generic_loco_calibrated,0.9878243562447362,0.0,202
+2012,generic_plus_midterm_loco_calibrated,0.6400845673014107,3.3756433506997983,202
+2014,generic_loco_calibrated,0.9542840488653941,0.0,199
+2014,generic_plus_midterm_loco_calibrated,0.5977393654245737,4.239641568268426,199
+2016,generic_loco_calibrated,1.0242515922473692,0.0,201
+2016,generic_plus_midterm_loco_calibrated,0.6962920255281793,3.174123081351477,201
+2018,generic_loco_calibrated,0.5504000896501245,0.0,201
+2018,generic_plus_midterm_loco_calibrated,0.3592805758075036,2.7453521832184755,201
+2020,generic_loco_calibrated,1.4024456726657286,0.0,201
+2020,generic_plus_midterm_loco_calibrated,1.07353717059893,1.821588281818401,201
+2022,generic_loco_calibrated,0.9618951524991884,0.0,200
+2022,generic_plus_midterm_loco_calibrated,0.5758224074680737,4.161731103877887,200
+2024,generic_loco_calibrated,0.9775204259234801,0.0,200
+2024,generic_plus_midterm_loco_calibrated,0.6234648282469275,3.4352300033686705,200

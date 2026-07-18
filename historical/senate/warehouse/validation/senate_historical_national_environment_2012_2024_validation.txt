@@ -1,0 +1,31 @@
+Senate Historical National Environment 2012-2024 Validation
+==============================================================
+
+Source: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/raw/national_environment/senate_historical_election_day_environment_sources.csv
+Source SHA-256: 1e50d5286860e2d6caae7cfd3f0b04bb5b05d96c53aafc3006e9e2039a7e1fdc
+
+Expected cycles: 7
+Output rows: 7
+Missing cycles: none
+Unexpected cycles: none
+Duplicate cycle rows: 0
+Missing generic-ballot margins: 0
+Missing presidential approval: 0
+Missing presidential disapproval: 0
+Invalid president-party rows: 0
+Generic-ballot arithmetic failures: 0
+Approval-net arithmetic failures: 0
+Post-election approval observations: 0
+National-environment unscorable rows: 0
+
+Cycle summary:
+ cycle election_type president_party  generic_ballot_margin_dem  presidential_approval  presidential_disapproval  approval_net                     source_status
+  2012  presidential               D                       -0.2                   52.0                      45.0           7.0                          verified
+  2014       midterm               D                       -2.4                   42.0                      53.0         -11.0                          verified
+  2016  presidential               D                        0.6                   53.0                      45.0           8.0                          verified
+  2018       midterm               R                        7.3                   40.0                      54.0         -14.0                          verified
+  2020  presidential               R                        6.8                   46.0                      52.0          -6.0                          verified
+  2022       midterm               D                       -1.2                   41.3                      54.2         -12.9 verified_existing_house_warehouse
+  2024  presidential               D                       -0.3                   41.0                      56.0         -15.0                          verified
+
+Validation: PASSED

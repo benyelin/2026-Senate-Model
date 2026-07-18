@@ -1,0 +1,9 @@
+race_id,incumbent_running,incumbent_candidate_party,match_status,notes
+2014_KY,True,R,confirmed,Source candidate name misspells Mitch McConnell as MICH MCCONNELL.
+2018_VT,True,D,confirmed,Bernie Sanders and Bernard Sanders are the same candidate.
+2020_ME,True,R,confirmed,Susan Margaret Collins and Susan M. Collins are the same candidate.
+2022_AK,True,R,manual_override,Lisa Murkowski ran in Alaska top-four general election; major-party candidate fields are blank.
+2022_HI,True,D,confirmed,Reversed candidate-name format.
+2022_NV,True,D,confirmed,Reversed candidate-name format.
+2022_OR,True,D,confirmed,Reordered candidate-name format.
+2024_VT,True,D,confirmed,Bernie Sanders and Bernard Sanders are the same candidate.
