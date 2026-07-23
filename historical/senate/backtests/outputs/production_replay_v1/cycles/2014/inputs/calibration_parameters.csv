@@ -1,0 +1,6 @@
+days_out,total_error_sd,correlation,polling_weight,notes
+0,3.2,0.82,0.9,Final week
+30,3.8,0.8,0.78,Final month
+90,4.8,0.76,0.55,About three months out
+180,5.8,0.7,0.35,About six months out
+300,7.0,0.6,0.25,Very early cycle

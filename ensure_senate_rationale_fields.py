@@ -32,7 +32,11 @@ if state_col in df.columns:
 
     def fill_if_blank(col, value):
         if col in df.columns:
-            blank = df[col].isna() | df[col].astype(str).str.strip().eq("")
+            df[col] = df[col].astype("object")
+            blank = (
+                df[col].isna()
+                | df[col].astype(str).str.strip().isin(["", "nan", "None"])
+            )
             df.loc[me & blank, col] = value
 
     fill_if_blank(
@@ -42,7 +46,7 @@ if state_col in df.columns:
 
     fill_if_blank(
         "candidate_quality_rationale",
-        "Intentional exceptional-case adjustment. Collins' long record of overperformance combined with Graham Platner's scandal/liability creates an unusually asymmetric candidate-quality environment. Aggressive adjustment is intentional but should be revisited after credible Maine polling.",
+        "Susan Collins receives a candidate-strength adjustment based on her historical Senate performance and prior statewide victories. Troy Jackson has prior elected-office experience, and no candidate liability or scandal adjustment is currently applied. Review potential overlap between Collins' candidate-strength and incumbency adjustments as additional Jackson-specific polling becomes available.",
     )
 
     fill_if_blank(
@@ -52,7 +56,7 @@ if state_col in df.columns:
 
     fill_if_blank(
         "liability_rationale",
-        "Platner scandal/liability is treated as a real candidate-specific drag. Reassess if future polling shows the issue has faded or is already fully reflected in topline polling.",
+        "No current candidate-specific liability adjustment is applied to Troy Jackson or Susan Collins.",
     )
 
     fill_if_blank(

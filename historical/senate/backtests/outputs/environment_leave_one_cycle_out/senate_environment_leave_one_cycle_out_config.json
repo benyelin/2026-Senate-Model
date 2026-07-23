@@ -1,0 +1,71 @@
+{
+  "approval_coefficients": [
+    0.0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1.0
+  ],
+  "benchmarks": {
+    "fixed_generic_0_90": {
+      "approval_coefficient": 0.0,
+      "generic_ballot_coefficient": 0.9,
+      "label": "Fixed generic ballot only, GB=0.90",
+      "midterm_coefficient": 0.0,
+      "model_family": "generic_only"
+    },
+    "legacy_full_environment": {
+      "approval_coefficient": 0.5,
+      "generic_ballot_coefficient": 1.0,
+      "label": "Legacy environment, GB=1.00 / approval=0.50 / midterm=0.50",
+      "midterm_coefficient": 0.5,
+      "model_family": "generic_plus_approval_plus_midterm"
+    }
+  },
+  "generic_ballot_coefficients": [
+    0.0,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0,
+    1.05,
+    1.1,
+    1.15,
+    1.2
+  ],
+  "input": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv",
+  "midterm_coefficients": [
+    -1.0,
+    -0.8,
+    -0.6,
+    -0.4,
+    -0.2,
+    -0.0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1.0
+  ],
+  "near_best_tolerance": 0.01,
+  "output_dir": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/outputs/environment_leave_one_cycle_out",
+  "probability_scale": 5.5,
+  "simplicity_penalty": 0.03
+}

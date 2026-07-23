@@ -1,0 +1,14 @@
+Senate Environment Leave-One-Cycle-Out Validation
+=================================================
+
+PASS — one fold per cycle: expected=7, observed=7
+PASS — all cycles held out exactly once: held-out cycle mismatch
+PASS — comparison row count: expected=21, observed=21
+PASS — all observations receive one out-of-sample prediction: expected=234, observed=234
+PASS — no duplicate pooled race-cycle predictions: duplicate race-cycle predictions found
+PASS — selected coefficients finite: non-finite selected coefficient
+PASS — held-out metrics finite: non-finite held-out metric
+PASS — held-out accuracy bounded: winner accuracy outside [0, 1]
+PASS — held-out Brier bounded: Brier score outside [0, 1]
+
+VALIDATION STATUS: PASSED

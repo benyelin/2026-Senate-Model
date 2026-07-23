@@ -1,0 +1,78 @@
+============================================================================================
+FIVETHIRTYEIGHT SENATE POLLING SCHEMA AUDIT
+============================================================================================
+
+Input: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/raw/polling/fivethirtyeight/archives/senate_polls_historical.csv
+Rows: 9,292
+Columns: 52
+
+ROW GRANULARITY
+--------------------------------------------------------------------------------------------
+Exact duplicate rows: 0
+Unique poll IDs: 3012
+Unique question IDs: 3926
+Unique race IDs: 140
+Unique candidate IDs: 630
+
+question_count: 3926
+rows_per_question_min: 2
+rows_per_question_median: 2.0
+rows_per_question_max: 19
+
+CANDIDATE ROW KEYS
+--------------------------------------------------------------------------------------------
+                                             candidate_key  columns  complete_rows  incomplete_rows  unique_complete_keys  duplicate_complete_rows  is_unique_when_complete
+                      poll_id + question_id + candidate_id        3           9292                0                  9292                        0                     True
+                            poll_id + question_id + answer        3           9292                0                  9290                        4                    False
+                                question_id + candidate_id        2           9292                0                  9292                        0                     True
+                                      question_id + answer        2           9292                0                  9290                        4                    False
+                    poll_id + question_id + party + answer        4           9292                0                  9292                        0                     True
+poll_id + question_id + candidate_id + ranked_choice_round        4            193             9099                   193                        0                     True
+
+DATE PARSING
+--------------------------------------------------------------------------------------------
+       column  raw_nonnull_count  parsed_nonnull_count  parse_failure_count        minimum_date        maximum_date
+   start_date               9292                  9292                    0 2016-11-16T00:00:00 2024-11-03T00:00:00
+     end_date               9292                  9292                    0 2016-11-17T00:00:00 2024-11-04T00:00:00
+election_date               9290                  9290                    0 2018-11-06T00:00:00 2024-11-05T00:00:00
+   created_at               9292                  9292                    0 2018-06-22T15:18:00 2025-01-08T10:53:00
+
+CYCLE COVERAGE
+--------------------------------------------------------------------------------------------
+{
+  "2018": 2016,
+  "2020": 2559,
+  "2022": 2089,
+  "2024": 2628
+}
+
+STATE COVERAGE BY CYCLE
+--------------------------------------------------------------------------------------------
+{
+  "2018": 32,
+  "2020": 33,
+  "2022": 31,
+  "2024": 32
+}
+
+QUESTION PERCENTAGE TOTALS
+--------------------------------------------------------------------------------------------
+question_pct_sum_min: 25.0
+question_pct_sum_median: 91.0
+question_pct_sum_max: 101.0
+questions_pct_sum_below_90: 1599
+questions_pct_sum_90_to_105: 2327
+questions_pct_sum_above_105: 0
+
+OUTPUTS
+--------------------------------------------------------------------------------------------
+Column profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/fivethirtyeight_schema_audit/column_profile.csv
+Candidate keys: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/fivethirtyeight_schema_audit/candidate_key_profile.csv
+Question profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/fivethirtyeight_schema_audit/question_structure_profile.csv
+Poll profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/fivethirtyeight_schema_audit/poll_structure_profile.csv
+Race profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/fivethirtyeight_schema_audit/race_structure_profile.csv
+Category profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/fivethirtyeight_schema_audit/categorical_value_profile.csv
+Date profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/fivethirtyeight_schema_audit/date_profile.csv
+Exact duplicates: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/fivethirtyeight_schema_audit/exact_duplicate_rows.csv
+Sample rows: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/fivethirtyeight_schema_audit/sample_rows.csv
+JSON summary: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/fivethirtyeight_schema_audit/schema_audit_summary.json

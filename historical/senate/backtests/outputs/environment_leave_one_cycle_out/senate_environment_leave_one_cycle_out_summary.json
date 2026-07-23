@@ -1,0 +1,70 @@
+{
+  "approval_adjustment_source": "local fallback: (45 - approval) / 3",
+  "column_map": {
+    "actual_margin_dem": "actual_margin_dem",
+    "baseline_margin_dem": "presidential_margin_dem",
+    "cycle": "cycle",
+    "generic_ballot_margin_dem": "generic_ballot_margin_dem",
+    "midterm_adjustment_dem": "midterm_indicator",
+    "president_party": "president_party",
+    "presidential_approval": "presidential_approval",
+    "race_id": "race_id",
+    "scorable": "historical_fundamentals_scorable",
+    "state": "state"
+  },
+  "cycles": [
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "folds": 7,
+  "input": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv",
+  "interpretation_rule": {
+    "strong_simplification_support": "Generic-only is selected in most folds, approval and midterm are usually zero, and pooled selected-model performance is competitive with or superior to the legacy full-environment benchmark."
+  },
+  "observations": 234,
+  "pooled_out_of_sample_metrics": {
+    "fixed_generic_0_90": {
+      "absolute_mean_error": 1.6021243231426059,
+      "brier": 0.07435149086349499,
+      "mae": 7.768308721420263,
+      "mean_error": 1.6021243231426059,
+      "mean_error_dem": 1.6021243231426059,
+      "races": 234,
+      "rmse": 11.402810546087508,
+      "winner_accuracy": 0.9017094017094017
+    },
+    "fold_selected": {
+      "absolute_mean_error": 1.822031730550013,
+      "brier": 0.08098216900398285,
+      "mae": 8.347329714388488,
+      "mean_error": 1.822031730550013,
+      "mean_error_dem": 1.822031730550013,
+      "races": 234,
+      "rmse": 12.016730740242709,
+      "winner_accuracy": 0.8931623931623932
+    },
+    "legacy_full_environment": {
+      "absolute_mean_error": 2.147295263313546,
+      "brier": 0.07506909611547073,
+      "mae": 7.781824160940306,
+      "mean_error": 2.147295263313546,
+      "mean_error_dem": 2.147295263313546,
+      "races": 234,
+      "rmse": 11.441049103290247,
+      "winner_accuracy": 0.8974358974358975
+    }
+  },
+  "selection_stability": {
+    "approval_zero_share": 0.5714285714285714,
+    "generic_only_share": 0.14285714285714285,
+    "mean_selected_generic_ballot_coefficient": 0.7571428571428571,
+    "median_selected_generic_ballot_coefficient": 0.75,
+    "midterm_zero_share": 0.2857142857142857
+  },
+  "specifications_per_fold": 1825
+}

@@ -441,25 +441,31 @@ with tab_drivers:
     else:
         env = national_env.iloc[-1]
 
-        c1, c2, c3, c4, c5 = st.columns(5)
-        c1.metric("Generic Ballot", fmt_margin(env.get("generic_ballot_margin_dem")))
-        c2.metric("Pres. Approval", f"{fmt_num(env.get('presidential_approval'), 1)}%")
-        c3.metric("Pres. Disapproval", f"{fmt_num(env.get('presidential_disapproval'), 1)}%")
-        c4.metric("Net Approval", fmt_num(env.get("presidential_net_approval"), 1))
-        c5.metric("National Environment", fmt_margin(env.get("national_environment_margin_dem")))
+        c1, c2 = st.columns(2)
+        c1.metric(
+            "Generic Ballot",
+            fmt_margin(
+                env.get("generic_ballot_margin_dem")
+            ),
+        )
+        c2.metric(
+            "National Environment",
+            fmt_margin(
+                env.get(
+                    "national_environment_margin_dem"
+                )
+            ),
+        )
 
         st.caption(
-            "Current formula: 0.85 × generic ballot + 0.50 × approval adjustment + 0.50 × midterm adjustment."
+            "Current formula: 0.90 × generic ballot. "
+            "Presidential approval and a standalone "
+            "midterm adjustment are not used."
         )
 
         env_display_cols = [
             "as_of_date",
             "generic_ballot_margin_dem",
-            "presidential_approval",
-            "presidential_disapproval",
-            "presidential_net_approval",
-            "approval_adjustment_dem",
-            "midterm_adjustment_dem",
             "national_environment_margin_dem",
             "source_notes",
         ]

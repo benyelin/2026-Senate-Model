@@ -1,0 +1,18 @@
+
+# Python generated files
+__pycache__/
+*.py[cod]
+
+# Development backups
+*.before_*.py
+
+# Large generated Senate backtest outputs
+historical/senate/backtests/outputs/environment_coefficient_sweep/senate_environment_coefficient_sweep_predictions.csv
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Timestamped local safety backups
+*.before_*_20*.csv
+*.before_*_20*.py

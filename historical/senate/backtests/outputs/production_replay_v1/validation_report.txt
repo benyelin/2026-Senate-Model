@@ -1,0 +1,21 @@
+Senate Historical Production Replay — Version 1
+========================================================================
+
+Central model: presidential baseline + 0.90 × generic ballot
+Scope: race-level and seats-up simulation; not full-chamber control
+Cycles: 2012, 2014, 2016, 2018, 2020, 2022, 2024
+Scorable races: 234
+Simulations per cycle: 50,000
+
+Overall metrics
+------------------------------------------------------------------------
+MAE:             7.7683
+RMSE:            11.4028
+Mean error Dem:  1.6021
+Winner accuracy: 90.17%
+Brier score:     0.07992
+
+Validation: PASSED
+
+Important:
+The probability reported for each cycle is the probability that Democrats won a majority of the seats contested in that cycle. It is not Senate-control probability.

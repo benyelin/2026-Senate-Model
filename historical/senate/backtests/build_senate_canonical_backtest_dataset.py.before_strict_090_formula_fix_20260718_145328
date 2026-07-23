@@ -1,0 +1,838 @@
+#!/usr/bin/env python3
+"""
+Build the canonical historical Senate backtest dataset.
+
+This dataset provides one validated row per scorable historical Senate race and
+serves as the shared input for uncertainty, candidate-quality, polling, and
+other future calibration layers.
+
+Current production point forecast:
+    presidential baseline + 0.90 * generic-ballot margin
+
+The production prediction is selected from the validated production-environment
+bakeoff rather than recalculated independently.
+"""
+
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+
+ROOT = Path(__file__).resolve().parents[3]
+
+DEFAULT_FUNDAMENTALS = (
+    ROOT
+    / "historical/senate/warehouse/processed/"
+    "senate_historical_fundamentals_2012_2024.csv"
+)
+
+DEFAULT_BASELINES = (
+    ROOT
+    / "historical/senate/warehouse/processed/"
+    "senate_historical_baselines_2012_2024.csv"
+)
+
+DEFAULT_PREDICTIONS = (
+    ROOT
+    / "historical/senate/backtests/outputs/"
+    "production_environment_bakeoff/"
+    "senate_production_environment_bakeoff_predictions.csv"
+)
+
+DEFAULT_SUMMARY = (
+    ROOT
+    / "historical/senate/backtests/outputs/"
+    "production_environment_bakeoff/"
+    "senate_production_environment_bakeoff_summary.csv"
+)
+
+DEFAULT_OUTPUT_DIR = (
+    ROOT
+    / "historical/senate/backtests/outputs/canonical"
+)
+
+DEFAULT_OUTPUT = (
+    DEFAULT_OUTPUT_DIR
+    / "senate_canonical_backtest_dataset.csv"
+)
+
+DEFAULT_VALIDATION = (
+    DEFAULT_OUTPUT_DIR
+    / "senate_canonical_backtest_validation.csv"
+)
+
+
+KEY_COLUMNS = ["race_id", "cycle", "state"]
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Build the canonical Senate historical backtest dataset."
+    )
+
+    parser.add_argument(
+        "--fundamentals",
+        type=Path,
+        default=DEFAULT_FUNDAMENTALS,
+    )
+    parser.add_argument(
+        "--baselines",
+        type=Path,
+        default=DEFAULT_BASELINES,
+    )
+    parser.add_argument(
+        "--predictions",
+        type=Path,
+        default=DEFAULT_PREDICTIONS,
+    )
+    parser.add_argument(
+        "--summary",
+        type=Path,
+        default=DEFAULT_SUMMARY,
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=DEFAULT_OUTPUT,
+    )
+    parser.add_argument(
+        "--validation-output",
+        type=Path,
+        default=DEFAULT_VALIDATION,
+    )
+    parser.add_argument(
+        "--formula",
+        default=None,
+        help=(
+            "Optional exact formula identifier. When omitted, the builder "
+            "automatically selects the generic-ballot-only 0.90 formula."
+        ),
+    )
+
+    return parser.parse_args()
+
+
+def require_file(path: Path) -> None:
+    if not path.exists():
+        raise FileNotFoundError(f"Required input does not exist: {path}")
+
+
+def as_bool(series: pd.Series) -> pd.Series:
+    """Convert common CSV boolean representations to nullable booleans."""
+
+    if pd.api.types.is_bool_dtype(series):
+        return series.astype("boolean")
+
+    normalized = series.astype(str).str.strip().str.lower()
+
+    true_values = {"true", "1", "yes", "y", "t"}
+    false_values = {"false", "0", "no", "n", "f"}
+
+    result = pd.Series(pd.NA, index=series.index, dtype="boolean")
+    result.loc[normalized.isin(true_values)] = True
+    result.loc[normalized.isin(false_values)] = False
+
+    return result
+
+
+def require_columns(
+    df: pd.DataFrame,
+    required: list[str],
+    dataset_name: str,
+) -> None:
+    missing = [column for column in required if column not in df.columns]
+
+    if missing:
+        raise ValueError(
+            f"{dataset_name} is missing required columns: {missing}"
+        )
+
+
+def validate_unique_keys(
+    df: pd.DataFrame,
+    dataset_name: str,
+) -> None:
+    duplicates = df.duplicated(KEY_COLUMNS, keep=False)
+
+    if duplicates.any():
+        sample = (
+            df.loc[duplicates, KEY_COLUMNS]
+            .sort_values(KEY_COLUMNS)
+            .head(20)
+        )
+
+        raise ValueError(
+            f"{dataset_name} has duplicate canonical race keys.\n"
+            f"{sample.to_string(index=False)}"
+        )
+
+
+def select_production_formula(
+    predictions: pd.DataFrame,
+    summary: pd.DataFrame,
+    requested_formula: str | None,
+) -> tuple[str, str]:
+    """
+    Select the calibrated generic-ballot-only coefficient-0.90 formula.
+
+    The exact stored label may differ between versions of the bakeoff script,
+    so this function searches formula identifiers and labels defensively.
+    """
+
+    formula_table = (
+        predictions[["formula", "formula_label"]]
+        .drop_duplicates()
+        .reset_index(drop=True)
+    )
+
+    if requested_formula is not None:
+        matches = formula_table[
+            formula_table["formula"].astype(str) == requested_formula
+        ]
+
+        if len(matches) != 1:
+            available = formula_table.to_string(index=False)
+            raise ValueError(
+                f"Requested formula {requested_formula!r} was not found "
+                f"uniquely.\nAvailable formulas:\n{available}"
+            )
+
+        row = matches.iloc[0]
+        return str(row["formula"]), str(row["formula_label"])
+
+    searchable = (
+        formula_table["formula"].fillna("").astype(str)
+        + " "
+        + formula_table["formula_label"].fillna("").astype(str)
+    ).str.lower()
+
+    generic_mask = searchable.str.contains("generic")
+    coefficient_mask = searchable.str.contains(
+        r"(?:^|[^0-9])0[._ ]?90(?:[^0-9]|$)",
+        regex=True,
+    )
+    only_mask = (
+        searchable.str.contains("only")
+        | ~searchable.str.contains("approval|midterm", regex=True)
+    )
+
+    candidates = formula_table[
+        generic_mask & coefficient_mask & only_mask
+    ]
+
+    if len(candidates) == 1:
+        row = candidates.iloc[0]
+        return str(row["formula"]), str(row["formula_label"])
+
+    # Secondary numerical search: formula may store coefficient as 0.9.
+    coefficient_mask_secondary = searchable.str.contains(
+        r"(?:^|[^0-9])0[._ ]?9(?:[^0-9]|$)",
+        regex=True,
+    )
+
+    candidates = formula_table[
+        generic_mask & coefficient_mask_secondary & only_mask
+    ]
+
+    if len(candidates) == 1:
+        row = candidates.iloc[0]
+        return str(row["formula"]), str(row["formula_label"])
+
+    # Last-resort safety check: use the summary's best-ranked generic-only
+    # model only when it is clearly labeled and uniquely identified.
+    summary_searchable = (
+        summary["formula"].fillna("").astype(str)
+        + " "
+        + summary["formula_label"].fillna("").astype(str)
+    ).str.lower()
+
+    eligible_summary = summary[
+        summary_searchable.str.contains("generic")
+        & ~summary_searchable.str.contains("approval|midterm", regex=True)
+    ].copy()
+
+    ranking_columns = [
+        column
+        for column in ["mae_rank", "rmse_rank", "brier_rank"]
+        if column in eligible_summary.columns
+    ]
+
+    if ranking_columns and not eligible_summary.empty:
+        eligible_summary["selection_rank"] = (
+            eligible_summary[ranking_columns]
+            .apply(pd.to_numeric, errors="coerce")
+            .mean(axis=1)
+        )
+
+        eligible_summary = eligible_summary.sort_values(
+            ["selection_rank", "mae", "rmse", "brier"],
+            na_position="last",
+        )
+
+        best_formula = str(eligible_summary.iloc[0]["formula"])
+
+        matches = formula_table[
+            formula_table["formula"].astype(str) == best_formula
+        ]
+
+        if len(matches) == 1:
+            row = matches.iloc[0]
+            return str(row["formula"]), str(row["formula_label"])
+
+    available = formula_table.to_string(index=False)
+
+    raise ValueError(
+        "Could not uniquely identify the calibrated generic-ballot-only "
+        "0.90 production formula.\n"
+        "Re-run with --formula using one of these identifiers:\n"
+        f"{available}"
+    )
+
+
+def build_dataset(
+    fundamentals: pd.DataFrame,
+    baselines: pd.DataFrame,
+    predictions: pd.DataFrame,
+    summary: pd.DataFrame,
+    requested_formula: str | None,
+) -> tuple[pd.DataFrame, dict[str, object]]:
+    require_columns(
+        fundamentals,
+        [
+            *KEY_COLUMNS,
+            "election_date",
+            "actual_margin_dem",
+            "backtest_scorable",
+            "historical_fundamentals_scorable",
+            "presidential_margin_dem",
+            "generic_ballot_margin_dem",
+        ],
+        "Historical fundamentals",
+    )
+
+    require_columns(
+        baselines,
+        [
+            *KEY_COLUMNS,
+            "model_incumbent_name",
+            "model_incumbent_party",
+            "model_incumbent_running",
+            "model_open_seat",
+            "lineage_appointed_incumbent",
+        ],
+        "Historical baselines",
+    )
+
+    require_columns(
+        predictions,
+        [
+            *KEY_COLUMNS,
+            "formula",
+            "formula_label",
+            "actual_margin_dem",
+            "baseline_margin_dem",
+            "national_environment_margin_dem",
+            "predicted_margin_dem",
+            "prediction_error_dem",
+        ],
+        "Production environment predictions",
+    )
+
+    require_columns(
+        summary,
+        ["formula", "formula_label", "mae", "rmse", "brier"],
+        "Production environment summary",
+    )
+
+    fundamentals = fundamentals.copy()
+    baselines = baselines.copy()
+    predictions = predictions.copy()
+
+    fundamentals["backtest_scorable"] = as_bool(
+        fundamentals["backtest_scorable"]
+    )
+    fundamentals["historical_fundamentals_scorable"] = as_bool(
+        fundamentals["historical_fundamentals_scorable"]
+    )
+
+    scorable = fundamentals[
+        fundamentals["backtest_scorable"].fillna(False)
+        & fundamentals["historical_fundamentals_scorable"].fillna(False)
+    ].copy()
+
+    validate_unique_keys(scorable, "Scorable historical fundamentals")
+
+    selected_formula, selected_label = select_production_formula(
+        predictions=predictions,
+        summary=summary,
+        requested_formula=requested_formula,
+    )
+
+    selected_predictions = predictions[
+        predictions["formula"].astype(str) == selected_formula
+    ].copy()
+
+    validate_unique_keys(
+        selected_predictions,
+        "Selected production predictions",
+    )
+
+    prediction_columns = [
+        *KEY_COLUMNS,
+        "formula",
+        "formula_label",
+        "baseline_margin_dem",
+        "national_environment_margin_dem",
+        "predicted_margin_dem",
+        "prediction_error_dem",
+    ]
+
+    selected_predictions = selected_predictions[prediction_columns].rename(
+        columns={
+            "formula": "production_formula",
+            "formula_label": "production_formula_label",
+            "baseline_margin_dem": "production_baseline_margin_dem",
+            "national_environment_margin_dem":
+                "production_national_environment_margin_dem",
+            "predicted_margin_dem": "production_predicted_margin_dem",
+            "prediction_error_dem": "production_prediction_error_dem",
+        }
+    )
+
+    baseline_columns = [
+        *KEY_COLUMNS,
+        "model_incumbent_name",
+        "model_incumbent_party",
+        "model_incumbent_running",
+        "model_open_seat",
+        "lineage_appointed_incumbent",
+        "incumbency_source",
+        "incumbency_override_applied",
+        "incumbency_audit_flag",
+        "senate_overperformance_dem",
+        "senate_overperformance_abs",
+    ]
+
+    baseline_columns = [
+        column
+        for column in baseline_columns
+        if column in baselines.columns
+    ]
+
+    baseline_payload = baselines[baseline_columns].copy()
+    validate_unique_keys(baseline_payload, "Historical baseline payload")
+
+    canonical = scorable.merge(
+        selected_predictions,
+        on=KEY_COLUMNS,
+        how="left",
+        validate="one_to_one",
+        indicator="_prediction_merge",
+    )
+
+    canonical = canonical.merge(
+        baseline_payload,
+        on=KEY_COLUMNS,
+        how="left",
+        validate="one_to_one",
+        suffixes=("", "_baseline"),
+        indicator="_baseline_merge",
+    )
+
+    numeric_columns = [
+        "actual_margin_dem",
+        "presidential_margin_dem",
+        "generic_ballot_margin_dem",
+        "production_baseline_margin_dem",
+        "production_national_environment_margin_dem",
+        "production_predicted_margin_dem",
+        "production_prediction_error_dem",
+    ]
+
+    for column in numeric_columns:
+        canonical[column] = pd.to_numeric(
+            canonical[column],
+            errors="coerce",
+        )
+
+    # Positive error means the actual result was more Democratic than forecast.
+    canonical["forecast_error_dem"] = (
+        canonical["actual_margin_dem"]
+        - canonical["production_predicted_margin_dem"]
+    )
+
+    canonical["absolute_error"] = canonical[
+        "forecast_error_dem"
+    ].abs()
+
+    canonical["squared_error"] = (
+        canonical["forecast_error_dem"] ** 2
+    )
+
+    canonical["actual_winner_party"] = np.where(
+        canonical["actual_margin_dem"] > 0,
+        "D",
+        np.where(canonical["actual_margin_dem"] < 0, "R", "TIE"),
+    )
+
+    canonical["predicted_winner_party"] = np.where(
+        canonical["production_predicted_margin_dem"] > 0,
+        "D",
+        np.where(
+            canonical["production_predicted_margin_dem"] < 0,
+            "R",
+            "TIE",
+        ),
+    )
+
+    canonical["winner_correct"] = (
+        canonical["actual_winner_party"]
+        == canonical["predicted_winner_party"]
+    )
+
+    # Normalize useful historical indicators.
+    for column in [
+        "model_incumbent_running",
+        "model_open_seat",
+        "lineage_appointed_incumbent",
+        "special_election",
+    ]:
+        if column in canonical.columns:
+            canonical[column] = as_bool(canonical[column])
+
+    canonical["incumbency_category"] = "unknown"
+
+    if "model_open_seat" in canonical.columns:
+        canonical.loc[
+            canonical["model_open_seat"].fillna(False),
+            "incumbency_category",
+        ] = "open_seat"
+
+    if {
+        "model_incumbent_running",
+        "lineage_appointed_incumbent",
+    }.issubset(canonical.columns):
+        canonical.loc[
+            canonical["model_incumbent_running"].fillna(False)
+            & canonical["lineage_appointed_incumbent"].fillna(False),
+            "incumbency_category",
+        ] = "appointed_incumbent_running"
+
+        canonical.loc[
+            canonical["model_incumbent_running"].fillna(False)
+            & ~canonical["lineage_appointed_incumbent"].fillna(False),
+            "incumbency_category",
+        ] = "elected_incumbent_running"
+
+    canonical["production_formula"] = selected_formula
+    canonical["production_formula_label"] = selected_label
+
+    canonical = canonical.sort_values(
+        ["cycle", "state", "race_id"]
+    ).reset_index(drop=True)
+
+    # The bakeoff source historically stores prediction error as
+    # predicted margin minus actual margin, while the canonical dataset uses
+    # actual margin minus predicted margin so positive values mean the result
+    # was more Democratic than forecast. Detect and document the source
+    # convention rather than assuming it.
+    stored_error = canonical["production_prediction_error_dem"]
+    canonical_error = canonical["forecast_error_dem"]
+
+    same_sign_difference = (canonical_error - stored_error).abs()
+    opposite_sign_difference = (canonical_error + stored_error).abs()
+
+    same_sign_max = float(same_sign_difference.max())
+    opposite_sign_max = float(opposite_sign_difference.max())
+
+    if same_sign_max <= 1e-8:
+        source_error_convention = "actual_minus_predicted"
+        error_reconciliation_difference = same_sign_difference
+    elif opposite_sign_max <= 1e-8:
+        source_error_convention = "predicted_minus_actual"
+        error_reconciliation_difference = opposite_sign_difference
+    else:
+        source_error_convention = "unrecognized"
+        error_reconciliation_difference = pd.concat(
+            [same_sign_difference, opposite_sign_difference],
+            axis=1,
+        ).min(axis=1)
+
+    validation = {
+        "selected_formula": selected_formula,
+        "selected_formula_label": selected_label,
+        "fundamentals_rows": int(len(fundamentals)),
+        "scorable_fundamentals_rows": int(len(scorable)),
+        "selected_prediction_rows": int(len(selected_predictions)),
+        "canonical_rows": int(len(canonical)),
+        "unique_race_ids": int(canonical["race_id"].nunique()),
+        "unique_canonical_keys": int(
+            canonical[KEY_COLUMNS].drop_duplicates().shape[0]
+        ),
+        "cycles": ",".join(
+            str(value)
+            for value in sorted(canonical["cycle"].unique())
+        ),
+        "prediction_merge_failures": int(
+            (canonical["_prediction_merge"] != "both").sum()
+        ),
+        "baseline_merge_failures": int(
+            (canonical["_baseline_merge"] != "both").sum()
+        ),
+        "duplicate_canonical_keys": int(
+            canonical.duplicated(KEY_COLUMNS).sum()
+        ),
+        "missing_actual_margin": int(
+            canonical["actual_margin_dem"].isna().sum()
+        ),
+        "missing_predicted_margin": int(
+            canonical["production_predicted_margin_dem"].isna().sum()
+        ),
+        "missing_prediction_error": int(
+            canonical["production_prediction_error_dem"].isna().sum()
+        ),
+        "source_prediction_error_convention": source_error_convention,
+        "same_sign_error_max_difference": same_sign_max,
+        "opposite_sign_error_max_difference": opposite_sign_max,
+        "max_error_reconciliation_difference": float(
+            error_reconciliation_difference.max()
+        ),
+        "absolute_error_failures": int(
+            (
+                ~np.isclose(
+                    canonical["absolute_error"],
+                    canonical["forecast_error_dem"].abs(),
+                    atol=1e-10,
+                    equal_nan=False,
+                )
+            ).sum()
+        ),
+        "squared_error_failures": int(
+            (
+                ~np.isclose(
+                    canonical["squared_error"],
+                    canonical["forecast_error_dem"] ** 2,
+                    atol=1e-10,
+                    equal_nan=False,
+                )
+            ).sum()
+        ),
+        "mae": float(canonical["absolute_error"].mean()),
+        "rmse": float(np.sqrt(canonical["squared_error"].mean())),
+        "winner_accuracy": float(canonical["winner_correct"].mean()),
+    }
+
+    # Remove merge diagnostics from the production output.
+    canonical = canonical.drop(
+        columns=["_prediction_merge", "_baseline_merge"]
+    )
+
+    return canonical, validation
+
+
+def validate_output(
+    canonical: pd.DataFrame,
+    validation: dict[str, object],
+) -> None:
+    failures: list[str] = []
+
+    expected_rows = int(validation["scorable_fundamentals_rows"])
+
+    if int(validation["canonical_rows"]) != expected_rows:
+        failures.append(
+            "Canonical row count does not match the scorable fundamentals."
+        )
+
+    if int(validation["selected_prediction_rows"]) != expected_rows:
+        failures.append(
+            "Selected production prediction count does not match the "
+            "scorable fundamentals."
+        )
+
+    if int(validation["prediction_merge_failures"]) != 0:
+        failures.append("Some scorable races lack production predictions.")
+
+    if int(validation["baseline_merge_failures"]) != 0:
+        failures.append("Some scorable races lack baseline metadata.")
+
+    if int(validation["duplicate_canonical_keys"]) != 0:
+        failures.append("Canonical dataset contains duplicate race keys.")
+
+    if int(validation["missing_actual_margin"]) != 0:
+        failures.append("Canonical dataset contains missing actual margins.")
+
+    if int(validation["missing_predicted_margin"]) != 0:
+        failures.append(
+            "Canonical dataset contains missing predicted margins."
+        )
+
+    if int(validation["missing_prediction_error"]) != 0:
+        failures.append(
+            "Canonical dataset contains missing production errors."
+        )
+
+    if (
+        validation["source_prediction_error_convention"]
+        == "unrecognized"
+        or float(
+            validation["max_error_reconciliation_difference"]
+        ) > 1e-8
+    ):
+        failures.append(
+            "Stored production prediction errors match neither "
+            "actual-minus-predicted nor predicted-minus-actual."
+        )
+
+    if int(validation["absolute_error_failures"]) != 0:
+        failures.append("Absolute-error validation failed.")
+
+    if int(validation["squared_error_failures"]) != 0:
+        failures.append("Squared-error validation failed.")
+
+    validate_unique_keys(canonical, "Canonical backtest dataset")
+
+    if failures:
+        formatted = "\n".join(f"  - {failure}" for failure in failures)
+
+        raise RuntimeError(
+            "Canonical Senate backtest validation FAILED:\n"
+            f"{formatted}"
+        )
+
+
+def print_report(
+    canonical: pd.DataFrame,
+    validation: dict[str, object],
+    output_path: Path,
+    validation_path: Path,
+) -> None:
+    print("=" * 80)
+    print("CANONICAL SENATE BACKTEST DATASET")
+    print("=" * 80)
+    print(
+        f"Production formula:     "
+        f"{validation['selected_formula']}"
+    )
+    print(
+        f"Formula label:          "
+        f"{validation['selected_formula_label']}"
+    )
+    print(f"Canonical rows:         {validation['canonical_rows']}")
+    print(f"Unique race IDs:        {validation['unique_race_ids']}")
+    print(f"Cycles:                 {validation['cycles']}")
+    print(f"MAE:                    {validation['mae']:.4f}")
+    print(f"RMSE:                   {validation['rmse']:.4f}")
+    print(
+        f"Winner accuracy:        "
+        f"{validation['winner_accuracy']:.1%}"
+    )
+
+    print("\nROWS BY CYCLE")
+    print(
+        canonical.groupby("cycle")
+        .size()
+        .rename("races")
+        .to_string()
+    )
+
+    if "incumbency_category" in canonical.columns:
+        print("\nROWS BY INCUMBENCY CATEGORY")
+        print(
+            canonical["incumbency_category"]
+            .value_counts(dropna=False)
+            .to_string()
+        )
+
+    print("\nVALIDATION")
+    print(
+        f"Prediction merge failures: "
+        f"{validation['prediction_merge_failures']}"
+    )
+    print(
+        f"Baseline merge failures:   "
+        f"{validation['baseline_merge_failures']}"
+    )
+    print(
+        f"Duplicate keys:            "
+        f"{validation['duplicate_canonical_keys']}"
+    )
+    print(
+        f"Missing actual margins:    "
+        f"{validation['missing_actual_margin']}"
+    )
+    print(
+        f"Missing predicted margins: "
+        f"{validation['missing_predicted_margin']}"
+    )
+    print(
+        f"Source error convention:   "
+        f"{validation['source_prediction_error_convention']}"
+    )
+    print(
+        f"Maximum error difference:  "
+        f"{validation['max_error_reconciliation_difference']:.12f}"
+    )
+    print(
+        f"Absolute-error failures:   "
+        f"{validation['absolute_error_failures']}"
+    )
+    print(
+        f"Squared-error failures:    "
+        f"{validation['squared_error_failures']}"
+    )
+
+    print("\nValidation PASSED.")
+    print(f"\nDataset written to:\n{output_path}")
+    print(f"\nValidation written to:\n{validation_path}")
+
+
+def main() -> None:
+    args = parse_args()
+
+    for path in [
+        args.fundamentals,
+        args.baselines,
+        args.predictions,
+        args.summary,
+    ]:
+        require_file(path)
+
+    fundamentals = pd.read_csv(args.fundamentals, low_memory=False)
+    baselines = pd.read_csv(args.baselines, low_memory=False)
+    predictions = pd.read_csv(args.predictions, low_memory=False)
+    summary = pd.read_csv(args.summary, low_memory=False)
+
+    canonical, validation = build_dataset(
+        fundamentals=fundamentals,
+        baselines=baselines,
+        predictions=predictions,
+        summary=summary,
+        requested_formula=args.formula,
+    )
+
+    validate_output(canonical, validation)
+
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.validation_output.parent.mkdir(parents=True, exist_ok=True)
+
+    canonical.to_csv(args.output, index=False)
+
+    pd.DataFrame([validation]).to_csv(
+        args.validation_output,
+        index=False,
+    )
+
+    print_report(
+        canonical=canonical,
+        validation=validation,
+        output_path=args.output,
+        validation_path=args.validation_output,
+    )
+
+
+if __name__ == "__main__":
+    main()

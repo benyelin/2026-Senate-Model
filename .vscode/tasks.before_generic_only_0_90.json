@@ -1,0 +1,214 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Update National Environment",
+      "type": "shell",
+      "command": "python3 update_national_environment.py --generic-ballot ${input:genericBallot} --approval ${input:presApproval} --disapproval ${input:presDisapproval} --midterm ${input:midtermAdjustment} --notes \"${input:nationalEnvironmentNotes}\"",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "Run Full Pipeline",
+      "type": "shell",
+      "command": "python3 run_full_pipeline.py --sims ${input:simulationCount}",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "Run Scenarios Only",
+      "type": "shell",
+      "command": "python3 scenario_runner.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "Launch Dashboard",
+      "type": "shell",
+      "command": "streamlit run dashboard_app_v2.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Validate Manual Polls",
+      "type": "shell",
+      "command": "python3 validate_manual_polls.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "Recalculate Fundamentals",
+      "type": "shell",
+      "command": "python3 recalculate_fundamentals.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "Check Key Race Outputs",
+      "type": "shell",
+      "command": "grep -n \"FL\" outputs/race_stats.csv; grep -n \"AK\" outputs/race_stats.csv; grep -n \"TX\" outputs/race_stats.csv; grep -n \"GA\" outputs/race_stats.csv; grep -n \"NC\" outputs/race_stats.csv; grep -n \"OH\" outputs/race_stats.csv; grep -n \"ME\" outputs/race_stats.csv",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      }
+    },
+    {
+      "label": "Show National Environment",
+      "type": "shell",
+      "command": "cat inputs/national_environment.csv; echo \"\"; cat outputs/forecast_summary.csv",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      }
+    },
+    {
+      "label": "Commit and Push",
+      "type": "shell",
+      "command": "git status && git add . && git commit -m \"${input:commitMessage}\" && git push",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      }
+    },
+    {
+      "label": "Run Model Health Check",
+      "type": "shell",
+      "command": "python3 model_health_check.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "Launch Dashboard V2",
+      "type": "shell",
+      "command": "streamlit run dashboard_app_v2.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Add Candidate Quality Columns",
+      "type": "shell",
+      "command": "python3 add_candidate_quality_columns.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "Update Candidate Quality",
+      "type": "shell",
+      "command": "python3 update_candidate_quality.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "Manual Update Candidate Liability",
+      "type": "shell",
+      "command": "python3 manual_update_candidate_liability.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "Manual Update Race Fundamentals",
+      "type": "shell",
+      "command": "python3 manual_update_race_fundamentals.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "genericBallot",
+      "type": "promptString",
+      "description": "Generic ballot margin, Democratic minus Republican",
+      "default": "7.0"
+    },
+    {
+      "id": "presApproval",
+      "type": "promptString",
+      "description": "Presidential approval percentage",
+      "default": "38.6"
+    },
+    {
+      "id": "presDisapproval",
+      "type": "promptString",
+      "description": "Presidential disapproval percentage",
+      "default": "58.0"
+    },
+    {
+      "id": "midtermAdjustment",
+      "type": "promptString",
+      "description": "Midterm adjustment in Democratic-margin terms",
+      "default": "1.0"
+    },
+    {
+      "id": "nationalEnvironmentNotes",
+      "type": "promptString",
+      "description": "Source notes for national environment update",
+      "default": "Manual update from latest generic ballot and presidential approval averages."
+    },
+    {
+      "id": "simulationCount",
+      "type": "promptString",
+      "description": "Number of simulations",
+      "default": "20000"
+    },
+    {
+      "id": "commitMessage",
+      "type": "promptString",
+      "description": "Git commit message",
+      "default": "Update model inputs and dashboard outputs"
+    }
+  ]
+}

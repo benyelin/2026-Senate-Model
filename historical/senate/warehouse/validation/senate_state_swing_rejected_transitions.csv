@@ -1,0 +1,2 @@
+seat_id,state,senate_class,previous_race_id,current_race_id,previous_cycle,current_cycle,cycle_gap,rejection_reason
+CA_CLASS_1,CA,1,2012_CA,2024_CA_REGULAR,2012,2024,12,cycle_gap_not_equal_to_six

@@ -1,0 +1,37 @@
+
+============================================================================================
+HISTORICAL POLL SELECTOR VALIDATION
+============================================================================================
+
+Warehouse candidate rows:          9,292
+Validation cycles:                2018, 2020, 2022, 2024
+Validation snapshots:             16
+Validation failures:              0
+
+SELECTED TEST RACE BY CYCLE
+--------------------------------------------------------------------------------------------
+2018: FL, race_id=100, election_date=2018-11-06, (104 candidate questions)
+2020: NC, race_id=6284, election_date=2020-11-03, (129 candidate questions)
+2022: AZ, race_id=8919, election_date=2022-11-08, (88 candidate questions)
+2024: PA, race_id=9527, election_date=2024-11-05, (158 candidate questions)
+
+BLOCKING CHECKS
+--------------------------------------------------------------------------------------------
+Snapshot-date leakage:          PASSED
+Election-date leakage:          PASSED
+General-election filtering:     PASSED
+Hypothetical filtering:         PASSED
+Ranked-choice filtering:        PASSED
+Major-party matchup validation: PASSED
+Democratic-margin calculation:  PASSED
+Question uniqueness:            PASSED
+Snapshot monotonicity:          PASSED
+
+Historical poll selector:       PASSED
+
+Outputs:
+  Snapshot profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/historical_poll_selector/snapshot_profile.csv
+  Exclusion profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/historical_poll_selector/exclusion_profile.csv
+  Eligible questions: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/historical_poll_selector/sample_eligible_questions.csv
+  Question diagnostics: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/historical_poll_selector/sample_question_diagnostics.csv
+  JSON summary: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/historical_poll_selector/selector_validation_summary.json

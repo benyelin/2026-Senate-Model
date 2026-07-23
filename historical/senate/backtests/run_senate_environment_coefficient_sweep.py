@@ -35,29 +35,48 @@ DEFAULT_OUTPUT_DIR = (
 
 GENERIC_BALLOT_COEFFICIENTS = tuple(
     round(value, 2)
-    for value in np.arange(0.70, 1.10 + 0.001, 0.05)
+    for value in np.arange(0.00, 1.20 + 0.001, 0.05)
+)
+
+APPROVAL_COEFFICIENTS = tuple(
+    round(value, 2)
+    for value in np.arange(0.00, 1.00 + 0.001, 0.20)
+)
+
+MIDTERM_COEFFICIENTS = tuple(
+    round(value, 2)
+    for value in np.arange(-1.00, 1.00 + 0.001, 0.20)
 )
 
 MODEL_FAMILIES = {
     "generic_only": {
         "label": "Generic ballot only",
-        "approval_coefficient": 0.0,
-        "midterm_coefficient": 0.0,
+        "approval_coefficients": (0.0,),
+        "midterm_coefficients": (0.0,),
         "component_count": 1,
     },
     "generic_plus_approval": {
         "label": "Generic ballot + approval",
-        "approval_coefficient": 0.50,
-        "midterm_coefficient": 0.0,
+        "approval_coefficients": APPROVAL_COEFFICIENTS,
+        "midterm_coefficients": (0.0,),
         "component_count": 2,
     },
     "generic_plus_approval_plus_midterm": {
         "label": "Generic ballot + approval + midterm",
-        "approval_coefficient": 0.50,
-        "midterm_coefficient": 0.50,
+        "approval_coefficients": APPROVAL_COEFFICIENTS,
+        "midterm_coefficients": MIDTERM_COEFFICIENTS,
         "component_count": 3,
     },
 }
+
+
+def expected_specification_count() -> int:
+    return sum(
+        len(GENERIC_BALLOT_COEFFICIENTS)
+        * len(family["approval_coefficients"])
+        * len(family["midterm_coefficients"])
+        for family in MODEL_FAMILIES.values()
+    )
 
 SUMMARY_FILENAME = "senate_environment_coefficient_sweep_summary.csv"
 CYCLE_FILENAME = "senate_environment_coefficient_sweep_by_cycle.csv"
@@ -96,8 +115,8 @@ def build_paths(output_dir: Path) -> SweepPaths:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Evaluate three Senate national-environment model families across "
-            "nine fixed generic-ballot coefficients."
+            "Evaluate nested Senate national-environment model families across "
+            "independently calibrated generic-ballot, approval, and midterm grids."
         )
     )
     parser.add_argument(
@@ -309,92 +328,111 @@ def load_model_data(input_path: Path) -> tuple[pd.DataFrame, dict[str, str], str
 def build_predictions(model_data: pd.DataFrame) -> pd.DataFrame:
     frames: list[pd.DataFrame] = []
 
+    base_columns = [
+        "race_id",
+        "cycle",
+        "state",
+        "actual_margin_dem",
+        "baseline_margin_dem",
+        "generic_ballot_margin_dem",
+        "approval_adjustment_dem",
+        "midterm_adjustment_dem",
+    ]
+
     for family_name, family in MODEL_FAMILIES.items():
-        approval_coefficient = float(family["approval_coefficient"])
-        midterm_coefficient = float(family["midterm_coefficient"])
-
         for generic_coefficient in GENERIC_BALLOT_COEFFICIENTS:
-            frame = model_data[
-                [
-                    "race_id",
-                    "cycle",
-                    "state",
-                    "actual_margin_dem",
-                    "baseline_margin_dem",
-                    "generic_ballot_margin_dem",
-                    "approval_adjustment_dem",
-                    "midterm_adjustment_dem",
-                ]
-            ].copy()
+            for approval_coefficient in family["approval_coefficients"]:
+                for midterm_coefficient in family["midterm_coefficients"]:
+                    frame = model_data[base_columns].copy()
 
-            frame["model_family"] = family_name
-            frame["model_family_label"] = family["label"]
-            frame["generic_ballot_coefficient"] = generic_coefficient
-            frame["approval_coefficient"] = approval_coefficient
-            frame["midterm_coefficient"] = midterm_coefficient
-            frame["component_count"] = int(family["component_count"])
+                    frame["model_family"] = family_name
+                    frame["model_family_label"] = family["label"]
+                    frame["generic_ballot_coefficient"] = float(
+                        generic_coefficient
+                    )
+                    frame["approval_coefficient"] = float(
+                        approval_coefficient
+                    )
+                    frame["midterm_coefficient"] = float(
+                        midterm_coefficient
+                    )
+                    frame["component_count"] = int(
+                        family["component_count"]
+                    )
 
-            frame["generic_ballot_contribution_dem"] = (
-                generic_coefficient
-                * frame["generic_ballot_margin_dem"]
-            )
-            frame["approval_contribution_dem"] = (
-                approval_coefficient
-                * frame["approval_adjustment_dem"]
-            )
-            frame["midterm_contribution_dem"] = (
-                midterm_coefficient
-                * frame["midterm_adjustment_dem"]
-            )
-            frame["environment_adjustment_dem"] = (
-                frame["generic_ballot_contribution_dem"]
-                + frame["approval_contribution_dem"]
-                + frame["midterm_contribution_dem"]
-            )
-            frame["predicted_margin_dem"] = (
-                frame["baseline_margin_dem"]
-                + frame["environment_adjustment_dem"]
-            )
-            frame["error_dem"] = (
-                frame["predicted_margin_dem"]
-                - frame["actual_margin_dem"]
-            )
-            frame["absolute_error"] = frame["error_dem"].abs()
-            frame["squared_error"] = frame["error_dem"] ** 2
-            frame["actual_dem_win"] = (
-                frame["actual_margin_dem"] > 0.0
-            ).astype(int)
-            frame["predicted_dem_win"] = (
-                frame["predicted_margin_dem"] > 0.0
-            ).astype(int)
-            frame["model_id"] = (
-                family_name
-                + "__gb_"
-                + f"{generic_coefficient:.2f}".replace(".", "_")
-            )
+                    frame["generic_ballot_contribution_dem"] = (
+                        float(generic_coefficient)
+                        * frame["generic_ballot_margin_dem"]
+                    )
+                    frame["approval_contribution_dem"] = (
+                        float(approval_coefficient)
+                        * frame["approval_adjustment_dem"]
+                    )
+                    frame["midterm_contribution_dem"] = (
+                        float(midterm_coefficient)
+                        * frame["midterm_adjustment_dem"]
+                    )
+                    frame["environment_adjustment_dem"] = (
+                        frame["generic_ballot_contribution_dem"]
+                        + frame["approval_contribution_dem"]
+                        + frame["midterm_contribution_dem"]
+                    )
+                    frame["predicted_margin_dem"] = (
+                        frame["baseline_margin_dem"]
+                        + frame["environment_adjustment_dem"]
+                    )
+                    frame["error_dem"] = (
+                        frame["predicted_margin_dem"]
+                        - frame["actual_margin_dem"]
+                    )
+                    frame["absolute_error"] = frame["error_dem"].abs()
+                    frame["squared_error"] = frame["error_dem"] ** 2
+                    frame["actual_dem_win"] = (
+                        frame["actual_margin_dem"] > 0.0
+                    ).astype(int)
+                    frame["predicted_dem_win"] = (
+                        frame["predicted_margin_dem"] > 0.0
+                    ).astype(int)
 
-            bakeoff.validate_finite(
-                frame,
-                [
-                    "predicted_margin_dem",
-                    "error_dem",
-                    "absolute_error",
-                    "squared_error",
-                ],
-            )
-            frames.append(frame)
+                    gb_id = f"{generic_coefficient:+.2f}".replace(
+                        "+", "p"
+                    ).replace("-", "m").replace(".", "_")
+                    approval_id = f"{approval_coefficient:+.2f}".replace(
+                        "+", "p"
+                    ).replace("-", "m").replace(".", "_")
+                    midterm_id = f"{midterm_coefficient:+.2f}".replace(
+                        "+", "p"
+                    ).replace("-", "m").replace(".", "_")
+
+                    frame["model_id"] = (
+                        f"{family_name}"
+                        f"__gb_{gb_id}"
+                        f"__approval_{approval_id}"
+                        f"__midterm_{midterm_id}"
+                    )
+
+                    bakeoff.validate_finite(
+                        frame,
+                        [
+                            "predicted_margin_dem",
+                            "error_dem",
+                            "absolute_error",
+                            "squared_error",
+                        ],
+                    )
+                    frames.append(frame)
 
     predictions = pd.concat(frames, ignore_index=True)
 
-    expected_models = len(MODEL_FAMILIES) * len(GENERIC_BALLOT_COEFFICIENTS)
+    expected_models = expected_specification_count()
     observed_models = predictions["model_id"].nunique()
     if observed_models != expected_models:
         raise AssertionError(
-            f"Expected {expected_models} model specifications; found {observed_models}."
+            f"Expected {expected_models} model specifications; "
+            f"found {observed_models}."
         )
 
     return predictions
-
 
 def metric_row(
     group: pd.DataFrame,
@@ -484,7 +522,13 @@ def summarize_predictions(
     summary["overall_rank"] = np.arange(1, len(summary) + 1)
 
     by_cycle = by_cycle.sort_values(
-        ["cycle", "model_family", "generic_ballot_coefficient"]
+        [
+            "cycle",
+            "model_family",
+            "generic_ballot_coefficient",
+            "approval_coefficient",
+            "midterm_coefficient",
+        ]
     ).reset_index(drop=True)
 
     return summary, by_cycle
@@ -674,9 +718,7 @@ def validate_outputs(
 ) -> list[str]:
     checks: list[tuple[str, bool, str]] = []
 
-    expected_model_count = (
-        len(MODEL_FAMILIES) * len(GENERIC_BALLOT_COEFFICIENTS)
-    )
+    expected_model_count = expected_specification_count()
     expected_prediction_count = expected_model_count * len(model_data)
     expected_cycle_rows = expected_model_count * model_data["cycle"].nunique()
 
@@ -699,10 +741,22 @@ def validate_outputs(
                 f"expected={expected_cycle_rows}, observed={len(by_cycle)}",
             ),
             (
-                "all coefficient values represented",
+                "all generic-ballot values represented",
                 set(summary["generic_ballot_coefficient"].round(2))
                 == set(GENERIC_BALLOT_COEFFICIENTS),
-                "coefficient grid mismatch",
+                "generic-ballot coefficient grid mismatch",
+            ),
+            (
+                "all approval values represented",
+                set(summary["approval_coefficient"].round(2))
+                == set(APPROVAL_COEFFICIENTS),
+                "approval coefficient grid mismatch",
+            ),
+            (
+                "all midterm values represented",
+                set(summary["midterm_coefficient"].round(2))
+                == set(MIDTERM_COEFFICIENTS),
+                "midterm coefficient grid mismatch",
             ),
             (
                 "all model families represented",
@@ -829,8 +883,24 @@ def main() -> None:
         "input_sha256": input_hash_before,
         "output_dir": str(output_dir),
         "probability_scale": args.probability_scale,
-        "generic_ballot_coefficients": list(GENERIC_BALLOT_COEFFICIENTS),
-        "model_families": MODEL_FAMILIES,
+        "generic_ballot_coefficients": list(
+            GENERIC_BALLOT_COEFFICIENTS
+        ),
+        "approval_coefficients": list(APPROVAL_COEFFICIENTS),
+        "midterm_coefficients": list(MIDTERM_COEFFICIENTS),
+        "model_families": {
+            family_name: {
+                "label": family["label"],
+                "approval_coefficients": list(
+                    family["approval_coefficients"]
+                ),
+                "midterm_coefficients": list(
+                    family["midterm_coefficients"]
+                ),
+                "component_count": family["component_count"],
+            }
+            for family_name, family in MODEL_FAMILIES.items()
+        },
         "specification_count": int(len(summary)),
         "observation_count": int(len(model_data)),
         "cycles": sorted(model_data["cycle"].unique().astype(int).tolist()),

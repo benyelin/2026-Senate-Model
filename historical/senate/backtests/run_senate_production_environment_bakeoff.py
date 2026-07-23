@@ -112,6 +112,7 @@ COLUMN_ALIASES = {
 FORMULA_ORDER = [
     "current_production",
     "generic_0_85",
+    "generic_0_90",
     "generic_1_00",
     "generic_1_190420_reference",
     "generic_loco_calibrated",
@@ -126,6 +127,9 @@ FORMULA_LABELS = {
     ),
     "generic_0_85": (
         "0.85 × generic ballot"
+    ),
+    "generic_0_90": (
+        "0.90 × generic ballot"
     ),
     "generic_1_00": (
         "1.00 × generic ballot"
@@ -749,6 +753,12 @@ def main() -> None:
             ),
             "generic_0_85": (
                 0.85
+                * holdout[
+                    "generic_ballot_margin_dem"
+                ]
+            ),
+            "generic_0_90": (
+                0.90
                 * holdout[
                     "generic_ballot_margin_dem"
                 ]

@@ -1,0 +1,5 @@
+column,raw_nonnull_count,parsed_nonnull_count,parse_failure_count,minimum_date,maximum_date
+start_date,9292,9292,0,2016-11-16T00:00:00,2024-11-03T00:00:00
+end_date,9292,9292,0,2016-11-17T00:00:00,2024-11-04T00:00:00
+election_date,9290,9290,0,2018-11-06T00:00:00,2024-11-05T00:00:00
+created_at,9292,9292,0,2018-06-22T15:18:00,2025-01-08T10:53:00

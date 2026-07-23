@@ -1,0 +1,43 @@
+{
+  "approval_adjustment_source": "local fallback: (45 - approval) / 3",
+  "candidate_coefficients_per_fold": 25,
+  "column_map": {
+    "actual_margin_dem": "actual_margin_dem",
+    "baseline_margin_dem": "presidential_margin_dem",
+    "cycle": "cycle",
+    "generic_ballot_margin_dem": "generic_ballot_margin_dem",
+    "midterm_adjustment_dem": "midterm_indicator",
+    "president_party": "president_party",
+    "presidential_approval": "presidential_approval",
+    "race_id": "race_id",
+    "scorable": "historical_fundamentals_scorable",
+    "state": "state"
+  },
+  "cycles": [
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "folds": 7,
+  "input": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv",
+  "mean_runner_up_train_mae_gap": 0.0070932174250861735,
+  "observations": 234,
+  "pooled_out_of_sample_metrics": {
+    "absolute_mean_error": 1.2923166308349134,
+    "brier": 0.07586877978410422,
+    "mae": 7.986465443414335,
+    "mean_error": 1.2923166308349134,
+    "mean_error_dem": 1.2923166308349134,
+    "races": 234,
+    "rmse": 11.573468770927128,
+    "winner_accuracy": 0.9017094017094017
+  },
+  "selected_coefficient_max": 0.95,
+  "selected_coefficient_mean": 0.807142857142857,
+  "selected_coefficient_median": 0.85,
+  "selected_coefficient_min": 0.55
+}

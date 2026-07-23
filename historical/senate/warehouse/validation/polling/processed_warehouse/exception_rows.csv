@@ -1,0 +1,3 @@
+cycle,state,race_id,poll_id,question_id,candidate_id,candidate_name,party,start_date,end_date,election_date,pct,validation_invalid_identifiers,validation_invalid_dates,validation_invalid_state,validation_invalid_percentage,validation_negative_field_period,validation_duplicate_question_candidate_key,validation_exact_duplicate_row,validation_missing_election_date,validation_poll_after_election_day
+2020,LA,7787,68124,132277,15846,Adrian Perkins,D,2020-08-06,2020-08-12,,33.0,False,False,False,False,False,False,False,True,False
+2020,LA,7787,68124,132277,14768,Bill Cassidy,R,2020-08-06,2020-08-12,,52.0,False,False,False,False,False,False,False,True,False

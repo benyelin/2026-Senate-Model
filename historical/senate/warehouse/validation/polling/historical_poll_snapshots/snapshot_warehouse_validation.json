@@ -1,0 +1,49 @@
+{
+  "actual_snapshot_count": 966,
+  "checks": {
+    "complete_days_out_grid": true,
+    "dem_margin_recalculates": true,
+    "eligible_counts_monotonic": true,
+    "eligible_only": true,
+    "exactly_one_democrat": true,
+    "exactly_one_republican": true,
+    "no_election_date_leakage": true,
+    "no_snapshot_date_leakage": true,
+    "nonnegative_poll_age": true,
+    "question_rows_present": true,
+    "request_summary_alignment": true,
+    "snapshot_request_count": true,
+    "snapshot_summary_count": true,
+    "summary_question_counts_match": true,
+    "unique_snapshot_ids": true,
+    "unique_snapshot_question": true
+  },
+  "cycle_count": 4,
+  "cycles": [
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "expected_snapshot_count": 966,
+  "failure_count": 0,
+  "failures": [],
+  "incomplete_days_grid_count": 0,
+  "incomplete_days_grid_races": [],
+  "monotonic_failure_count": 0,
+  "monotonic_failure_races": [],
+  "passed": true,
+  "question_snapshot_rows": 12946,
+  "race_count": 138,
+  "snapshot_days_before_election": [
+    120,
+    90,
+    60,
+    30,
+    14,
+    7,
+    0
+  ],
+  "snapshots_with_polling": 726,
+  "snapshots_without_polling": 240
+}

@@ -1,0 +1,2 @@
+model_name,observations,mae,rmse,mean_error,median_absolute_error,winner_accuracy,dem_win_accuracy,gop_win_accuracy,predicted_dem_win_rate,actual_dem_win_rate
+Baseline polling: 14-day recency + sqrt sample size,0,,,,,,,,,

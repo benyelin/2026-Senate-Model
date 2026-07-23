@@ -84,7 +84,7 @@ RACE_ADJUSTMENTS = {
         "fundamentals_notes_extra": "GA: neutral race-specific adjustment pending candidate-field clarity.",
     },
 
-    # Collins historically overperforms presidential baseline; Platner/field uncertainty.
+    # Collins historically overperforms presidential baseline; review overlap with candidate-strength framework.
     "ME": {
         "incumbency_adjustment_dem": -2.50,
         "candidate_quality_adjustment_dem": 0.00,

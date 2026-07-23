@@ -1,0 +1,141 @@
+cycle,race_id,state,seat_number,seat_name,election_date,stage,rows,unique_poll_id,unique_question_id,unique_candidate_id,unique_candidate_name,unique_party,unique_end_date
+2018,96,Arizona,0,Class I,11/6/18,general,217,52,102,6,6,4,37
+2018,97,California,0,Class I,11/6/18,general,44,19,22,2,2,1,17
+2018,98,Connecticut,0,Class I,11/6/18,general,12,6,6,2,2,2,6
+2018,99,Delaware,0,Class I,11/6/18,general,10,2,3,4,4,4,2
+2018,100,Florida,0,Class I,11/6/18,general,208,90,104,2,2,2,59
+2018,102,Indiana,0,Class I,11/6/18,general,101,27,42,3,3,3,23
+2018,103,Maine,0,Class I,11/6/18,general,17,5,6,3,3,3,5
+2018,104,Maryland,0,Class I,11/6/18,general,7,2,2,4,4,4,2
+2018,105,Massachusetts,0,Class I,11/6/18,general,36,11,13,3,3,3,10
+2018,106,Michigan,0,Class I,11/6/18,general,79,29,35,5,5,5,25
+2018,107,Minnesota,0,Class I,11/6/18,general,42,12,15,4,4,4,12
+2018,108,Mississippi,0,Class I,11/6/18,general,24,5,8,4,4,4,5
+2018,109,Missouri,0,Class I,11/6/18,general,192,50,72,5,5,5,41
+2018,110,Montana,0,Class I,11/6/18,general,66,25,30,3,3,3,21
+2018,111,Nebraska,0,Class I,11/6/18,general,6,3,3,2,2,2,3
+2018,112,Nevada,0,Class I,11/6/18,general,104,33,46,5,5,5,29
+2018,113,New Jersey,0,Class I,11/6/18,general,59,21,25,4,4,4,20
+2018,114,New Mexico,0,Class I,11/6/18,general,49,16,17,4,4,3,14
+2018,115,New York,0,Class I,11/6/18,general,20,10,10,2,2,2,10
+2018,116,North Dakota,0,Class I,11/6/18,general,36,10,18,2,2,2,10
+2018,117,Ohio,0,Class I,11/6/18,general,74,25,34,5,5,5,22
+2018,118,Pennsylvania,0,Class I,11/6/18,general,72,20,29,4,4,4,19
+2018,119,Rhode Island,0,Class I,11/6/18,general,10,5,5,2,2,2,5
+2018,120,Tennessee,0,Class I,11/6/18,general,106,38,53,2,2,2,32
+2018,121,Texas,0,Class I,11/6/18,general,109,41,49,4,4,4,37
+2018,122,Utah,0,Class I,11/6/18,general,20,7,7,5,5,5,7
+2018,123,Vermont,0,Class I,11/6/18,general,11,3,3,7,7,3,3
+2018,124,Virginia,0,Class I,11/6/18,general,26,8,11,3,3,3,8
+2018,125,Washington,0,Class I,11/6/18,general,4,2,2,2,2,2,2
+2018,126,West Virginia,0,Class I,11/6/18,general,93,25,39,4,4,4,22
+2018,127,Wisconsin,0,Class I,11/6/18,general,56,16,28,2,2,2,16
+2018,128,Wyoming,0,Class I,11/6/18,general,3,1,1,3,3,3,1
+2018,129,Minnesota,2,Class II,11/6/18,general,38,13,14,4,4,3,13
+2018,130,Mississippi,2,Class II,11/6/18,jungle primary,41,9,12,7,5,2,9
+2018,6209,Mississippi,2,Class II,11/27/18,runoff,24,7,12,3,3,2,7
+2020,6265,Alaska,0,Class II,11/3/20,general,29,12,13,5,4,4,11
+2020,6266,Alabama,0,Class II,11/3/20,general,52,17,25,7,7,3,15
+2020,6267,Arkansas,0,Class II,11/3/20,general,6,3,3,2,2,2,3
+2020,6268,Arizona,2,Class III,11/3/20,general,240,110,120,4,4,2,85
+2020,6269,Colorado,0,Class II,11/3/20,general,57,26,26,6,6,4,24
+2020,6270,Delaware,2,Class II,11/3/20,general,4,1,1,4,4,4,1
+2020,6271,Georgia,0,Class II,11/3/20,general,161,57,67,5,5,3,42
+2020,6272,Iowa,0,Class II,11/3/20,general,131,41,48,5,5,4,36
+2020,6273,Idaho,0,Class II,11/3/20,general,2,1,1,2,2,2,1
+2020,6274,Illinois,0,Class II,11/3/20,general,9,3,3,5,5,5,2
+2020,6275,Kansas,0,Class II,11/3/20,general,60,20,25,6,6,3,17
+2020,6276,Kentucky,0,Class II,11/3/20,general,55,20,22,4,4,3,20
+2020,6277,Louisiana,0,Class II,11/3/20,jungle primary,6,1,1,6,6,4,1
+2020,6278,Massachusetts,2,Class II,11/3/20,general,14,4,7,6,6,2,4
+2020,6279,Maine,2,Class II,11/3/20,general,110,29,39,6,6,3,28
+2020,6280,Michigan,2,Class II,11/3/20,general,263,117,122,6,6,5,85
+2020,6281,Minnesota,2,Class II,11/3/20,general,52,23,23,4,4,3,19
+2020,6282,Mississippi,2,Class II,11/3/20,general,22,9,9,3,3,3,9
+2020,6283,Montana,2,Class II,11/3/20,general,40,19,19,3,3,3,18
+2020,6284,North Carolina,0,Class II,11/3/20,general,321,119,129,5,5,4,79
+2020,6285,Nebraska,2,Class II,11/3/20,general,3,1,1,3,3,3,1
+2020,6286,New Hampshire,0,Class II,11/3/20,general,74,24,32,8,8,3,20
+2020,6287,New Jersey,2,Class II,11/3/20,general,16,6,8,3,3,2,6
+2020,6288,New Mexico,2,Class II,11/3/20,general,18,6,7,4,4,3,6
+2020,6289,Oklahoma,0,Class II,11/3/20,general,19,5,5,5,5,4,5
+2020,6290,Oregon,0,Class II,11/3/20,general,4,1,1,4,4,4,1
+2020,6292,South Carolina,0,Class II,11/3/20,general,86,36,37,4,4,4,33
+2020,6293,South Dakota,0,Class II,11/3/20,general,2,1,1,2,2,2,1
+2020,6294,Tennessee,2,Class II,11/3/20,general,8,3,4,4,4,2,3
+2020,6295,Texas,2,Class II,11/3/20,general,153,51,63,9,9,5,37
+2020,6296,Virginia,2,Class II,11/3/20,general,28,14,14,2,2,2,13
+2020,6297,West Virginia,2,Class II,11/3/20,general,3,1,1,3,3,3,1
+2020,6298,Wyoming,2,Class II,11/3/20,general,2,1,1,2,2,2,1
+2020,7780,Georgia,2,Class III,11/3/20,jungle primary,325,52,58,20,20,5,45
+2020,7781,Georgia,2,Class III,1/5/21,runoff,124,40,62,5,5,2,29
+2020,7787,Louisiana,0,Class II,,runoff,2,1,1,2,2,2,1
+2020,8737,Georgia,0,Class II,1/5/21,runoff,58,28,29,2,2,2,18
+2022,8917,Alabama,2,Class III,11/8/22,general,3,1,1,3,3,3,1
+2022,8918,Alaska,2,Class III,11/8/22,general,62,10,21,11,11,4,10
+2022,8919,Arizona,2,Class III,11/8/22,general,206,60,88,12,12,3,39
+2022,8920,Arkansas,2,Class III,11/8/22,general,9,3,3,3,3,3,3
+2022,8921,California,2,Class III,11/8/22,general,8,4,4,2,2,2,4
+2022,8922,Colorado,2,Class III,11/8/22,general,67,23,28,9,9,4,22
+2022,8923,Connecticut,2,Class III,11/8/22,general,26,9,13,4,4,2,9
+2022,8924,Florida,2,Class III,11/8/22,general,144,55,68,7,7,4,47
+2022,8925,Georgia,2,Class III,11/8/22,general,208,75,86,6,6,3,51
+2022,8928,Illinois,2,Class III,11/8/22,general,20,8,8,3,3,3,7
+2022,8929,Indiana,2,Class III,11/8/22,general,7,3,3,3,3,3,3
+2022,8930,Iowa,2,Class III,11/8/22,general,38,19,19,3,3,2,18
+2022,8931,Kansas,2,Class III,11/8/22,general,9,4,4,3,3,3,4
+2022,8932,Kentucky,2,Class III,11/8/22,general,2,1,1,2,2,2,1
+2022,8933,Louisiana,2,Class III,11/8/22,jungle primary,12,3,3,4,4,2,3
+2022,8935,Maryland,2,Class III,11/8/22,general,4,2,2,3,3,2,2
+2022,8936,Missouri,2,Class III,11/8/22,general,106,17,46,13,13,5,16
+2022,8937,Nevada,2,Class III,11/8/22,general,150,48,56,6,6,5,41
+2022,8938,New Hampshire,2,Class III,11/8/22,general,126,36,56,10,10,3,28
+2022,8939,New York,2,Class III,11/8/22,general,39,18,18,3,3,3,15
+2022,8940,North Carolina,2,Class III,11/8/22,general,130,37,46,7,7,4,32
+2022,8942,Ohio,2,Class III,11/8/22,general,146,52,73,5,5,2,40
+2022,8943,Oklahoma,2,Class III,11/8/22,general,41,11,11,4,4,4,8
+2022,8944,Oregon,2,Class III,11/8/22,general,16,5,5,4,4,4,4
+2022,8945,Pennsylvania,2,Class III,11/8/22,general,176,60,70,10,10,7,47
+2022,8946,South Carolina,2,Class III,11/8/22,general,5,2,2,3,3,3,2
+2022,8947,South Dakota,2,Class III,11/8/22,general,10,4,4,3,3,3,4
+2022,8948,Utah,2,Class III,11/8/22,general,95,23,38,8,8,5,21
+2022,8949,Vermont,2,Class III,11/8/22,general,14,5,5,9,9,4,5
+2022,8950,Washington,2,Class III,11/8/22,general,56,27,28,2,2,2,25
+2022,8951,Wisconsin,2,Class III,11/8/22,general,82,33,41,5,5,2,30
+2022,9480,California,2,Class III,11/8/22,general,4,2,2,2,2,2,2
+2022,9482,Oklahoma,0,Class II,11/8/22,general,40,11,11,4,4,4,8
+2022,9552,Georgia,2,Class III,12/6/22,runoff,28,13,14,2,2,2,9
+2024,9479,West Virginia,0,Class I,11/5/24,general,40,10,20,6,5,3,10
+2024,9504,Virginia,0,Class I,11/5/24,general,58,22,29,3,3,2,20
+2024,9505,Arizona,0,Class I,11/5/24,general,345,106,149,12,12,5,79
+2024,9506,California,0,Class I,11/5/24,general,44,20,22,3,3,2,20
+2024,9507,Connecticut,0,Class I,11/5/24,general,2,1,1,2,2,2,1
+2024,9508,Delaware,0,Class I,11/5/24,general,3,1,1,3,3,3,1
+2024,9509,Florida,0,Class I,11/5/24,general,127,48,58,6,6,4,40
+2024,9511,Indiana,0,Class I,11/5/24,general,11,5,5,3,3,3,5
+2024,9512,Maine,0,Class I,11/5/24,general,19,5,5,4,4,3,5
+2024,9513,Maryland,0,Class I,11/5/24,general,81,25,35,6,6,5,24
+2024,9514,Massachusetts,0,Class I,11/5/24,general,32,13,16,8,8,2,13
+2024,9515,Michigan,0,Class I,11/5/24,general,339,107,136,15,15,7,72
+2024,9516,Minnesota,0,Class I,11/5/24,general,54,19,21,5,5,4,19
+2024,9517,Mississippi,0,Class I,11/5/24,general,2,1,1,2,2,2,1
+2024,9518,Missouri,0,Class I,11/5/24,general,39,15,17,6,6,5,14
+2024,9519,Montana,0,Class I,11/5/24,general,79,24,32,9,9,4,24
+2024,9520,Nebraska,0,Class I,11/5/24,general,43,20,21,3,3,3,17
+2024,9521,Nevada,0,Class I,11/5/24,general,182,63,76,7,7,4,50
+2024,9522,New Jersey,0,Class I,11/5/24,general,35,9,16,5,5,2,9
+2024,9523,New Mexico,0,Class I,11/5/24,general,24,12,12,2,2,2,12
+2024,9524,New York,0,Class I,11/5/24,general,22,10,10,3,3,3,8
+2024,9525,North Dakota,0,Class I,11/5/24,general,12,6,6,2,2,2,6
+2024,9526,Ohio,0,Class I,11/5/24,general,138,40,68,6,6,3,35
+2024,9527,Pennsylvania,0,Class I,11/5/24,general,374,136,158,8,8,6,85
+2024,9528,Rhode Island,0,Class I,11/5/24,general,10,5,5,2,2,2,5
+2024,9529,Tennessee,0,Class I,11/5/24,general,46,10,20,6,6,3,10
+2024,9530,Texas,0,Class I,11/5/24,general,142,50,61,5,5,4,45
+2024,9531,Utah,0,Class I,11/5/24,general,19,5,7,3,3,3,5
+2024,9532,Vermont,0,Class I,11/5/24,general,10,2,2,5,5,4,2
+2024,9533,Washington,0,Class I,11/5/24,general,20,10,10,3,3,2,10
+2024,9534,Wisconsin,0,Class I,11/5/24,general,260,89,114,5,5,3,65
+2024,9535,Wyoming,0,Class I,11/5/24,general,2,1,1,2,2,2,1
+2024,9553,Nebraska,2,Class II,11/5/24,general,10,4,5,2,2,2,4
+2024,10013,California,0,Class I,11/5/24,general,4,2,2,2,2,2,2

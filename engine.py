@@ -76,13 +76,49 @@ def compute_days_out(config: ModelConfig) -> int:
     return max(0, int((election - today).days))
 
 
+
+
 def national_environment_margin(national: pd.DataFrame) -> float:
-    gb = float(_get_scalar(national, "generic_ballot_dem_margin", 0.0))
-    approval = float(_get_scalar(national, "presidential_approval", 50.0))
-    approval_slope = float(_get_scalar(national, "approval_slope", 0.25))
-    midterm = float(_get_scalar(national, "midterm_effect_dem", 0.0))
-    manual = float(_get_scalar(national, "manual_adjustment", 0.0))
-    return gb + ((50.0 - approval) * approval_slope) + midterm + manual
+    """
+    Return the Democratic national-environment margin.
+
+    Prefer the explicit calibrated or scenario-adjusted environment stored
+    in the production wide-format input. Fall back to 0.90 times the
+    generic ballot for legacy inputs.
+    """
+    explicit_value = _get_scalar(
+        national,
+        "national_environment_margin_dem",
+        None,
+    )
+
+    if explicit_value is not None:
+        try:
+            return float(explicit_value)
+        except (TypeError, ValueError):
+            pass
+
+    generic_value = _get_scalar(
+        national,
+        "generic_ballot_margin_dem",
+        None,
+    )
+
+    if generic_value is None:
+        generic_value = _get_scalar(
+            national,
+            "generic_ballot_dem_margin",
+            0.0,
+        )
+
+    try:
+        generic_ballot = float(generic_value)
+    except (TypeError, ValueError):
+        generic_ballot = 0.0
+
+    return 0.90 * generic_ballot
+
+
 
 
 def prepare_race_table(

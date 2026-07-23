@@ -11,12 +11,13 @@ Probability scale: 6.000
 
 Overall formula comparison:
                                        formula_label  races      mae      rmse    brier  winner_accuracy  mean_error_dem  mae_rank  rmse_rank  brier_rank
-     Current: 0.85 GB + 0.50 approval + 0.50 midterm    234 7.730347 11.401844 0.075309         0.893162        1.632103         1          2           3
-                               1.00 × generic ballot    234 7.772637 11.398120 0.075157         0.897436        1.749005         2          1           2
-                               0.85 × generic ballot    234 7.781004 11.410144 0.074899         0.901709        1.528684         3          3           1
-   1.190420 × generic ballot (full-sample reference)    234 7.846584 11.425970 0.075939         0.897436        2.028694         4          4           4
-Generic ballot + midterm with LOCO-calibrated slopes    234 8.019741 11.519404 0.078137         0.888889        0.527166         5          5           5
-           Generic ballot with LOCO-calibrated slope    234 8.228217 11.767457 0.079053         0.897436        1.698502         6          6           6
+     Current: 0.85 GB + 0.50 approval + 0.50 midterm    234 7.730347 11.401844 0.075309         0.893162        1.632103         1          2           4
+                               0.90 × generic ballot    234 7.768309 11.402811 0.074948         0.901709        1.602124         2          3           2
+                               1.00 × generic ballot    234 7.772637 11.398120 0.075157         0.897436        1.749005         3          1           3
+                               0.85 × generic ballot    234 7.781004 11.410144 0.074899         0.901709        1.528684         4          4           1
+   1.190420 × generic ballot (full-sample reference)    234 7.846584 11.425970 0.075939         0.897436        2.028694         5          5           5
+Generic ballot + midterm with LOCO-calibrated slopes    234 8.019741 11.519404 0.078137         0.888889        0.527166         6          6           6
+           Generic ballot with LOCO-calibrated slope    234 8.228217 11.767457 0.079053         0.897436        1.698502         7          7           7
 
 LOCO coefficient stability:
                                model  generic_mean  generic_sd  generic_min  generic_max  midterm_mean  midterm_sd  midterm_min  midterm_max

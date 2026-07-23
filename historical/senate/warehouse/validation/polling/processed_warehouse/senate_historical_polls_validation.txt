@@ -1,0 +1,37 @@
+============================================================================================
+SENATE HISTORICAL POLLING WAREHOUSE VALIDATION
+============================================================================================
+
+Input rows:                         9,292
+Output rows:                        9,292
+Unique poll IDs:                    3,012
+Unique question IDs:                3,926
+Unique race IDs:                    140
+Unique candidate IDs:               630
+Duplicate question-candidate rows:   0
+Exact duplicate rows:                0
+Missing election dates:              2
+Ranked-choice rows retained:          193
+Major-party rows:                    8,012
+
+BLOCKING VALIDATION
+--------------------------------------------------------------------------------------------
+row_count_changed: PASSED
+duplicate_question_candidate_rows: PASSED
+exact_duplicate_rows: PASSED
+invalid_identifiers: PASSED
+invalid_dates: PASSED
+invalid_percentage: PASSED
+negative_field_period: PASSED
+
+Processed warehouse validation:   PASSED
+
+Outputs:
+  Warehouse: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_polls.csv
+  Cycle profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/processed_warehouse/cycle_profile.csv
+  Party profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/processed_warehouse/party_profile.csv
+  State profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/processed_warehouse/state_profile.csv
+  Question profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/processed_warehouse/question_profile.csv
+  Flag profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/processed_warehouse/flag_profile.csv
+  Exception rows: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/processed_warehouse/exception_rows.csv
+  JSON summary: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/processed_warehouse/senate_historical_polls_validation.json

@@ -1,0 +1,2 @@
+model_version,races,mae,rmse,mean_error_dem,winner_accuracy,brier,mean_predicted_dem_probability,actual_dem_win_rate
+production_replay_v1_presidential_baseline_plus_generic_0_90,234,7.768308721420263,11.402810546087508,1.602124323142606,0.9017094017094017,0.0799191552051282,0.5065749572649573,0.49572649572649574

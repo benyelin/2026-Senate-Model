@@ -1,0 +1,30 @@
+{
+  "checks": {
+    "aggregate_margin_recalculates": true,
+    "aggregate_question_counts_match": true,
+    "included_weights_positive": true,
+    "no_aggregation_date_leakage": true,
+    "no_poll_snapshots_have_null_margin": true,
+    "normalized_weights_sum_to_one": true,
+    "poll_margins_within_bounds": true,
+    "poll_snapshots_have_finite_margin": true,
+    "polling_availability_matches": true,
+    "row_count_preserved": true,
+    "snapshot_ids_preserved": true,
+    "unique_snapshot_ids": true
+  },
+  "configuration": {
+    "maximum_sample_factor": 1.75,
+    "minimum_sample_factor": 0.5,
+    "recency_half_life_days": 14.0,
+    "reference_sample_size": 600.0
+  },
+  "failure_count": 0,
+  "failures": [],
+  "included_question_rows": 12987,
+  "passed": true,
+  "snapshot_rows": 973,
+  "snapshots_with_polling": 733,
+  "snapshots_without_polling": 240,
+  "weighted_question_rows": 12987
+}

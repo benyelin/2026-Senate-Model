@@ -1,0 +1,9 @@
+Senate Generic-Only LOCO Validation
+===================================
+
+PASS — one fold per cycle: expected=7, observed=7
+PASS — pooled prediction count: expected=234, observed=234
+PASS — no duplicate race-cycle predictions
+PASS — all selected coefficients belong to the configured generic-ballot grid
+
+VALIDATION STATUS: PASSED

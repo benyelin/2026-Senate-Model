@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "selected_state_by_cycle": {
+    "2018": "FL",
+    "2020": "NC",
+    "2022": "AZ",
+    "2024": "PA"
+  },
+  "total_sample_eligible_rows": 1257,
+  "validation_cycles": [
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "validation_failure_count": 0,
+  "validation_failures": [],
+  "validation_snapshots": 16,
+  "warehouse_candidate_rows": 9292,
+  "warehouse_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_polls.csv"
+}

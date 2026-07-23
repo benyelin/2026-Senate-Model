@@ -1,0 +1,101 @@
+Senate State Elasticity Estimator Validation
+============================================
+
+Input: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_state_swing_observations.csv
+Elasticity output: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_state_elasticity.csv
+Diagnostics output: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/senate_state_elasticity_observation_diagnostics.csv
+
+Estimator:
+  Raw elasticity = sum(national swing * seat swing) / sum(national swing squared)
+  Regression intercept constrained to zero
+  Shrinkage target: 1.000000
+  Shrinkage strength: 0.500000
+  Legacy fixed raw variation retained: 0.500000
+  Ridge lambda: 30.000000
+  Information weight = national swing sum of squares / (national swing sum of squares + ridge lambda)
+
+Sample:
+  Swing observations: 124
+  Unique observed seats: 93
+
+Observation counts per seat:
+  1 observation(s): 62 seats
+  2 observation(s): 31 seats
+
+Raw elasticity distribution:
+  min:    -17.945620
+  p05:    -7.854699
+  p25:    -0.894126
+  median: 0.310042
+  mean:   -0.015746
+  p75:    1.310474
+  p95:    5.865729
+  max:    18.740336
+  std:    4.667949
+
+Legacy fixed-shrinkage elasticity distribution:
+  min:    -8.472810
+  p05:    -3.427349
+  p25:    0.052937
+  median: 0.655021
+  mean:   0.492127
+  p75:    1.155237
+  p95:    3.432864
+  max:    9.870168
+  std:    2.333975
+
+Information-weight distribution:
+  min:    0.097473
+  p05:    0.097473
+  p25:    0.097473
+  median: 0.738311
+  mean:   0.542488
+  p75:    0.791681
+  p95:    0.791681
+  max:    0.791681
+  std:    0.315427
+
+Regularized elasticity distribution:
+  min:    -3.495896
+  p05:    -0.658592
+  p25:    0.093510
+  median: 0.709447
+  mean:   0.629918
+  p75:    1.192729
+  p95:    2.010150
+  max:    2.729202
+  std:    0.894031
+
+Largest absolute raw elasticity estimates:
+  LA_CLASS_3: raw=18.740336, fixed_shrunk=9.870168, weight=0.097473, regularized=2.729202, n=1
+  UT_CLASS_3: raw=-17.945620, fixed_shrunk=-8.472810, weight=0.097473, regularized=-0.846685, n=1
+  NY_CLASS_3: raw=16.861765, fixed_shrunk=8.930882, weight=0.097473, regularized=2.546093, n=1
+  ND_CLASS_3: raw=-14.350167, fixed_shrunk=-6.675083, weight=0.097473, regularized=-0.496226, n=1
+  AZ_CLASS_3: raw=-10.396654, fixed_shrunk=-4.698327, weight=0.097473, regularized=-0.110865, n=1
+  OH_CLASS_3: raw=-8.784626, fixed_shrunk=-3.892313, weight=0.097473, regularized=0.046264, n=1
+  GA_CLASS_3: raw=-8.515693, fixed_shrunk=-3.757847, weight=0.097473, regularized=0.072478, n=1
+  OK_CLASS_3: raw=-7.414036, fixed_shrunk=-3.207018, weight=0.097473, regularized=0.179859, n=1
+  IA_CLASS_3: raw=-7.402050, fixed_shrunk=-3.201025, weight=0.097473, regularized=0.181028, n=1
+  VT_CLASS_3: raw=-6.645988, fixed_shrunk=-2.822994, weight=0.097473, regularized=0.254723, n=1
+
+Validation checks:
+Unique observed seats: 93
+Source observations: 124
+Summed seat observation counts: 124
+Duplicate seat estimates: 0
+Nonpositive elasticity denominators: 0
+Non-finite estimator values: 0
+Raw elasticity recomputation failures: 0
+Through-origin OLS orthogonality failures: 0
+Shrinkage arithmetic failures: 0
+Information-weight arithmetic failures: 0
+Regularized-elasticity arithmetic failures: 0
+Invalid information weights: 0
+Observation diagnostic merge failures: 0
+
+Important interpretation:
+  These are historical estimates, not yet validated production coefficients.
+  Replay sensitivity testing must determine how much elasticity variation, if any, improves out-of-sample forecasting.
+  Seats absent from this warehouse require a neutral fallback elasticity of 1.0 during replay integration.
+
+VALIDATION STATUS: PASSED

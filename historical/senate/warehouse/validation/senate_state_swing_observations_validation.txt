@@ -1,0 +1,68 @@
+Senate State Swing Observation Warehouse Validation
+===================================================
+
+Input: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv
+Output: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_state_swing_observations.csv
+
+Source column mapping:
+  actual_margin_dem: actual_margin_dem
+  backtest_scorable: backtest_scorable
+  cycle: cycle
+  election_type: election_type
+  generic_ballot_margin_dem: generic_ballot_margin_dem
+  race_id: race_id
+  seat_id: seat_id
+  senate_class: senate_class
+  special_election: special_election
+  state: state
+
+Input and filtering:
+  Input rows: 243
+  Excluded as not backtest-scorable: 9
+  Excluded special elections: 11
+  Eligible regular races: 224
+
+Output:
+  Swing observations: 124
+  Unique physical Senate seats represented: 93
+  Unique states represented: 49
+  Non-six-year adjacent transitions rejected: 1
+
+Transitions:
+  2012 -> 2018: 31
+  2014 -> 2020: 31
+  2016 -> 2022: 31
+  2018 -> 2024: 31
+
+Seat swing statistics:
+  count:  124
+  mean:   -1.746839
+  median: -1.970055
+  std:    13.375399
+  min:    -46.822774
+  max:    32.302115
+
+National swing statistics:
+  count:  124
+  mean:   1.825000
+  median: 2.850000
+  std:    6.893848
+  min:    -7.600000
+  max:    9.200000
+
+Validation checks:
+Required output columns present: 14
+Missing output values: 0
+Duplicate seat transitions: 0
+All cycle gaps equal 6: yes
+Seat-swing arithmetic failures: 0
+National-swing arithmetic failures: 0
+Non-finite numeric values: 0
+
+Transition counts:
+  2012 -> 2018: 31
+  2014 -> 2020: 31
+  2016 -> 2022: 31
+  2018 -> 2024: 31
+
+VALIDATION STATUS: PASSED

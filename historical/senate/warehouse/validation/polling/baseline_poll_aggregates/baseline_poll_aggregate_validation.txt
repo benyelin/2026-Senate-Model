@@ -1,0 +1,41 @@
+
+============================================================================================
+SENATE BASELINE HISTORICAL POLL AGGREGATE VALIDATION
+============================================================================================
+
+Snapshots:                         973
+Weighted question rows:            12,987
+Included question rows:            12,987
+Snapshots with polling:            733
+Snapshots without polling:         240
+
+CONFIGURATION
+--------------------------------------------------------------------------------------------
+Recency half-life:                 14.0 days
+Reference sample size:             600
+Minimum sample-size factor:        0.50
+Maximum sample-size factor:        1.75
+
+BLOCKING CHECKS
+--------------------------------------------------------------------------------------------
+Snapshot row count preserved:               PASSED
+Unique snapshot IDs:                        PASSED
+Snapshot IDs preserved:                     PASSED
+Polling availability matches:               PASSED
+No-poll snapshots have null margin:         PASSED
+Polling snapshots have finite margin:       PASSED
+Polling margins within bounds:              PASSED
+Included weights positive:                  PASSED
+Normalized weights sum to one:              PASSED
+Aggregate margin recalculates:              PASSED
+Aggregate question counts match:            PASSED
+No aggregation date leakage:                PASSED
+
+Baseline aggregation validation: PASSED
+
+Outputs:
+  Snapshot aggregates: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/polling_aggregates/senate_historical_baseline_poll_aggregates.csv
+  Weighted questions: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/polling_aggregates/senate_historical_baseline_weighted_questions.csv
+  Cycle profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/baseline_poll_aggregates/baseline_aggregate_cycle_profile.csv
+  Days-out profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/baseline_poll_aggregates/baseline_aggregate_days_out_profile.csv
+  JSON validation: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/baseline_poll_aggregates/baseline_poll_aggregate_validation.json

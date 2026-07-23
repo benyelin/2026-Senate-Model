@@ -4,7 +4,7 @@
     {
       "label": "Update National Environment",
       "type": "shell",
-      "command": "python3 update_national_environment.py --generic-ballot ${input:genericBallot} --approval ${input:presApproval} --disapproval ${input:presDisapproval} --midterm ${input:midtermAdjustment} --notes \"${input:nationalEnvironmentNotes}\"",
+      "command": "python3 update_national_environment.py --generic-ballot ${input:genericBallot} --notes \"${input:nationalEnvironmentNotes}\"",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
@@ -175,28 +175,10 @@
       "default": "7.0"
     },
     {
-      "id": "presApproval",
-      "type": "promptString",
-      "description": "Presidential approval percentage",
-      "default": "38.6"
-    },
-    {
-      "id": "presDisapproval",
-      "type": "promptString",
-      "description": "Presidential disapproval percentage",
-      "default": "58.0"
-    },
-    {
-      "id": "midtermAdjustment",
-      "type": "promptString",
-      "description": "Midterm adjustment in Democratic-margin terms",
-      "default": "1.0"
-    },
-    {
       "id": "nationalEnvironmentNotes",
       "type": "promptString",
-      "description": "Source notes for national environment update",
-      "default": "Manual update from latest generic ballot and presidential approval averages."
+      "description": "Source notes for generic-ballot national environment update",
+      "default": "Manual update from latest generic congressional ballot average."
     },
     {
       "id": "simulationCount",

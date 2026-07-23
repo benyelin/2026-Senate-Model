@@ -72,30 +72,124 @@ def update_race_inputs_from_polls(
     polls = pd.read_csv(manual_path)
 
 
-    # Candidate-status override:
-    # If a nominee withdraws and replacement is pending, keep the polls archived
-    # in manual_polls.csv/manual_polls_clean.csv, but exclude that state's current
-    # polling from generated polling averages until replacement-specific polling exists.
+    # Candidate-status overrides:
+    #
+    # 1. An unresolved replacement can suppress all polling.
+    # 2. Once the replacement is known, retain only polls that
+    #    match the current candidate.
     candidate_status_overrides = Path(input_dir) / "candidate_status_overrides.csv"
 
     if candidate_status_overrides.exists():
         overrides = pd.read_csv(candidate_status_overrides)
+        overrides["state"] = (
+            overrides["state"]
+            .astype(str)
+            .str.strip()
+            .str.upper()
+        )
 
-        if {"state", "exclude_current_polling"}.issubset(overrides.columns):
-            overrides["state"] = overrides["state"].astype(str).str.strip().str.upper()
+        if "state" in polls.columns:
+            polls["state"] = (
+                polls["state"]
+                .astype(str)
+                .str.strip()
+                .str.upper()
+            )
+
+        def truthy_series(series):
+            return (
+                series
+                .fillna(False)
+                .astype(str)
+                .str.strip()
+                .str.upper()
+                .isin(["TRUE", "1", "YES", "Y"])
+            )
+
+        if "exclude_current_polling" in overrides.columns:
             exclude_states = set(
-                overrides[
-                    overrides["exclude_current_polling"]
-                    .astype(str)
-                    .str.strip()
-                    .str.upper()
-                    .isin(["TRUE", "1", "YES", "Y"])
-                ]["state"]
+                overrides.loc[
+                    truthy_series(overrides["exclude_current_polling"]),
+                    "state",
+                ]
             )
 
             if exclude_states and "state" in polls.columns:
-                polls["state"] = polls["state"].astype(str).str.strip().str.upper()
-                polls = polls[~polls["state"].isin(exclude_states)].copy()
+                polls = polls.loc[
+                    ~polls["state"].isin(exclude_states)
+                ].copy()
+
+        required_match_columns = {
+            "state",
+            "exclude_mismatched_candidate_polls",
+            "dem_candidate_override",
+        }
+
+        if required_match_columns.issubset(overrides.columns):
+            match_overrides = overrides.loc[
+                truthy_series(
+                    overrides["exclude_mismatched_candidate_polls"]
+                )
+            ].copy()
+
+            def normalize_candidate(value):
+                if pd.isna(value):
+                    return ""
+                return " ".join(
+                    str(value)
+                    .replace(".", " ")
+                    .replace(",", " ")
+                    .replace("-", " ")
+                    .upper()
+                    .split()
+                )
+
+            for _, override in match_overrides.iterrows():
+                state = str(override["state"]).strip().upper()
+                current_candidate = normalize_candidate(
+                    override.get("dem_candidate_override", "")
+                )
+
+                if not current_candidate:
+                    continue
+
+                state_mask = polls["state"].eq(state)
+
+                if not state_mask.any():
+                    continue
+
+                if "dem_candidate" not in polls.columns:
+                    polls = polls.loc[~state_mask].copy()
+                    continue
+
+                current_last_name = current_candidate.split()[-1]
+
+                poll_candidates = (
+                    polls.loc[state_mask, "dem_candidate"]
+                    .map(normalize_candidate)
+                )
+
+                exact_match = poll_candidates.eq(current_candidate)
+                last_name_match = (
+                    poll_candidates.ne("")
+                    & poll_candidates.str.split().str[-1].eq(
+                        current_last_name
+                    )
+                )
+
+                candidate_match = exact_match | last_name_match
+                drop_index = poll_candidates.index[~candidate_match]
+                retained = int(candidate_match.sum())
+                excluded = int((~candidate_match).sum())
+
+                if excluded:
+                    print(
+                        f"Excluded {excluded} stale or mismatched "
+                        f"candidate poll(s) for {state}; retained "
+                        f"{retained} current-candidate poll(s)."
+                    )
+
+                polls = polls.drop(index=drop_index)
     if polls.empty:
         empty = pd.DataFrame(columns=output_columns)
         empty.to_csv(out_path, index=False)

@@ -1,5 +1,13 @@
 {
   "approval_adjustment_source": "local fallback: (45 - approval) / 3",
+  "approval_coefficients": [
+    0.0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1.0
+  ],
   "column_map": {
     "actual_margin_dem": "actual_margin_dem",
     "baseline_margin_dem": "presidential_margin_dem",
@@ -22,6 +30,20 @@
     2024
   ],
   "generic_ballot_coefficients": [
+    0.0,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
     0.7,
     0.75,
     0.8,
@@ -30,29 +52,76 @@
     0.95,
     1.0,
     1.05,
-    1.1
+    1.1,
+    1.15,
+    1.2
   ],
   "input_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_fundamentals_2012_2024.csv",
   "input_sha256": "f41d9f16165c0849d65e50a55b665a40bd3795750b67de4b76de4c6faf30b65f",
+  "midterm_coefficients": [
+    -1.0,
+    -0.8,
+    -0.6,
+    -0.4,
+    -0.2,
+    -0.0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1.0
+  ],
   "midterm_source": "midterm_indicator",
   "model_families": {
     "generic_only": {
-      "approval_coefficient": 0.0,
+      "approval_coefficients": [
+        0.0
+      ],
       "component_count": 1,
       "label": "Generic ballot only",
-      "midterm_coefficient": 0.0
+      "midterm_coefficients": [
+        0.0
+      ]
     },
     "generic_plus_approval": {
-      "approval_coefficient": 0.5,
+      "approval_coefficients": [
+        0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
       "component_count": 2,
       "label": "Generic ballot + approval",
-      "midterm_coefficient": 0.0
+      "midterm_coefficients": [
+        0.0
+      ]
     },
     "generic_plus_approval_plus_midterm": {
-      "approval_coefficient": 0.5,
+      "approval_coefficients": [
+        0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
       "component_count": 3,
       "label": "Generic ballot + approval + midterm",
-      "midterm_coefficient": 0.5
+      "midterm_coefficients": [
+        -1.0,
+        -0.8,
+        -0.6,
+        -0.4,
+        -0.2,
+        -0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ]
     }
   },
   "near_best_tolerance": 0.01,
@@ -62,5 +131,5 @@
   "reusable_helper_module": "historical.senate.backtests.run_senate_production_environment_bakeoff",
   "script": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/run_senate_environment_coefficient_sweep.py",
   "simplicity_penalty": 0.03,
-  "specification_count": 27
+  "specification_count": 1825
 }

@@ -1,0 +1,41 @@
+
+============================================================================================
+SENATE HISTORICAL POLL SNAPSHOT WAREHOUSE VALIDATION
+============================================================================================
+
+Race-election combinations:       138
+Expected snapshots:               966
+Actual snapshots:                 966
+Question-snapshot rows:            12,946
+Snapshots with eligible polling:  726
+Snapshots without polling:        240
+
+BLOCKING CHECKS
+--------------------------------------------------------------------------------------------
+Snapshot request count:               PASSED
+Snapshot summary count:               PASSED
+Unique snapshot IDs:                  PASSED
+Request-summary alignment:            PASSED
+Question rows present:                PASSED
+Unique snapshot-question rows:        PASSED
+No snapshot-date leakage:             PASSED
+No Election Day leakage:              PASSED
+Nonnegative poll age:                 PASSED
+Eligible questions only:              PASSED
+Exactly one Democrat:                 PASSED
+Exactly one Republican:               PASSED
+Democratic margin recalculates:       PASSED
+Summary question counts match:        PASSED
+Eligible counts monotonic:            PASSED
+Complete days-out grid:               PASSED
+
+Snapshot warehouse validation: PASSED
+
+Outputs:
+  Race profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/polling_snapshots/senate_historical_poll_race_profile.csv
+  Snapshot questions: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/polling_snapshots/senate_historical_poll_snapshot_questions.csv
+  Snapshot summary: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/polling_snapshots/senate_historical_poll_snapshot_summary.csv
+  Exclusion summary: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/historical_poll_snapshots/snapshot_exclusion_summary.csv
+  Cycle profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/historical_poll_snapshots/snapshot_cycle_profile.csv
+  Days-out profile: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/historical_poll_snapshots/snapshot_days_out_profile.csv
+  JSON validation: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/validation/polling/historical_poll_snapshots/snapshot_warehouse_validation.json

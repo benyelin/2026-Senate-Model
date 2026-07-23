@@ -1,0 +1,28 @@
+{
+  "aggregate_snapshot_rows": 973,
+  "checks": {
+    "aggregate_row_count_preserved_after_merge": true,
+    "all_eligible_rows_scored": true,
+    "all_polling_snapshots_match_race": false,
+    "all_polling_snapshots_match_result": false,
+    "eligible_rows_have_actual_margin": true,
+    "eligible_rows_have_poll_margin": true,
+    "expected_polling_cycles_present": false,
+    "prediction_errors_finite": true,
+    "unique_snapshot_ids": true,
+    "winner_correct_nonmissing": true
+  },
+  "cycles": [],
+  "eligible_scorable_snapshots": 0,
+  "eligible_unique_races": 0,
+  "failure_count": 3,
+  "failures": [
+    "all_polling_snapshots_match_result",
+    "all_polling_snapshots_match_race",
+    "expected_polling_cycles_present"
+  ],
+  "merged_snapshot_rows": 973,
+  "passed": false,
+  "scored_snapshots": 0,
+  "snapshots_with_polling": 733
+}

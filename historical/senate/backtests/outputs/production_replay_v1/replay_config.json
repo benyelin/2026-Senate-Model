@@ -1,0 +1,26 @@
+{
+  "model_version": "production_replay_v1_presidential_baseline_plus_generic_0_90",
+  "canonical_input": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/outputs/canonical/senate_canonical_backtest_dataset.csv",
+  "calibration_input": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/inputs/calibration_parameters.csv",
+  "output_dir": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/outputs/production_replay_v1",
+  "cycles": [
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "scorable_races": 234,
+  "simulations_per_cycle": 50000,
+  "seed": 20260719,
+  "central_margin_source": "production_predicted_margin_dem",
+  "scope": "Race-level and seats-up replay only. No historical full-chamber control probability.",
+  "limitations": [
+    "Historical candidate-quality effects are not yet replayed as a separate layer.",
+    "Historical polling and Bayesian updating are not yet replayed.",
+    "Tier uncertainty multipliers are provisional and must be separately validated.",
+    "Full Senate control requires historical holdover-seat composition for every cycle."
+  ]
+}

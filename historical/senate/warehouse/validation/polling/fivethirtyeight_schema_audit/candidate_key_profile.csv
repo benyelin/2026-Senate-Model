@@ -1,0 +1,7 @@
+candidate_key,columns,complete_rows,incomplete_rows,unique_complete_keys,duplicate_complete_rows,is_unique_when_complete
+poll_id + question_id + candidate_id,3,9292,0,9292,0,True
+poll_id + question_id + answer,3,9292,0,9290,4,False
+question_id + candidate_id,2,9292,0,9292,0,True
+question_id + answer,2,9292,0,9290,4,False
+poll_id + question_id + party + answer,4,9292,0,9292,0,True
+poll_id + question_id + candidate_id + ranked_choice_round,4,193,9099,193,0,True

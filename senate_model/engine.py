@@ -76,13 +76,49 @@ def compute_days_out(config: ModelConfig) -> int:
     return max(0, int((election - today).days))
 
 
+
+
 def national_environment_margin(national: pd.DataFrame) -> float:
-    gb = float(_get_scalar(national, "generic_ballot_dem_margin", 0.0))
-    approval = float(_get_scalar(national, "presidential_approval", 50.0))
-    approval_slope = float(_get_scalar(national, "approval_slope", 0.25))
-    midterm = float(_get_scalar(national, "midterm_effect_dem", 0.0))
-    manual = float(_get_scalar(national, "manual_adjustment", 0.0))
-    return gb + ((50.0 - approval) * approval_slope) + midterm + manual
+    """
+    Return the Democratic national-environment margin.
+
+    Prefer the explicit calibrated or scenario-adjusted environment stored
+    in the production wide-format input. Fall back to 0.90 times the
+    generic ballot for legacy inputs.
+    """
+    explicit_value = _get_scalar(
+        national,
+        "national_environment_margin_dem",
+        None,
+    )
+
+    if explicit_value is not None:
+        try:
+            return float(explicit_value)
+        except (TypeError, ValueError):
+            pass
+
+    generic_value = _get_scalar(
+        national,
+        "generic_ballot_margin_dem",
+        None,
+    )
+
+    if generic_value is None:
+        generic_value = _get_scalar(
+            national,
+            "generic_ballot_dem_margin",
+            0.0,
+        )
+
+    try:
+        generic_ballot = float(generic_value)
+    except (TypeError, ValueError):
+        generic_ballot = 0.0
+
+    return 0.90 * generic_ballot
+
+
 
 
 def prepare_race_table(
@@ -93,9 +129,32 @@ def prepare_race_table(
 ) -> pd.DataFrame:
     days_out = compute_days_out(config)
 
+    # Legacy calendar-based blend retained only as a fallback.
     polling_weight = _interp(calibration, days_out, "polling_weight", default=0.50)
     polling_weight = max(0.0, min(1.0, polling_weight))
     fundamentals_weight = 1.0 - polling_weight
+
+    # When calibrated Bayesian race-level weights are available, use their
+    # average for forecast-summary reporting. The model margins themselves
+    # already use bayesian_model_margin_dem below.
+    if "bayesian_polling_weight_capped_after_polling_confidence_accelerator" in races.columns:
+        reported_weights = pd.to_numeric(
+            races[
+                "bayesian_polling_weight_capped_after_polling_confidence_accelerator"
+            ],
+            errors="coerce",
+        ).fillna(0.0)
+
+        polling_weight = float(reported_weights.mean())
+        fundamentals_weight = 1.0 - polling_weight
+    elif "bayesian_polling_weight_capped" in races.columns:
+        reported_weights = pd.to_numeric(
+            races["bayesian_polling_weight_capped"],
+            errors="coerce",
+        ).fillna(0.0)
+
+        polling_weight = float(reported_weights.mean())
+        fundamentals_weight = 1.0 - polling_weight
     national_env = national_environment_margin(national)
 
     out = races.copy()
@@ -206,12 +265,12 @@ def run_forecast(
             ).to_numpy(dtype=float)
         else:
             race_uncertainty = (
-                config.base_error_sd
+                race_sd
                 * race_table["tier_error_multiplier"].astype(float)
             ).to_numpy(dtype=float)
     else:
         race_uncertainty = (
-            config.base_error_sd
+            race_sd
             * race_table["tier_error_multiplier"].astype(float)
         ).to_numpy(dtype=float)
 

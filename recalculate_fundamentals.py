@@ -219,56 +219,59 @@ def normalize_holder(x):
     return "UNKNOWN"
 
 
+
+
 def read_national_environment():
+    """
+    Return the Democratic national-environment margin.
+
+    The production CSV normally stores the calibrated result:
+        0.90 × Democratic generic-ballot margin
+
+    An explicit national_environment_margin_dem value is honored so the
+    scenario engine can temporarily test alternative environments.
+    """
     if not NATIONAL_ENV_PATH.exists():
-        print("No national_environment.csv found. Using national environment = 0.0")
+        print(
+            f"Warning: {NATIONAL_ENV_PATH} not found; "
+            "using a neutral national environment."
+        )
         return 0.0
 
-    env = pd.read_csv(NATIONAL_ENV_PATH)
+    national = pd.read_csv(NATIONAL_ENV_PATH)
 
-    if env.empty:
-        print("national_environment.csv is empty. Using national environment = 0.0")
+    if national.empty:
+        print(
+            f"Warning: {NATIONAL_ENV_PATH} is empty; "
+            "using a neutral national environment."
+        )
         return 0.0
 
-    row = env.iloc[-1]
+    row = national.iloc[-1]
 
-    if "national_environment_margin_dem" in env.columns:
-        val = pd.to_numeric(row["national_environment_margin_dem"], errors="coerce")
+    explicit_environment = pd.to_numeric(
+        pd.Series([
+            row.get("national_environment_margin_dem", np.nan)
+        ]),
+        errors="coerce",
+    ).iloc[0]
 
-        if pd.notna(val):
-            print(f"Using national_environment_margin_dem directly: {float(val):.2f}")
-            return float(val)
+    if pd.notna(explicit_environment):
+        return float(explicit_environment)
 
-    generic_ballot = 0.0
-    approval_adjustment = 0.0
-    midterm_adjustment = 0.0
+    generic_ballot = pd.to_numeric(
+        pd.Series([
+            row.get("generic_ballot_margin_dem", 0.0)
+        ]),
+        errors="coerce",
+    ).iloc[0]
 
-    if "generic_ballot_margin_dem" in env.columns:
-        val = pd.to_numeric(row["generic_ballot_margin_dem"], errors="coerce")
-        if pd.notna(val):
-            generic_ballot = float(val)
+    if pd.isna(generic_ballot):
+        generic_ballot = 0.0
 
-    if "approval_adjustment_dem" in env.columns:
-        val = pd.to_numeric(row["approval_adjustment_dem"], errors="coerce")
-        if pd.notna(val):
-            approval_adjustment = float(val)
+    return 0.90 * float(generic_ballot)
 
-    if "midterm_adjustment_dem" in env.columns:
-        val = pd.to_numeric(row["midterm_adjustment_dem"], errors="coerce")
-        if pd.notna(val):
-            midterm_adjustment = float(val)
 
-    total = generic_ballot + approval_adjustment + midterm_adjustment
-
-    print(
-        "Built national environment from components: "
-        f"generic_ballot={generic_ballot:.2f}, "
-        f"approval_adjustment={approval_adjustment:.2f}, "
-        f"midterm_adjustment={midterm_adjustment:.2f}, "
-        f"total={total:.2f}"
-    )
-
-    return float(total)
 
 
 def ensure_numeric(df, col, default=np.nan):

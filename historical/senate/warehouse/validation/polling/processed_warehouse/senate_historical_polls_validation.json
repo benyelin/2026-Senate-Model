@@ -1,0 +1,36 @@
+{
+  "cycles": [
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "duplicate_question_candidate_rows": 0,
+  "exact_duplicate_rows": 0,
+  "input_columns": 52,
+  "input_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/raw/polling/fivethirtyeight/archives/senate_polls_historical.csv",
+  "input_rows": 9292,
+  "major_party_rows": 8012,
+  "missing_election_dates": 2,
+  "output_columns": 94,
+  "output_path": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_polls.csv",
+  "output_rows": 9292,
+  "question_count": 3926,
+  "questions_with_both_major_parties": 3826,
+  "ranked_choice_rows": 193,
+  "unique_candidate_ids": 630,
+  "unique_poll_ids": 3012,
+  "unique_question_ids": 3926,
+  "unique_race_ids": 140,
+  "validation_counts": {
+    "duplicate_question_candidate_key": 0,
+    "exact_duplicate_row": 0,
+    "invalid_dates": 0,
+    "invalid_identifiers": 0,
+    "invalid_percentage": 0,
+    "invalid_state": 0,
+    "missing_election_date": 2,
+    "negative_field_period": 0,
+    "poll_after_election_day": 0
+  }
+}
