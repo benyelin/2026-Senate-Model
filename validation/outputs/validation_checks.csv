@@ -1,0 +1,50 @@
+validation_group,check_name,status,severity,passed,rows_checked,max_error,details
+Poll Weight Validation,Poll-level production audit exists,PASS,error,True,,,outputs/senate_poll_weighting_live_audit.csv
+Poll Weight Validation,Generated polling averages exist,PASS,error,True,,,inputs/polling_averages_generated.csv
+Poll Weight Validation,Audit contains state identifiers,PASS,error,True,,,
+Poll Weight Validation,Polling averages contain state identifiers,PASS,error,True,,,
+Poll Weight Validation,One polling-average row per state,PASS,error,True,,,Duplicate state rows: 0
+Poll Weight Validation,No exact duplicate polls remain in production audit,PASS,error,True,,,"Duplicate rows: 0; key=state, pollster, start_date, end_date, dem_pct, rep_pct"
+Poll Weight Validation,Normalized poll-weight sum audit,WARN,warning,False,,,No recognized normalized-weight column was found.
+Poll Weight Validation,Polling-average reconstruction,WARN,warning,False,,,Missing recognized columns: final weight
+Poll Weight Validation,Effective poll count does not exceed poll count,PASS,error,True,11.0,,Violations: 0
+Poll Weight Validation,"Largest pollster share remains within [0, 1]",PASS,error,True,11.0,,Violations: 0
+Bayesian Pipeline Validation,Generated Bayesian table exists,PASS,error,True,,,inputs/bayesian_update_generated.csv
+Bayesian Pipeline Validation,One Bayesian row per state,PASS,error,True,,,Duplicate state rows: 0
+Bayesian Pipeline Validation,Raw Bayesian reconstruction columns are present,PASS,error,True,,,All required columns present.
+Bayesian Pipeline Validation,Original raw Bayesian polling weight reconstructs,PASS,error,True,35.0,1.1102230246251565e-16,
+Bayesian Pipeline Validation,Original raw Bayesian posterior SD reconstructs,PASS,error,True,35.0,4.440892098500626e-16,
+Bayesian Pipeline Validation,Raw Bayesian posterior margin is reconstructible,PASS,warning,True,34.0,,"The initial raw posterior margin reconstructs from the prior, poll, and original Bayesian weight, but production does not preserve a dedicated immutable raw-margin field. Capped and final margins are validated separately below."
+Bayesian Pipeline Validation,Current Bayesian prior and polling aliases sum to one,PASS,error,True,35.0,1.1102230246251565e-16,
+Bayesian Pipeline Validation,Cycle-cap reconstruction columns are present,PASS,error,True,,,All required columns present.
+Bayesian Pipeline Validation,Cycle cap and poll-count multiplier reconstruct pre-accelerator weight,PASS,error,True,35.0,8.326672684688674e-17,
+Bayesian Pipeline Validation,Confidence-accelerator reconstruction columns are present,PASS,error,True,,,All required columns present.
+Bayesian Pipeline Validation,Confidence accelerator reconstructs final polling weight,PASS,error,True,35.0,5.551115123125783e-17,
+Bayesian Pipeline Validation,Reported confidence weight change reconstructs,PASS,error,True,35.0,7.28583859910259e-17,
+Bayesian Pipeline Validation,Pre-accelerator capped margin reconstructs,PASS,error,True,34.0,8.881784197001252e-16,
+Bayesian Pipeline Validation,Final capped Bayesian margin reconstructs,PASS,error,True,34.0,1.7763568394002505e-15,
+Bayesian Pipeline Validation,Reported confidence margin change reconstructs,PASS,error,True,34.0,1.7763568394002505e-15,
+Bayesian Pipeline Validation,Final Bayesian margin alias matches capped margin,PASS,error,True,35.0,0.0,
+Bayesian Pipeline Validation,Capped posterior alias matches capped Bayesian margin,PASS,error,True,35.0,0.0,
+Bayesian Pipeline Validation,Capped polling-weight alias matches final accelerator weight,PASS,error,True,35.0,0.0,
+Bayesian Pipeline Validation,"bayesian_polling_weight remains within [0, 1]",PASS,error,True,35.0,,Violations: 0
+Bayesian Pipeline Validation,"original_bayesian_polling_weight remains within [0, 1]",PASS,error,True,35.0,,Violations: 0
+Bayesian Pipeline Validation,"bayesian_polling_weight_capped remains within [0, 1]",PASS,error,True,35.0,,Violations: 0
+Bayesian Pipeline Validation,"bayesian_polling_weight_capped_before_polling_confidence_accelerator remains within [0, 1]",PASS,error,True,35.0,,Violations: 0
+Bayesian Pipeline Validation,"bayesian_polling_weight_capped_after_polling_confidence_accelerator remains within [0, 1]",PASS,error,True,35.0,,Violations: 0
+Cross-File Pipeline Consistency,Polling averages file exists and is nonempty,PASS,error,True,,,inputs/polling_averages_generated.csv
+Cross-File Pipeline Consistency,Bayesian output file exists and is nonempty,PASS,error,True,,,inputs/bayesian_update_generated.csv
+Cross-File Pipeline Consistency,Race inputs file exists and is nonempty,PASS,error,True,,,inputs/race_inputs.csv
+Cross-File Pipeline Consistency,Race stats file exists and is nonempty,PASS,error,True,,,outputs/race_stats.csv
+Cross-File Pipeline Consistency,Polling margin propagates from generated averages to Bayesian input,PASS,error,True,11.0,0.0,
+Cross-File Pipeline Consistency,poll_count propagates from generated averages to Bayesian output,PASS,error,True,11.0,0.0,
+Cross-File Pipeline Consistency,total_poll_weight propagates from generated averages to Bayesian output,PASS,error,True,11.0,0.0,
+Cross-File Pipeline Consistency,avg_poll_age_days propagates from generated averages to Bayesian output,PASS,error,True,11.0,0.0,
+Cross-File Pipeline Consistency,Final polling weight propagates into race inputs,PASS,error,True,35.0,0.0,
+Cross-File Pipeline Consistency,Final Bayesian margin propagates into race inputs,PASS,error,True,35.0,0.0,
+Cross-File Pipeline Consistency,poll_count propagates into race inputs,PASS,error,True,35.0,0.0,
+Cross-File Pipeline Consistency,polling_margin_used propagates into race inputs,PASS,error,True,34.0,0.0,
+Cross-File Pipeline Consistency,original_bayesian_polling_weight propagates into race inputs,PASS,error,True,35.0,0.0,
+Cross-File Pipeline Consistency,poll_count_weight_multiplier propagates into race inputs,PASS,error,True,35.0,0.0,
+Cross-File Pipeline Consistency,cycle_max_polling_weight propagates into race inputs,PASS,error,True,35.0,0.0,
+Cross-File Pipeline Consistency,Authoritative model margin propagates to race stats,PASS,error,True,35.0,0.0,

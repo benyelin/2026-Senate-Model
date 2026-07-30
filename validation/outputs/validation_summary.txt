@@ -1,0 +1,94 @@
+========================================================================
+                     SENATE MODEL VALIDATION REPORT                     
+========================================================================
+
+Poll Weight Validation
+----------------------
+PASS  Poll-level production audit exists
+      outputs/senate_poll_weighting_live_audit.csv
+PASS  Generated polling averages exist
+      inputs/polling_averages_generated.csv
+PASS  Audit contains state identifiers
+PASS  Polling averages contain state identifiers
+PASS  One polling-average row per state
+      Duplicate state rows: 0
+PASS  No exact duplicate polls remain in production audit
+      Duplicate rows: 0; key=state, pollster, start_date, end_date, dem_pct, rep_pct
+WARN  Normalized poll-weight sum audit
+      No recognized normalized-weight column was found.
+WARN  Polling-average reconstruction
+      Missing recognized columns: final weight
+PASS  Effective poll count does not exceed poll count  [rows=11]
+      Violations: 0
+PASS  Largest pollster share remains within [0, 1]  [rows=11]
+      Violations: 0
+
+Bayesian Pipeline Validation
+----------------------------
+PASS  Generated Bayesian table exists
+      inputs/bayesian_update_generated.csv
+PASS  One Bayesian row per state
+      Duplicate state rows: 0
+PASS  Raw Bayesian reconstruction columns are present
+      All required columns present.
+PASS  Original raw Bayesian polling weight reconstructs  [rows=35, max_error=1.11022302463e-16]
+PASS  Original raw Bayesian posterior SD reconstructs  [rows=35, max_error=4.4408920985e-16]
+PASS  Raw Bayesian posterior margin is reconstructible  [rows=34]
+      The initial raw posterior margin reconstructs from the prior, poll, and original Bayesian weight, but production does not preserve a dedicated immutable raw-margin field. Capped and final margins are validated separately below.
+PASS  Current Bayesian prior and polling aliases sum to one  [rows=35, max_error=1.11022302463e-16]
+PASS  Cycle-cap reconstruction columns are present
+      All required columns present.
+PASS  Cycle cap and poll-count multiplier reconstruct pre-accelerator weight  [rows=35, max_error=8.32667268469e-17]
+PASS  Confidence-accelerator reconstruction columns are present
+      All required columns present.
+PASS  Confidence accelerator reconstructs final polling weight  [rows=35, max_error=5.55111512313e-17]
+PASS  Reported confidence weight change reconstructs  [rows=35, max_error=7.2858385991e-17]
+PASS  Pre-accelerator capped margin reconstructs  [rows=34, max_error=8.881784197e-16]
+PASS  Final capped Bayesian margin reconstructs  [rows=34, max_error=1.7763568394e-15]
+PASS  Reported confidence margin change reconstructs  [rows=34, max_error=1.7763568394e-15]
+PASS  Final Bayesian margin alias matches capped margin  [rows=35, max_error=0]
+PASS  Capped posterior alias matches capped Bayesian margin  [rows=35, max_error=0]
+PASS  Capped polling-weight alias matches final accelerator weight  [rows=35, max_error=0]
+PASS  bayesian_polling_weight remains within [0, 1]  [rows=35]
+      Violations: 0
+PASS  original_bayesian_polling_weight remains within [0, 1]  [rows=35]
+      Violations: 0
+PASS  bayesian_polling_weight_capped remains within [0, 1]  [rows=35]
+      Violations: 0
+PASS  bayesian_polling_weight_capped_before_polling_confidence_accelerator remains within [0, 1]  [rows=35]
+      Violations: 0
+PASS  bayesian_polling_weight_capped_after_polling_confidence_accelerator remains within [0, 1]  [rows=35]
+      Violations: 0
+
+Cross-File Pipeline Consistency
+-------------------------------
+PASS  Polling averages file exists and is nonempty
+      inputs/polling_averages_generated.csv
+PASS  Bayesian output file exists and is nonempty
+      inputs/bayesian_update_generated.csv
+PASS  Race inputs file exists and is nonempty
+      inputs/race_inputs.csv
+PASS  Race stats file exists and is nonempty
+      outputs/race_stats.csv
+PASS  Polling margin propagates from generated averages to Bayesian input  [rows=11, max_error=0]
+PASS  poll_count propagates from generated averages to Bayesian output  [rows=11, max_error=0]
+PASS  total_poll_weight propagates from generated averages to Bayesian output  [rows=11, max_error=0]
+PASS  avg_poll_age_days propagates from generated averages to Bayesian output  [rows=11, max_error=0]
+PASS  Final polling weight propagates into race inputs  [rows=35, max_error=0]
+PASS  Final Bayesian margin propagates into race inputs  [rows=35, max_error=0]
+PASS  poll_count propagates into race inputs  [rows=35, max_error=0]
+PASS  polling_margin_used propagates into race inputs  [rows=34, max_error=0]
+PASS  original_bayesian_polling_weight propagates into race inputs  [rows=35, max_error=0]
+PASS  poll_count_weight_multiplier propagates into race inputs  [rows=35, max_error=0]
+PASS  cycle_max_polling_weight propagates into race inputs  [rows=35, max_error=0]
+PASS  Authoritative model margin propagates to race stats  [rows=35, max_error=0]
+
+========================================================================
+SUMMARY
+========================================================================
+Validation groups: 3
+Hard failures:     0
+Warnings:          2
+Maximum error:     1.7763568394e-15
+
+OVERALL STATUS: PASS
