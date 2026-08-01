@@ -1,8 +1,15 @@
 from pathlib import Path
+from datetime import datetime
+import subprocess
+import sys
+import tempfile
+
 import pandas as pd
 import numpy as np
 import streamlit as st
 import plotly.express as px
+
+from pollster_registry import apply_pollster_registry
 
 DEM_COLOR = "#1f77b4"
 GOP_COLOR = "#d62728"
@@ -743,6 +750,1049 @@ with tab_diagnostics:
 # Manual Poll Entry
 # -----------------------------
 with tab_manual_polls:
+    st.subheader("Pollster House Effects")
+
+    st.caption(
+        "Maintain pollster-wide house effects separately from partisan or "
+        "internal-poll adjustments. Positive values mean a pollster appears "
+        "too Democratic and therefore reduce its reported Democratic margin. "
+        "Negative values mean a pollster appears too Republican."
+    )
+
+    st.info(
+        "Adjusted Democratic margin = reported Democratic margin − "
+        "pollster house effect. Use Preview Changes before applying edits."
+    )
+
+    pollster_registry_path = INPUTS / "pollster_registry.csv"
+    clean_manual_poll_path = OUTPUTS / "manual_polls_clean.csv"
+
+    pollster_registry = read_csv_safe(
+        pollster_registry_path
+    )
+    clean_manual_polls = read_csv_safe(
+        clean_manual_poll_path
+    )
+
+    if pollster_registry.empty:
+        st.warning(
+            "No pollster registry was found at "
+            f"{pollster_registry_path}."
+        )
+    else:
+        registry_editor = pollster_registry.copy()
+
+        required_registry_columns = {
+            "canonical_pollster": "",
+            "normalized_pollster_key": "",
+            "aliases": "",
+            "pollster_house_effect_dem": 0.0,
+            "house_effect_confidence": "low",
+            "house_effect_notes": "",
+            "active": True,
+        }
+
+        for column, default in required_registry_columns.items():
+            if column not in registry_editor.columns:
+                registry_editor[column] = default
+
+        registry_editor[
+            "pollster_house_effect_dem"
+        ] = pd.to_numeric(
+            registry_editor[
+                "pollster_house_effect_dem"
+            ],
+            errors="coerce",
+        ).fillna(0.0)
+
+        registry_editor[
+            "house_effect_confidence"
+        ] = (
+            registry_editor[
+                "house_effect_confidence"
+            ]
+            .fillna("low")
+            .astype(str)
+            .str.strip()
+            .str.lower()
+        )
+
+        registry_editor["house_effect_notes"] = (
+            registry_editor["house_effect_notes"]
+            .fillna("")
+            .astype(str)
+        )
+
+        registry_editor["active"] = (
+            registry_editor["active"]
+            .fillna(True)
+            .astype(str)
+            .str.strip()
+            .str.lower()
+            .isin(["true", "1", "yes", "y"])
+        )
+
+        # Add read-only coverage information from the current clean
+        # manual-poll database.
+        coverage = pd.DataFrame(
+            columns=[
+                "canonical_pollster",
+                "matching_poll_count",
+                "matching_state_count",
+                "matching_states",
+            ]
+        )
+
+        if (
+            not clean_manual_polls.empty
+            and "canonical_pollster"
+            in clean_manual_polls.columns
+        ):
+            coverage_source = clean_manual_polls.copy()
+
+            coverage_source["canonical_pollster"] = (
+                coverage_source["canonical_pollster"]
+                .fillna("")
+                .astype(str)
+                .str.strip()
+            )
+
+            coverage_source["state"] = (
+                coverage_source.get(
+                    "state",
+                    pd.Series(
+                        "",
+                        index=coverage_source.index,
+                    ),
+                )
+                .fillna("")
+                .astype(str)
+                .str.strip()
+                .str.upper()
+            )
+
+            coverage = (
+                coverage_source.loc[
+                    coverage_source[
+                        "canonical_pollster"
+                    ].ne("")
+                ]
+                .groupby(
+                    "canonical_pollster",
+                    as_index=False,
+                )
+                .agg(
+                    matching_poll_count=(
+                        "canonical_pollster",
+                        "size",
+                    ),
+                    matching_state_count=(
+                        "state",
+                        lambda values: values[
+                            values.ne("")
+                        ].nunique(),
+                    ),
+                    matching_states=(
+                        "state",
+                        lambda values: ", ".join(
+                            sorted(
+                                set(
+                                    value
+                                    for value in values
+                                    if value
+                                )
+                            )
+                        ),
+                    ),
+                )
+            )
+
+        registry_editor = registry_editor.merge(
+            coverage,
+            on="canonical_pollster",
+            how="left",
+        )
+
+        registry_editor[
+            "matching_poll_count"
+        ] = pd.to_numeric(
+            registry_editor.get(
+                "matching_poll_count",
+                0,
+            ),
+            errors="coerce",
+        ).fillna(0).astype(int)
+
+        registry_editor[
+            "matching_state_count"
+        ] = pd.to_numeric(
+            registry_editor.get(
+                "matching_state_count",
+                0,
+            ),
+            errors="coerce",
+        ).fillna(0).astype(int)
+
+        registry_editor["matching_states"] = (
+            registry_editor.get(
+                "matching_states",
+                pd.Series(
+                    "",
+                    index=registry_editor.index,
+                ),
+            )
+            .fillna("")
+            .astype(str)
+        )
+
+        registry_column_order = [
+            "canonical_pollster",
+            "aliases",
+            "pollster_house_effect_dem",
+            "house_effect_confidence",
+            "house_effect_notes",
+            "active",
+            "matching_poll_count",
+            "matching_state_count",
+            "matching_states",
+        ]
+
+        edited_pollster_registry = st.data_editor(
+            registry_editor[
+                registry_column_order
+            ],
+            use_container_width=True,
+            hide_index=True,
+            num_rows="fixed",
+            key="pollster_house_effect_registry_editor_v1",
+            column_config={
+                "canonical_pollster": (
+                    st.column_config.TextColumn(
+                        "Canonical pollster",
+                        disabled=True,
+                    )
+                ),
+                "aliases": st.column_config.TextColumn(
+                    "Aliases",
+                    disabled=True,
+                ),
+                "pollster_house_effect_dem": (
+                    st.column_config.NumberColumn(
+                        "House effect",
+                        help=(
+                            "Positive values reduce the "
+                            "Democratic margin; negative "
+                            "values increase it."
+                        ),
+                        step=0.1,
+                        format="%.1f",
+                    )
+                ),
+                "house_effect_confidence": (
+                    st.column_config.SelectboxColumn(
+                        "Confidence",
+                        options=[
+                            "low",
+                            "medium",
+                            "high",
+                        ],
+                    )
+                ),
+                "house_effect_notes": (
+                    st.column_config.TextColumn(
+                        "Rationale / notes",
+                    )
+                ),
+                "active": st.column_config.CheckboxColumn(
+                    "Active",
+                    default=True,
+                ),
+                "matching_poll_count": (
+                    st.column_config.NumberColumn(
+                        "Polls",
+                        disabled=True,
+                        format="%d",
+                    )
+                ),
+                "matching_state_count": (
+                    st.column_config.NumberColumn(
+                        "States",
+                        disabled=True,
+                        format="%d",
+                    )
+                ),
+                "matching_states": (
+                    st.column_config.TextColumn(
+                        "Affected states",
+                        disabled=True,
+                    )
+                ),
+            },
+        )
+
+        current_registry_for_compare = (
+            registry_editor[
+                registry_column_order
+            ]
+            .copy()
+            .set_index("canonical_pollster")
+        )
+
+        proposed_registry_for_compare = (
+            edited_pollster_registry.copy()
+            .set_index("canonical_pollster")
+        )
+
+        current_effect = pd.to_numeric(
+            current_registry_for_compare[
+                "pollster_house_effect_dem"
+            ],
+            errors="coerce",
+        ).fillna(0.0)
+
+        proposed_effect = pd.to_numeric(
+            proposed_registry_for_compare[
+                "pollster_house_effect_dem"
+            ],
+            errors="coerce",
+        ).fillna(0.0)
+
+        changed_effect = (
+            proposed_effect - current_effect
+        ).abs().gt(1e-12)
+
+        current_confidence = (
+            current_registry_for_compare[
+                "house_effect_confidence"
+            ]
+            .fillna("")
+            .astype(str)
+        )
+
+        proposed_confidence = (
+            proposed_registry_for_compare[
+                "house_effect_confidence"
+            ]
+            .fillna("")
+            .astype(str)
+        )
+
+        current_notes = (
+            current_registry_for_compare[
+                "house_effect_notes"
+            ]
+            .fillna("")
+            .astype(str)
+        )
+
+        proposed_notes = (
+            proposed_registry_for_compare[
+                "house_effect_notes"
+            ]
+            .fillna("")
+            .astype(str)
+        )
+
+        current_active = (
+            current_registry_for_compare[
+                "active"
+            ].astype(bool)
+        )
+
+        proposed_active = (
+            proposed_registry_for_compare[
+                "active"
+            ].astype(bool)
+        )
+
+        changed_metadata = (
+            current_confidence.ne(
+                proposed_confidence
+            )
+            | current_notes.ne(proposed_notes)
+            | current_active.ne(proposed_active)
+        )
+
+        changed_pollsters = sorted(
+            set(
+                proposed_registry_for_compare.index[
+                    changed_effect | changed_metadata
+                ].tolist()
+            )
+        )
+
+        if changed_pollsters:
+            st.caption(
+                f"Unsaved changes detected for "
+                f"{len(changed_pollsters)} pollster(s)."
+            )
+        else:
+            st.caption(
+                "No unsaved pollster-registry changes."
+            )
+
+        preview_col, apply_col = st.columns(
+            [1, 1]
+        )
+
+        with preview_col:
+            preview_house_effects = st.button(
+                "Preview Changes",
+                key=(
+                    "preview_pollster_house_effects_v1"
+                ),
+            )
+
+        with apply_col:
+            apply_house_effects = st.button(
+                "Apply and Rebuild Polling Averages",
+                type="primary",
+                key=(
+                    "apply_pollster_house_effects_v1"
+                ),
+            )
+
+        if preview_house_effects:
+            if not changed_pollsters:
+                st.info(
+                    "No registry changes are currently "
+                    "available to preview."
+                )
+            elif clean_manual_polls.empty:
+                st.warning(
+                    "The clean manual-poll file is unavailable, "
+                    "so affected polling averages cannot be "
+                    "previewed."
+                )
+            else:
+                proposed_registry = (
+                    pollster_registry.copy()
+                )
+
+                editable_columns = [
+                    "canonical_pollster",
+                    "pollster_house_effect_dem",
+                    "house_effect_confidence",
+                    "house_effect_notes",
+                    "active",
+                ]
+
+                proposed_updates = (
+                    edited_pollster_registry[
+                        editable_columns
+                    ]
+                    .copy()
+                    .set_index(
+                        "canonical_pollster"
+                    )
+                )
+
+                proposed_registry = (
+                    proposed_registry
+                    .set_index(
+                        "canonical_pollster"
+                    )
+                )
+
+                # CSV columns containing only blanks may be inferred as
+                # float64. Normalize their dtypes before assigning edited
+                # text and Boolean values from the Streamlit editor.
+                proposed_registry[
+                    "pollster_house_effect_dem"
+                ] = pd.to_numeric(
+                    proposed_registry[
+                        "pollster_house_effect_dem"
+                    ],
+                    errors="coerce",
+                ).fillna(0.0)
+
+                for text_column in [
+                    "house_effect_confidence",
+                    "house_effect_notes",
+                ]:
+                    proposed_registry[text_column] = (
+                        proposed_registry[text_column]
+                        .fillna("")
+                        .astype(str)
+                    )
+
+                proposed_registry["active"] = (
+                    proposed_registry["active"]
+                    .fillna(True)
+                    .astype(str)
+                    .str.strip()
+                    .str.lower()
+                    .isin(["true", "1", "yes", "y"])
+                )
+
+                for column in [
+                    "pollster_house_effect_dem",
+                    "house_effect_confidence",
+                    "house_effect_notes",
+                    "active",
+                ]:
+                    proposed_registry.loc[
+                        proposed_updates.index,
+                        column,
+                    ] = proposed_updates[column]
+
+                proposed_registry = (
+                    proposed_registry.reset_index()
+                )
+
+                temporary_path = None
+
+                try:
+                    with tempfile.NamedTemporaryFile(
+                        mode="w",
+                        suffix=".csv",
+                        delete=False,
+                    ) as temporary_file:
+                        temporary_path = Path(
+                            temporary_file.name
+                        )
+                        proposed_registry.to_csv(
+                            temporary_file,
+                            index=False,
+                        )
+
+                    preview_polls = (
+                        apply_pollster_registry(
+                            clean_manual_polls,
+                            registry_path=temporary_path,
+                        )
+                    )
+
+                    proposed_registry_effect = (
+                        pd.to_numeric(
+                            preview_polls[
+                                "pollster_house_effect_dem"
+                            ],
+                            errors="coerce",
+                        ).fillna(0.0)
+                    )
+
+                    override = pd.to_numeric(
+                        preview_polls.get(
+                            "manual_house_effect_override_dem",
+                            pd.Series(
+                                np.nan,
+                                index=preview_polls.index,
+                            ),
+                        ),
+                        errors="coerce",
+                    )
+
+                    preview_polls[
+                        "preview_effective_house_effect_dem"
+                    ] = override.where(
+                        override.notna(),
+                        proposed_registry_effect,
+                    )
+
+                    preview_polls[
+                        "preview_adjusted_margin_dem"
+                    ] = (
+                        pd.to_numeric(
+                            preview_polls[
+                                "reported_margin_dem"
+                            ],
+                            errors="coerce",
+                        )
+                        - preview_polls[
+                            "preview_effective_house_effect_dem"
+                        ]
+                    )
+
+                    preview_polls[
+                        "current_adjusted_margin_dem"
+                    ] = pd.to_numeric(
+                        preview_polls.get(
+                            "final_poll_margin_dem",
+                            np.nan,
+                        ),
+                        errors="coerce",
+                    )
+
+                    preview_polls[
+                        "poll_margin_change_dem"
+                    ] = (
+                        preview_polls[
+                            "preview_adjusted_margin_dem"
+                        ]
+                        - preview_polls[
+                            "current_adjusted_margin_dem"
+                        ]
+                    )
+
+                    affected_polls = preview_polls.loc[
+                        preview_polls[
+                            "canonical_pollster"
+                        ].isin(changed_pollsters)
+                    ].copy()
+
+                    st.markdown(
+                        "#### Proposed Pollster Changes"
+                    )
+
+                    change_rows = []
+
+                    for canonical in changed_pollsters:
+                        current_row = (
+                            current_registry_for_compare
+                            .loc[canonical]
+                        )
+                        proposed_row = (
+                            proposed_registry_for_compare
+                            .loc[canonical]
+                        )
+
+                        matching = affected_polls.loc[
+                            affected_polls[
+                                "canonical_pollster"
+                            ].eq(canonical)
+                        ]
+
+                        affected_states = sorted(
+                            matching.get(
+                                "state",
+                                pd.Series(dtype=str),
+                            )
+                            .fillna("")
+                            .astype(str)
+                            .str.upper()
+                            .loc[
+                                lambda values: values.ne("")
+                            ]
+                            .unique()
+                            .tolist()
+                        )
+
+                        change_rows.append(
+                            {
+                                "Pollster": canonical,
+                                "Current effect": float(
+                                    pd.to_numeric(
+                                        current_row[
+                                            "pollster_house_effect_dem"
+                                        ],
+                                        errors="coerce",
+                                    )
+                                ),
+                                "Proposed effect": float(
+                                    pd.to_numeric(
+                                        proposed_row[
+                                            "pollster_house_effect_dem"
+                                        ],
+                                        errors="coerce",
+                                    )
+                                ),
+                                "Matching polls": int(
+                                    len(matching)
+                                ),
+                                "Affected states": (
+                                    ", ".join(
+                                        affected_states
+                                    )
+                                ),
+                                "Confidence": str(
+                                    proposed_row[
+                                        "house_effect_confidence"
+                                    ]
+                                ),
+                                "Notes": str(
+                                    proposed_row[
+                                        "house_effect_notes"
+                                    ]
+                                ),
+                            }
+                        )
+
+                    st.dataframe(
+                        pd.DataFrame(change_rows),
+                        use_container_width=True,
+                        hide_index=True,
+                    )
+
+                    if not affected_polls.empty:
+                        affected_poll_columns = [
+                            column
+                            for column in [
+                                "race",
+                                "state",
+                                "pollster_raw",
+                                "canonical_pollster",
+                                "start_date",
+                                "end_date",
+                                "reported_margin_dem",
+                                "current_adjusted_margin_dem",
+                                "preview_effective_house_effect_dem",
+                                "preview_adjusted_margin_dem",
+                                "poll_margin_change_dem",
+                                "poll_weight",
+                            ]
+                            if column
+                            in affected_polls.columns
+                        ]
+
+                        st.markdown(
+                            "#### Affected Polls"
+                        )
+
+                        st.dataframe(
+                            affected_polls[
+                                affected_poll_columns
+                            ],
+                            use_container_width=True,
+                            hide_index=True,
+                        )
+
+                    weight_column = next(
+                        (
+                            column
+                            for column in [
+                                "poll_weight",
+                                "final_poll_weight",
+                            ]
+                            if column
+                            in preview_polls.columns
+                        ),
+                        None,
+                    )
+
+                    if (
+                        weight_column is not None
+                        and "state"
+                        in preview_polls.columns
+                    ):
+                        preview_polls[
+                            "_preview_weight"
+                        ] = pd.to_numeric(
+                            preview_polls[
+                                weight_column
+                            ],
+                            errors="coerce",
+                        ).fillna(0.0)
+
+                        state_rows = []
+
+                        for state, state_frame in (
+                            preview_polls.groupby(
+                                "state",
+                                sort=True,
+                            )
+                        ):
+                            weights = state_frame[
+                                "_preview_weight"
+                            ]
+
+                            valid_current = (
+                                state_frame[
+                                    "current_adjusted_margin_dem"
+                                ].notna()
+                                & weights.gt(0.0)
+                            )
+
+                            valid_preview = (
+                                state_frame[
+                                    "preview_adjusted_margin_dem"
+                                ].notna()
+                                & weights.gt(0.0)
+                            )
+
+                            if (
+                                not valid_current.any()
+                                or not valid_preview.any()
+                            ):
+                                continue
+
+                            current_average = float(
+                                np.average(
+                                    state_frame.loc[
+                                        valid_current,
+                                        "current_adjusted_margin_dem",
+                                    ],
+                                    weights=weights.loc[
+                                        valid_current
+                                    ],
+                                )
+                            )
+
+                            preview_average = float(
+                                np.average(
+                                    state_frame.loc[
+                                        valid_preview,
+                                        "preview_adjusted_margin_dem",
+                                    ],
+                                    weights=weights.loc[
+                                        valid_preview
+                                    ],
+                                )
+                            )
+
+                            if (
+                                abs(
+                                    preview_average
+                                    - current_average
+                                )
+                                <= 1e-12
+                            ):
+                                continue
+
+                            state_rows.append(
+                                {
+                                    "State": state,
+                                    "Current polling average": (
+                                        current_average
+                                    ),
+                                    "Preview polling average": (
+                                        preview_average
+                                    ),
+                                    "Change": (
+                                        preview_average
+                                        - current_average
+                                    ),
+                                }
+                            )
+
+                        st.markdown(
+                            "#### Previewed State Polling Averages"
+                        )
+
+                        if state_rows:
+                            state_preview = (
+                                pd.DataFrame(state_rows)
+                                .sort_values(
+                                    "Change",
+                                    key=lambda values: (
+                                        values.abs()
+                                    ),
+                                    ascending=False,
+                                )
+                            )
+
+                            st.dataframe(
+                                state_preview,
+                                use_container_width=True,
+                                hide_index=True,
+                            )
+                        else:
+                            st.info(
+                                "The proposed edits do not "
+                                "change any weighted state "
+                                "polling average."
+                            )
+                    else:
+                        st.warning(
+                            "No poll-weight column was found, "
+                            "so the dashboard cannot preview "
+                            "weighted state averages."
+                        )
+
+                    st.success(
+                        "Dry run complete. No files have "
+                        "been changed."
+                    )
+                finally:
+                    if (
+                        temporary_path is not None
+                        and temporary_path.exists()
+                    ):
+                        temporary_path.unlink()
+
+        if apply_house_effects:
+            if not changed_pollsters:
+                st.info(
+                    "No registry changes are currently "
+                    "available to apply."
+                )
+            else:
+                registry_to_save = (
+                    pollster_registry.copy()
+                    .set_index(
+                        "canonical_pollster"
+                    )
+                )
+
+                # Normalize registry dtypes before assigning edited
+                # numbers, text, and Boolean values.
+                registry_to_save[
+                    "pollster_house_effect_dem"
+                ] = pd.to_numeric(
+                    registry_to_save[
+                        "pollster_house_effect_dem"
+                    ],
+                    errors="coerce",
+                ).fillna(0.0)
+
+                for text_column in [
+                    "house_effect_confidence",
+                    "house_effect_notes",
+                ]:
+                    registry_to_save[text_column] = (
+                        registry_to_save[text_column]
+                        .fillna("")
+                        .astype(str)
+                    )
+
+                registry_to_save["active"] = (
+                    registry_to_save["active"]
+                    .fillna(True)
+                    .astype(str)
+                    .str.strip()
+                    .str.lower()
+                    .isin(["true", "1", "yes", "y"])
+                )
+
+                proposed_updates = (
+                    edited_pollster_registry[
+                        [
+                            "canonical_pollster",
+                            "pollster_house_effect_dem",
+                            "house_effect_confidence",
+                            "house_effect_notes",
+                            "active",
+                        ]
+                    ]
+                    .copy()
+                    .set_index(
+                        "canonical_pollster"
+                    )
+                )
+
+                for column in [
+                    "pollster_house_effect_dem",
+                    "house_effect_confidence",
+                    "house_effect_notes",
+                    "active",
+                ]:
+                    registry_to_save.loc[
+                        proposed_updates.index,
+                        column,
+                    ] = proposed_updates[column]
+
+                registry_to_save = (
+                    registry_to_save.reset_index()
+                )
+
+                timestamp = datetime.now().strftime(
+                    "%Y%m%d_%H%M%S"
+                )
+
+                registry_backup = (
+                    pollster_registry_path.with_name(
+                        f"{pollster_registry_path.stem}."
+                        f"before_dashboard_house_effect_"
+                        f"{timestamp}"
+                        f"{pollster_registry_path.suffix}"
+                    )
+                )
+
+                pollster_registry.to_csv(
+                    registry_backup,
+                    index=False,
+                )
+
+                registry_to_save.to_csv(
+                    pollster_registry_path,
+                    index=False,
+                )
+
+                validation_result = subprocess.run(
+                    [
+                        sys.executable,
+                        "validate_manual_polls.py",
+                    ],
+                    capture_output=True,
+                    text=True,
+                )
+
+                if validation_result.returncode != 0:
+                    pollster_registry.to_csv(
+                        pollster_registry_path,
+                        index=False,
+                    )
+
+                    st.error(
+                        "Manual-poll validation failed. "
+                        "The prior registry was restored."
+                    )
+
+                    st.code(
+                        validation_result.stdout
+                        + "\n"
+                        + validation_result.stderr
+                    )
+                else:
+                    ingestion_result = subprocess.run(
+                        [
+                            sys.executable,
+                            "-m",
+                            "senate_model.poll_ingestion",
+                        ],
+                        capture_output=True,
+                        text=True,
+                    )
+
+                    if ingestion_result.returncode != 0:
+                        pollster_registry.to_csv(
+                            pollster_registry_path,
+                            index=False,
+                        )
+
+                        subprocess.run(
+                            [
+                                sys.executable,
+                                "validate_manual_polls.py",
+                            ],
+                            capture_output=True,
+                            text=True,
+                        )
+
+                        subprocess.run(
+                            [
+                                sys.executable,
+                                "-m",
+                                "senate_model.poll_ingestion",
+                            ],
+                            capture_output=True,
+                            text=True,
+                        )
+
+                        st.error(
+                            "Polling aggregation failed. "
+                            "The prior registry and polling "
+                            "outputs were restored."
+                        )
+
+                        st.code(
+                            ingestion_result.stdout
+                            + "\n"
+                            + ingestion_result.stderr
+                        )
+                    else:
+                        st.success(
+                            "Pollster house effects were saved "
+                            "and polling averages were rebuilt."
+                        )
+
+                        st.caption(
+                            f"Registry backup: "
+                            f"{registry_backup}"
+                        )
+
+                        with st.expander(
+                            "Pipeline output"
+                        ):
+                            st.code(
+                                validation_result.stdout
+                                + "\n"
+                                + ingestion_result.stdout
+                            )
+
+                        st.rerun()
+
+    st.divider()
     st.subheader("Manual Poll Entry")
 
     st.caption(

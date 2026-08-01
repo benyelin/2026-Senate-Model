@@ -1,5 +1,7 @@
 from pathlib import Path
 import pandas as pd
+
+from pollster_registry import apply_pollster_registry
 import numpy as np
 
 RAW_PATH = Path("inputs/manual_polls_adjusted.csv") if Path("inputs/manual_polls_adjusted.csv").exists() else Path("inputs/manual_polls.csv")
@@ -78,12 +80,66 @@ def normalize_manual_polls():
 
     df = pd.read_csv(RAW_PATH)
 
-    # House-effect adjustments are no longer manually entered.
-    # Keep a generated default for compatibility with downstream polling math.
-    if "house_effect_dem" not in df.columns:
-        df["house_effect_dem"] = 0.0
+    # Apply the canonical pollster registry before margin
+    # calculations. The registry supplies the default pollster-wide
+    # house effect for every matching poll.
+    df = apply_pollster_registry(df)
+
+    # Optional poll-level override. A blank value means "use the
+    # pollster registry value." A numeric value replaces the registry
+    # value for this individual poll only.
+    if "manual_house_effect_adjustment_dem" in df.columns:
+        poll_level_override = pd.to_numeric(
+            df["manual_house_effect_adjustment_dem"],
+            errors="coerce",
+        )
+    elif "house_effect_dem" in df.columns:
+        # Backward compatibility for older manual-poll files.
+        poll_level_override = pd.to_numeric(
+            df["house_effect_dem"],
+            errors="coerce",
+        )
     else:
-        df["house_effect_dem"] = pd.to_numeric(df["house_effect_dem"], errors="coerce").fillna(0.0)
+        poll_level_override = pd.Series(
+            float("nan"),
+            index=df.index,
+            dtype=float,
+        )
+
+    registry_house_effect = pd.to_numeric(
+        df["pollster_house_effect_dem"],
+        errors="coerce",
+    ).fillna(0.0)
+
+    df["manual_house_effect_override_dem"] = (
+        poll_level_override
+    )
+
+    df["effective_house_effect_dem"] = (
+        poll_level_override.where(
+            poll_level_override.notna(),
+            registry_house_effect,
+        )
+    )
+
+    df["house_effect_source"] = "pollster_registry"
+    df.loc[
+        poll_level_override.notna(),
+        "house_effect_source",
+    ] = "poll_level_override"
+
+    # Preserve the established production alias consumed by the
+    # weighting engine and historical downstream code.
+    df["pollster_house_effect_dem"] = pd.to_numeric(
+        df["effective_house_effect_dem"],
+        errors="coerce",
+    ).fillna(0.0)
+
+    # Preserve this older alias temporarily for compatibility.
+    df["house_effect_dem"] = df[
+        "pollster_house_effect_dem"
+    ]
+
     validate_columns(df)
 
     errors = []
@@ -112,10 +168,14 @@ def normalize_manual_polls():
     df["state"] = df["state"].str.upper()
     df["pollster_grade"] = df["pollster_grade"].apply(normalize_grade)
 
-    df["house_effect_dem"] = pd.to_numeric(
-        df["house_effect_dem"],
-        errors="coerce"
+    df["pollster_house_effect_dem"] = pd.to_numeric(
+        df["pollster_house_effect_dem"],
+        errors="coerce",
     ).fillna(0.0)
+
+    df["house_effect_dem"] = df[
+        "pollster_house_effect_dem"
+    ]
 
     for col in PCT_COLUMNS:
         df[col] = df[col].apply(pct_to_number)
@@ -225,12 +285,15 @@ def normalize_manual_polls():
     # shrink the reported margin toward zero.
     df["undecided_adjusted_dem_margin"] = df["dem_margin"]
 
+    df["reported_margin_dem"] = df["dem_margin"]
+
     df["house_effect_adjusted_dem_margin"] = (
-        df["dem_margin"] - df["house_effect_dem"]
+        df["reported_margin_dem"]
+        - df["pollster_house_effect_dem"]
     )
 
     df["final_poll_margin_dem"] = (
-        df["dem_margin"] - df["house_effect_dem"]
+        df["house_effect_adjusted_dem_margin"]
     )
 
     df["dem_margin_vs_top_opponent"] = (
@@ -299,6 +362,17 @@ def normalize_manual_polls():
         "undecided_share",
         "undecided_discount",
         "undecided_adjusted_dem_margin",
+        "pollster_raw",
+        "pollster_normalized_key",
+        "canonical_pollster",
+        "pollster_match_method",
+        "reported_margin_dem",
+        "pollster_house_effect_dem",
+        "manual_house_effect_override_dem",
+        "effective_house_effect_dem",
+        "house_effect_source",
+        "house_effect_confidence",
+        "house_effect_notes",
         "house_effect_adjusted_dem_margin",
         "final_poll_margin_dem",
         "dem_margin_vs_top_opponent",

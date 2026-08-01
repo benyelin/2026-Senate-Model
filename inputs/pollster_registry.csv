@@ -1,0 +1,33 @@
+canonical_pollster,normalized_pollster_key,aliases,pollster_house_effect_dem,house_effect_confidence,house_effect_notes,active
+2Way/Wick,2way wick,2Way/Wick,0.0,low,,True
+Alaska Survey Research,alaska survey research,Alaska Survey Research,0.0,low,,True
+Beacon/Shaw,beacon shaw,Beacon/Shaw|Beacon Shaw,1.5,low,,True
+Change Research,change research,Change Research,0.0,low,,True
+Cygnal,cygnal,Cygnal,0.0,low,,True
+Fabrizio Lee,fabrizio lee,Fabrizio Lee,0.0,low,,True
+Fabrizio Ward,fabrizio ward,Fabrizio Ward|Fabrizio/Ward,0.0,low,,True
+Fox News,fox news,Fox News,1.0,low,,True
+GrayHouse,grayhouse,GrayHouse,0.0,low,,True
+GSG,gsg,GSG,0.0,low,,True
+GSG Poll,gsg poll,GSG Poll,0.0,low,,True
+McLaughlin,mclaughlin,McLaughlin,-2.0,low,,True
+MPRC,mprc,MPRC,0.0,low,,True
+Pan Atlantic,pan atlantic,Pan Atlantic,0.0,low,,True
+Peak Insights,peak insights,Peak Insights,0.0,low,,True
+PPP,ppp,PPP,0.0,low,,True
+Public Opinion Research,public opinion research,Public Opinion Research,0.0,low,,True
+Public Opinion Strategies,public opinion strategies,Public Opinion Strategies,0.0,low,,True
+Public Opinion Strategies (D),public opinion strategies d,Public Opinion Strategies (D),0.0,low,,True
+Quantus,quantus,Quantus,0.0,low,,True
+Quantus Insights,quantus insights,Quantus Insights,0.0,low,,True
+ReconMR,reconmr,ReconMR,0.0,low,,True
+Siena,siena,Siena,0.0,low,,True
+Suffolk,suffolk,Suffolk,0.0,low,,True
+Tavern,tavern,Tavern,0.0,low,,True
+Tavern Research,tavern research,Tavern Research,0.0,low,,True
+TPSI,tpsi,TPSI,0.0,low,,True
+Tulchin,tulchin,Tulchin,0.0,low,,True
+UMASS Lowell,umass lowell,UMASS Lowell,0.0,low,,True
+UNH,unh,UNH,0.0,low,,True
+Wedgewood,wedgewood,Wedgewood,0.0,low,Automatically added from manual polls; house effect pending review.,True
+YouGov,yougov,YouGov,0.0,low,,True

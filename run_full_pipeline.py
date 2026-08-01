@@ -46,6 +46,7 @@ def main():
     run([py, "apply_senate_candidate_quality_framework.py", "--apply"])
     run([py, "audit_senate_fundamentals_components.py"])
     run([py, "apply_senate_partisan_pollster_adjustments.py"])
+    run([py, "sync_pollster_registry.py"])
     run([py, "validate_manual_polls.py"])
     run([py, "ingest_polls.py", "--as-of", as_of])
     run([py, "apply_candidate_status_overrides.py"])
