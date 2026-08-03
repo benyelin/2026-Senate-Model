@@ -56,6 +56,11 @@ def main():
     run([py, "cap_bayesian_poll_weight.py"])
     run([py, "sync_senate_model_fields.py"])
     run([py, "run_model.py", "--today", as_of, "--sims", str(args.sims)])
+    run([
+        py,
+        "/Users/benyelin/Developer/election_model_shared/"
+        "build_candidate_event_audits.py",
+    ])
     run([py, "append_senate_forecast_history.py"])
     run([py, "scenario_runner.py"])
 

@@ -1,6 +1,25 @@
+from datetime import date
 from pathlib import Path
 import argparse
+import sys
+
 import pandas as pd
+
+
+SHARED_MODEL_ROOT = Path(
+    "/Users/benyelin/Developer/election_model_shared"
+)
+
+if str(SHARED_MODEL_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(SHARED_MODEL_ROOT),
+    )
+
+from candidate_event_registry import (
+    active_candidate_events,
+    summarize_candidate_events,
+)
 
 INPUTS = Path("inputs")
 OUTPUTS = Path("outputs")
@@ -8,6 +27,19 @@ OUTPUTS = Path("outputs")
 RACE_INPUTS = INPUTS / "race_inputs.csv"
 FRAMEWORK_AUDIT = OUTPUTS / "senate_candidate_quality_framework_audit.csv"
 DRY_RUN_OUT = OUTPUTS / "senate_candidate_quality_framework_apply_dry_run.csv"
+
+CANDIDATE_EVENT_REGISTRY_PATH = (
+    SHARED_MODEL_ROOT
+    / "inputs"
+    / "candidate_event_registry.csv"
+)
+
+SENATE_CANDIDATE_EVENT_AUDIT = (
+    OUTPUTS
+    / "senate_candidate_event_audit.csv"
+)
+
+FORECAST_CYCLE = 2026
 
 LEGACY_CANDIDATE_COLS = [
     "overperformance_adjustment_dem",
@@ -30,6 +62,82 @@ def ensure_col(df, col, default):
     if col not in df.columns:
         df[col] = default
     return df
+
+
+def build_senate_candidate_event_summary(
+    *,
+    as_of: date,
+) -> pd.DataFrame:
+    events = active_candidate_events(
+        "senate",
+        cycle=FORECAST_CYCLE,
+        as_of=as_of,
+        registry_path=CANDIDATE_EVENT_REGISTRY_PATH,
+    )
+
+    summary = summarize_candidate_events(
+        events
+    )
+
+    if summary.empty:
+        empty = pd.DataFrame(
+            columns=[
+                "state",
+                "candidate_event_adjustment_dem",
+                "candidate_event_count",
+                "candidate_event_ids",
+                "candidate_event_summary",
+            ]
+        )
+
+        empty.to_csv(
+            SENATE_CANDIDATE_EVENT_AUDIT,
+            index=False,
+        )
+
+        return empty
+
+    senate = summary.loc[
+        summary["chamber"].eq("senate")
+    ].copy()
+
+    senate["state"] = (
+        senate["race_id"]
+        .fillna("")
+        .astype(str)
+        .str.strip()
+        .str.upper()
+    )
+
+    duplicate_states = senate.loc[
+        senate["state"].duplicated(
+            keep=False
+        ),
+        ["state", "candidate_event_ids"],
+    ]
+
+    if not duplicate_states.empty:
+        raise ValueError(
+            "Candidate-event summary contains duplicate Senate "
+            "state rows after aggregation."
+        )
+
+    output = senate[
+        [
+            "state",
+            "candidate_event_adjustment_dem",
+            "candidate_event_count",
+            "candidate_event_ids",
+            "candidate_event_summary",
+        ]
+    ].copy()
+
+    output.to_csv(
+        SENATE_CANDIDATE_EVENT_AUDIT,
+        index=False,
+    )
+
+    return output
 
 
 def main():
@@ -67,8 +175,6 @@ def main():
         "gop_previous_statewide_winner",
         "statewide_win_bonus_dem",
         "mechanical_candidate_adjustment_dem",
-        "candidate_scandal_adjustment_dem",
-        "candidate_scandal_rationale",
         "framework_candidate_quality_adjustment_dem",
         "framework_candidate_quality_method",
     ]
@@ -77,33 +183,43 @@ def main():
     if missing:
         raise ValueError(f"Framework audit is missing required columns: {missing}")
 
-    # race_inputs scandal fields are the manual source of truth.
-    ensure_col(races, "candidate_scandal_adjustment_dem", 0.0)
-    ensure_col(races, "candidate_scandal_rationale", "")
-
-    races["candidate_scandal_adjustment_dem"] = safe_num(
-        races["candidate_scandal_adjustment_dem"], 0.0
-    ).clip(lower=-3.0, upper=3.0)
-    races["candidate_scandal_rationale"] = clean_text(races["candidate_scandal_rationale"])
-
     audit_for_merge = audit[needed].copy()
 
-    # Replace audit scandal values with manual race_inputs values and recompute final.
-    manual_scandal = races[
-        ["state", "candidate_scandal_adjustment_dem", "candidate_scandal_rationale"]
-    ].drop_duplicates("state")
-
-    audit_for_merge = audit_for_merge.drop(
-        columns=["candidate_scandal_adjustment_dem", "candidate_scandal_rationale"],
-        errors="ignore",
-    ).merge(manual_scandal, on="state", how="left")
-
-    audit_for_merge["candidate_scandal_adjustment_dem"] = safe_num(
-        audit_for_merge["candidate_scandal_adjustment_dem"], 0.0
-    ).clip(lower=-3.0, upper=3.0)
-    audit_for_merge["candidate_scandal_rationale"] = clean_text(
-        audit_for_merge["candidate_scandal_rationale"]
+    candidate_events = build_senate_candidate_event_summary(
+        as_of=date.today(),
     )
+
+    audit_for_merge = audit_for_merge.merge(
+        candidate_events,
+        on="state",
+        how="left",
+        validate="one_to_one",
+    )
+
+    audit_for_merge[
+        "candidate_event_adjustment_dem"
+    ] = safe_num(
+        audit_for_merge[
+            "candidate_event_adjustment_dem"
+        ],
+        0.0,
+    ).clip(
+        lower=-3.0,
+        upper=3.0,
+    )
+
+    audit_for_merge["candidate_event_count"] = safe_num(
+        audit_for_merge["candidate_event_count"],
+        0.0,
+    ).astype(int)
+
+    for col in [
+        "candidate_event_ids",
+        "candidate_event_summary",
+    ]:
+        audit_for_merge[col] = clean_text(
+            audit_for_merge[col]
+        )
 
     audit_for_merge["mechanical_candidate_adjustment_dem"] = safe_num(
         audit_for_merge["mechanical_candidate_adjustment_dem"], 0.0
@@ -111,13 +227,13 @@ def main():
 
     audit_for_merge["proposed_candidate_quality_adjustment_dem"] = (
         audit_for_merge["mechanical_candidate_adjustment_dem"]
-        + audit_for_merge["candidate_scandal_adjustment_dem"]
+        + audit_for_merge["candidate_event_adjustment_dem"]
     ).clip(lower=-4.0, upper=4.0)
 
     audit_for_merge["candidate_quality_method"] = (
         "Framework v3 / Option B: mechanical_candidate_adjustment_dem = "
         "candidate_war_adjustment_dem + statewide_win_bonus_dem, capped at +/-1.5; "
-        "candidate_scandal_adjustment_dem manual, capped at +/-3.0; "
+        "candidate_event_adjustment_dem from shared registry, capped at +/-3.0; "
         "final candidate_quality_adjustment_dem capped at +/-4.0."
     )
     audit_for_merge["candidate_quality_framework_version"] = (
@@ -181,13 +297,15 @@ def main():
         "candidate_war_adjustment_dem",
         "statewide_win_bonus_dem",
         "mechanical_candidate_adjustment_dem",
-        "candidate_scandal_adjustment_dem",
+        "candidate_event_adjustment_dem",
+        "candidate_event_count",
+        "candidate_event_ids",
+        "candidate_event_summary",
         "proposed_candidate_quality_adjustment_dem",
         "candidate_quality_change_dem",
         "full_candidate_side_change_dem",
         "abs_candidate_quality_change",
         "framework_apply_action",
-        "candidate_scandal_rationale",
         "candidate_quality_method",
         "candidate_quality_framework_version",
     ]
@@ -235,8 +353,10 @@ def main():
         "gop_previous_statewide_winner",
         "statewide_win_bonus_dem",
         "mechanical_candidate_adjustment_dem",
-        "candidate_scandal_adjustment_dem",
-        "candidate_scandal_rationale",
+        "candidate_event_adjustment_dem",
+        "candidate_event_count",
+        "candidate_event_ids",
+        "candidate_event_summary",
         "proposed_candidate_quality_adjustment_dem",
         "candidate_quality_method",
         "candidate_quality_framework_version",
@@ -252,8 +372,10 @@ def main():
         "gop_previous_statewide_winner",
         "statewide_win_bonus_dem",
         "mechanical_candidate_adjustment_dem",
-        "candidate_scandal_adjustment_dem",
-        "candidate_scandal_rationale",
+        "candidate_event_adjustment_dem",
+        "candidate_event_count",
+        "candidate_event_ids",
+        "candidate_event_summary",
         "candidate_quality_adjustment_dem",
         "candidate_quality_method",
         "candidate_quality_framework_version",
@@ -269,8 +391,10 @@ def main():
         "gop_previous_statewide_winner",
         "statewide_win_bonus_dem",
         "mechanical_candidate_adjustment_dem",
-        "candidate_scandal_adjustment_dem",
-        "candidate_scandal_rationale",
+        "candidate_event_adjustment_dem",
+        "candidate_event_count",
+        "candidate_event_ids",
+        "candidate_event_summary",
         "candidate_quality_method",
         "candidate_quality_framework_version",
     ]:

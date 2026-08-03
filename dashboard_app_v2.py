@@ -11,6 +11,21 @@ import plotly.express as px
 
 from pollster_registry import apply_pollster_registry
 
+
+SHARED_MODEL_ROOT = Path(
+    "/Users/benyelin/Developer/election_model_shared"
+)
+
+if str(SHARED_MODEL_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(SHARED_MODEL_ROOT),
+    )
+
+from candidate_event_dashboard import (
+    render_candidate_event_registry_editor,
+)
+
 DEM_COLOR = "#1f77b4"
 GOP_COLOR = "#d62728"
 SENATE_CONTROL_THRESHOLD = 51
@@ -750,6 +765,31 @@ with tab_diagnostics:
 # Manual Poll Entry
 # -----------------------------
 with tab_manual_polls:
+    render_candidate_event_registry_editor(
+        default_chamber="senate",
+        registry_path=(
+            SHARED_MODEL_ROOT
+            / "inputs"
+            / "candidate_event_registry.csv"
+        ),
+        house_race_path=Path(
+            "/Users/benyelin/Developer/"
+            "house_model_python/inputs/"
+            "house_race_inputs.csv"
+        ),
+        senate_race_path=(
+            INPUTS
+            / "race_inputs.csv"
+        ),
+        house_root=Path(
+            "/Users/benyelin/Developer/"
+            "house_model_python"
+        ),
+        senate_root=Path.cwd(),
+        key_prefix="senate",
+    )
+
+    st.divider()
     st.subheader("Pollster House Effects")
 
     st.caption(

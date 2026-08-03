@@ -205,8 +205,8 @@ def main():
     out["framework_candidate_quality_method"] = (
         "Framework v3 / Option B: mechanical_candidate_adjustment_dem = "
         "50% of Senate WAR-audit proposed adjustment + +/-0.75 previous statewide winner bonus, "
-        "capped at +/-1.5. candidate_scandal_adjustment_dem is manual and capped at +/-3.0. "
-        "Final candidate_quality_adjustment_dem = mechanical + scandal, capped at +/-4.0."
+        "capped at +/-1.5. candidate_event_adjustment_dem comes from the shared registry and is capped at +/-3.0. "
+        "Final candidate_quality_adjustment_dem = mechanical + candidate event, capped at +/-4.0."
     )
 
     out["framework_review_recommendation"] = out.apply(classify_recommendation, axis=1)
