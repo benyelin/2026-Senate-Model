@@ -52,3 +52,6 @@ NC-Senate,NC,Senate,Beacon Shaw,A+,Fox News,,,False,,,2026-07-23,2026-07-27,1005
 TX-Senate,TX,Senate,Beacon/Shaw,A+,Fox News,media,,False,,,2026-07-23,2026-07-27,1006,RV,Talarico,Paxton,,,51.0,48.0,0.0,0.0,1.0,,51.0,48.0,3.0,0.0,1.0,False,No partisan pollster adjustment,3.0
 TX-Senate,TX,Senate,Wedgewood,B,,,,False,,,2026-07-30,2026-07-31,800,LV,Talarico,Paxton,,,48.0,46.0,0.0,0.0,6.0,,48.0,46.0,2.0,0.0,1.0,False,No partisan pollster adjustment,2.0
 TX-Sen,TX,Senate,TSU,B,,media,,False,,,2026-07-27,2026-07-30,1200,LV,Talarico,Paxton,"Brown, Ted",,47.0,45.0,2.0,0.0,6.0,,47.0,45.0,2.0,0.0,1.0,False,No partisan pollster adjustment,2.0
+MI-Senate,MI,Senate,EPIC-MRA,A-,,,,False,,,2026-07-24,2026-08-31,600,LV,El-Sayed,Rogers,,,43.0,46.0,0.0,0.0,11.0,,43.0,46.0,-3.0,0.0,1.0,False,No partisan pollster adjustment,-3.0
+MI-Senate,MI,Senate,MIRS/Mitchell Research,B,,,,False,,,2026-07-28,2026-07-29,672,LV,El-Sayed,Rogers,,,45.0,45.0,0.0,0.0,10.0,,45.0,45.0,0.0,0.0,1.0,False,No partisan pollster adjustment,0.0
+MI-Senate,MI,Senate,Quantus Insights,B,,,,False,,,2026-06-29,2026-06-30,947,LV,El-Sayed,Rogers,,,45.0,44.0,0.0,0.0,11.0,,45.0,44.0,1.0,0.0,1.0,False,No partisan pollster adjustment,1.0
