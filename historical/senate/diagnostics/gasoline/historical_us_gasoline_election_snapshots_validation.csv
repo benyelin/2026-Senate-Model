@@ -1,0 +1,10 @@
+check,passed
+expected_25_election_cycles,True
+unique_cycles,True
+starts_1976,True
+ends_2024,True
+twelve_midterms,True
+thirteen_presidential_cycles,True
+all_october_prices_present,True
+all_october_real_prices_present,True
+all_midterm_change_metrics_present,True

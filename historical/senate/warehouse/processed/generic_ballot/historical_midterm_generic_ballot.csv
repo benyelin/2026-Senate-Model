@@ -1,0 +1,13 @@
+year,generic_ballot_margin_dem,source,source_type,population,source_quality,notes
+1978,10.0,Gallup,final_pre_election_poll,LV,high_historical_single_poll,Final Gallup likely-voter two-party estimate: D 55 / R 45.
+1982,10.0,Gallup,final_pre_election_poll,LV,high_historical_single_poll,Final Gallup likely-voter two-party estimate: D 55 / R 45. Gallup 1998 table contains an apparent sign typo in its margin column; party shares and later Gallup retrospective confirm D+10.
+1986,,Gallup,not_measured,,documented_missing,Gallup explicitly states it did not measure the generic ballot in 1986.
+1990,8.0,Gallup,final_pre_election_poll,LV,high_historical_single_poll,Final Gallup likely-voter two-party estimate: D 54 / R 46.
+1994,-7.0,Gallup,final_pre_election_poll,LV,high_historical_single_poll,Final Gallup likely-voter two-party estimate: D 46.5 / R 53.5.
+1998,3.6,Gallup,final_pre_election_poll,LV,high_historical_single_poll,"Contemporaneous final Gallup poll: raw D 49 / R 45; Gallup proportional two-party allocation gives D 51.8 / R 48.2, margin D+3.6."
+2002,-1.7,RealClearPolitics,final_polling_average,mixed,high_modern_average,"RCP final average 10/26-11/3: D 46.0 / R 47.7, R+1.7."
+2006,11.5,RealClearPolitics,final_polling_average,mixed,high_modern_average,"RCP final average 11/1-11/5: D 52.1 / R 40.6, D+11.5."
+2010,-9.4,RealClearPolitics,final_polling_average,mixed,high_modern_average,"RCP final average 10/25-10/31: R 50.7 / D 41.3, R+9.4."
+2014,-2.4,RealClearPolitics,final_polling_average,mixed,high_modern_average,"RCP final average 10/15-11/2: R 45.6 / D 43.2, R+2.4."
+2018,7.3,RealClearPolitics,final_polling_average,mixed,high_modern_average,"RCP final average 10/13-11/3: D 49.7 / R 42.4, D+7.3."
+2022,-2.5,RealClearPolitics,final_polling_average,mixed,high_modern_average,"RCP final average 10/18-11/6: R 48.0 / D 45.5, R+2.5."

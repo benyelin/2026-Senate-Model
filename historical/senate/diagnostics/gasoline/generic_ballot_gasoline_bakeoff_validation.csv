@@ -1,0 +1,7 @@
+check,passed
+exactly_eleven_scorable_midterms,True
+1986_excluded,True
+cycles_unique,True
+all_required_values_present,True
+all_models_have_eleven_predictions,True
+all_predictions_finite,True

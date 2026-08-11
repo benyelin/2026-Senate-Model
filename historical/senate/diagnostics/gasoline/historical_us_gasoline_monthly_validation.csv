@@ -1,0 +1,6 @@
+check,passed
+rows_present,True
+starts_in_1976,True
+gas_prices_positive,True
+cpi_positive,True
+real_prices_positive,True

@@ -1,0 +1,11 @@
+check,passed
+expected_25_cycles,True
+cycles_unique,True
+starts_1976,True
+ends_2024,True
+all_president_parties_present,True
+all_dem_votes_positive,True
+all_gop_votes_positive,True
+shares_sum_to_one,True
+twelve_midterms,True
+all_midterm_changes_present,True

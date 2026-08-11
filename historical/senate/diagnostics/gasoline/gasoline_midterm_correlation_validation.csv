@@ -1,0 +1,6 @@
+check,passed
+exactly_twelve_midterms,True
+midterm_cycles_unique,True
+all_primary_outcomes_present,True
+all_prespecified_gas_metrics_present,True
+twenty_correlation_rows,True
