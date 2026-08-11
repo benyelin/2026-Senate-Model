@@ -121,11 +121,25 @@ def run_bayesian_update(
     )
     merged = _refresh_poll_metadata_from_generated(merged)
 
-    merged["poll_count"] = merged["poll_count"].fillna(0)
-    merged["total_poll_weight"] = merged["total_poll_weight"].fillna(0)
-    merged["avg_poll_age_days"] = merged["avg_poll_age_days"].fillna(999)
+    # Force generated polling metadata to numeric dtype.
+    # Empty/no-poll CSVs can otherwise leave these columns as object dtype,
+    # which breaks downstream NumPy calculations.
+    merged["poll_count"] = pd.to_numeric(
+        merged["poll_count"],
+        errors="coerce",
+    ).fillna(0.0)
 
-    effective_weight = merged["total_poll_weight"].clip(lower=0)
+    merged["total_poll_weight"] = pd.to_numeric(
+        merged["total_poll_weight"],
+        errors="coerce",
+    ).fillna(0.0)
+
+    merged["avg_poll_age_days"] = pd.to_numeric(
+        merged["avg_poll_age_days"],
+        errors="coerce",
+    ).fillna(999.0)
+
+    effective_weight = merged["total_poll_weight"].clip(lower=0.0)
     polling_sd = total_error_sd / np.sqrt(1 + effective_weight)
     polling_sd = np.where(merged["poll_count"] < 2, polling_sd * sparse_poll_penalty, polling_sd)
     polling_sd = np.maximum(polling_sd, min_polling_sd)

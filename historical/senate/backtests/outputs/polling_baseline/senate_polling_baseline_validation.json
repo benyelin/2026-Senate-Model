@@ -1,28 +1,29 @@
 {
-  "aggregate_snapshot_rows": 973,
+  "aggregate_snapshot_rows": 966,
   "checks": {
     "aggregate_row_count_preserved_after_merge": true,
     "all_eligible_rows_scored": true,
-    "all_polling_snapshots_match_race": false,
-    "all_polling_snapshots_match_result": false,
+    "all_polling_snapshots_match_race": true,
+    "all_polling_snapshots_match_result": true,
     "eligible_rows_have_actual_margin": true,
     "eligible_rows_have_poll_margin": true,
-    "expected_polling_cycles_present": false,
+    "expected_polling_cycles_present": true,
     "prediction_errors_finite": true,
     "unique_snapshot_ids": true,
     "winner_correct_nonmissing": true
   },
-  "cycles": [],
-  "eligible_scorable_snapshots": 0,
-  "eligible_unique_races": 0,
-  "failure_count": 3,
-  "failures": [
-    "all_polling_snapshots_match_result",
-    "all_polling_snapshots_match_race",
-    "expected_polling_cycles_present"
+  "cycles": [
+    2018,
+    2020,
+    2022,
+    2024
   ],
-  "merged_snapshot_rows": 973,
-  "passed": false,
-  "scored_snapshots": 0,
-  "snapshots_with_polling": 733
+  "eligible_scorable_snapshots": 719,
+  "eligible_unique_races": 120,
+  "failure_count": 0,
+  "failures": [],
+  "merged_snapshot_rows": 966,
+  "passed": true,
+  "scored_snapshots": 719,
+  "snapshots_with_polling": 726
 }

@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "bayesian_margins_finite": true,
+    "expected_cycles_present": true,
+    "expected_days_present": true,
+    "no_poll_snapshots_unchanged": true,
+    "no_poll_snapshots_zero_weight": true,
+    "polling_weights_bounded": true,
+    "row_count_preserved": true,
+    "unique_cycle_race_days": true
+  },
+  "cycles": [
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "days_out": [
+    120,
+    90,
+    60,
+    30,
+    14,
+    7,
+    0
+  ],
+  "failure_count": 0,
+  "failures": [],
+  "input_rows": 896,
+  "passed": true,
+  "replay_rows": 896,
+  "snapshots_with_polling": 719,
+  "snapshots_without_polling": 177
+}

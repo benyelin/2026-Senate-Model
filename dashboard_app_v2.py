@@ -169,6 +169,420 @@ def race_rating_from_prob(p):
     return "Safe R"
 
 
+
+def render_senate_forecast_map(
+    race_stats,
+):
+    """
+    Render the live Senate forecast as a U.S. map.
+
+    States without a modeled Senate election are gray.
+    States with a modeled election are colored continuously
+    from Republican red through toss-up purple to Democratic
+    blue using the final simulated Democratic win probability.
+    """
+
+    if (
+        race_stats is None
+        or race_stats.empty
+    ):
+        st.info(
+            "Senate race data are not available "
+            "for the forecast map."
+        )
+        return
+
+    required_columns = {
+        "state",
+        "simulated_dem_win_prob",
+    }
+
+    missing = (
+        required_columns
+        - set(
+            race_stats.columns
+        )
+    )
+
+    if missing:
+        st.warning(
+            "Cannot render Senate forecast map. "
+            "Missing columns: "
+            + ", ".join(
+                sorted(
+                    missing
+                )
+            )
+        )
+        return
+
+    map_df = (
+        race_stats.copy()
+    )
+
+    map_df[
+        "state"
+    ] = (
+        map_df[
+            "state"
+        ]
+        .astype(str)
+        .str.strip()
+        .str.upper()
+    )
+
+    map_df[
+        "simulated_dem_win_prob"
+    ] = pd.to_numeric(
+        map_df[
+            "simulated_dem_win_prob"
+        ],
+        errors="coerce",
+    )
+
+    map_df[
+        "model_margin_dem"
+    ] = pd.to_numeric(
+        map_df.get(
+            "model_margin_dem",
+            np.nan,
+        ),
+        errors="coerce",
+    )
+
+    map_df[
+        "polling_margin_dem"
+    ] = pd.to_numeric(
+        map_df.get(
+            "polling_margin_dem",
+            np.nan,
+        ),
+        errors="coerce",
+    )
+
+    map_df[
+        "adjusted_fundamentals_margin_dem"
+    ] = pd.to_numeric(
+        map_df.get(
+            "adjusted_fundamentals_margin_dem",
+            np.nan,
+        ),
+        errors="coerce",
+    )
+
+    map_df = map_df[
+        map_df[
+            "simulated_dem_win_prob"
+        ].notna()
+    ].copy()
+
+    if map_df.empty:
+        st.info(
+            "No Senate probabilities are available "
+            "for the forecast map."
+        )
+        return
+
+    # Protect against an accidental duplicate-state race.
+    # If a future cycle contains two contests in one state,
+    # we do not silently discard one.
+    duplicate_states = (
+        map_df[
+            "state"
+        ]
+        .duplicated(
+            keep=False
+        )
+    )
+
+    if duplicate_states.any():
+        duplicate_list = (
+            map_df.loc[
+                duplicate_states,
+                "state",
+            ]
+            .drop_duplicates()
+            .tolist()
+        )
+
+        st.warning(
+            "Multiple modeled Senate races detected "
+            "for: "
+            + ", ".join(
+                duplicate_list
+            )
+            + ". The state map can display only one "
+            "race per state; inspect Race Detail for "
+            "the individual contests."
+        )
+
+        # Use the race closest to 50% solely for map display.
+        map_df[
+            "_map_competitiveness"
+        ] = (
+            map_df[
+                "simulated_dem_win_prob"
+            ]
+            - 0.5
+        ).abs()
+
+        map_df = (
+            map_df
+            .sort_values(
+                [
+                    "state",
+                    "_map_competitiveness",
+                ]
+            )
+            .drop_duplicates(
+                subset=[
+                    "state"
+                ],
+                keep="first",
+            )
+        )
+
+    def probability_label(
+        value,
+    ):
+        if pd.isna(
+            value
+        ):
+            return "—"
+
+        return (
+            f"{100.0 * float(value):.1f}%"
+        )
+
+    def margin_label(
+        value,
+    ):
+        if pd.isna(
+            value
+        ):
+            return "—"
+
+        value = float(
+            value
+        )
+
+        if abs(
+            value
+        ) < 0.05:
+            return "EVEN"
+
+        if value > 0:
+            return (
+                f"D+{abs(value):.1f}"
+            )
+
+        return (
+            f"R+{abs(value):.1f}"
+        )
+
+    map_df[
+        "forecast_rating"
+    ] = (
+        map_df[
+            "simulated_dem_win_prob"
+        ]
+        .apply(
+            race_rating_from_prob
+        )
+    )
+
+    map_df[
+        "dem_probability_display"
+    ] = (
+        map_df[
+            "simulated_dem_win_prob"
+        ]
+        .apply(
+            probability_label
+        )
+    )
+
+    map_df[
+        "model_margin_display"
+    ] = (
+        map_df[
+            "model_margin_dem"
+        ]
+        .apply(
+            margin_label
+        )
+    )
+
+    map_df[
+        "polling_margin_display"
+    ] = (
+        map_df[
+            "polling_margin_dem"
+        ]
+        .apply(
+            margin_label
+        )
+    )
+
+    map_df[
+        "fundamentals_margin_display"
+    ] = (
+        map_df[
+            "adjusted_fundamentals_margin_dem"
+        ]
+        .apply(
+            margin_label
+        )
+    )
+
+    for column in [
+        "dem_candidate",
+        "gop_candidate",
+        "current_holder",
+    ]:
+        if column not in map_df.columns:
+            map_df[
+                column
+            ] = "—"
+
+        map_df[
+            column
+        ] = (
+            map_df[
+                column
+            ]
+            .fillna(
+                "—"
+            )
+            .astype(str)
+        )
+
+    fig = px.choropleth(
+        map_df,
+        locations="state",
+        locationmode="USA-states",
+        scope="usa",
+        color="simulated_dem_win_prob",
+        range_color=(
+            0.0,
+            1.0,
+        ),
+        color_continuous_scale=[
+            (
+                0.00,
+                "#B2182B",
+            ),
+            (
+                0.35,
+                "#D6604D",
+            ),
+            (
+                0.50,
+                "#8C6BB1",
+            ),
+            (
+                0.65,
+                "#4393C3",
+            ),
+            (
+                1.00,
+                "#2166AC",
+            ),
+        ],
+        hover_name="state",
+        custom_data=[
+            "dem_candidate",
+            "gop_candidate",
+            "dem_probability_display",
+            "model_margin_display",
+            "polling_margin_display",
+            "fundamentals_margin_display",
+            "forecast_rating",
+            "current_holder",
+        ],
+    )
+
+    fig.update_traces(
+        marker_line_color="white",
+        marker_line_width=1.0,
+        hovertemplate=(
+            "<b>%{location} Senate</b>"
+            "<br><br>"
+            "<b>Dem:</b> %{customdata[0]}"
+            "<br>"
+            "<b>GOP:</b> %{customdata[1]}"
+            "<br><br>"
+            "<b>Dem win probability:</b> "
+            "%{customdata[2]}"
+            "<br>"
+            "<b>Model margin:</b> "
+            "%{customdata[3]}"
+            "<br>"
+            "<b>Polling:</b> "
+            "%{customdata[4]}"
+            "<br>"
+            "<b>Fundamentals:</b> "
+            "%{customdata[5]}"
+            "<br>"
+            "<b>Rating:</b> "
+            "%{customdata[6]}"
+            "<br>"
+            "<b>Current holder:</b> "
+            "%{customdata[7]}"
+            "<extra></extra>"
+        ),
+    )
+
+    fig.update_layout(
+        margin=dict(
+            l=0,
+            r=0,
+            t=10,
+            b=0,
+        ),
+        height=520,
+        coloraxis_colorbar=dict(
+            title=(
+                "Dem win<br>probability"
+            ),
+            tickvals=[
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0,
+            ],
+            ticktext=[
+                "0%",
+                "25%",
+                "50%",
+                "75%",
+                "100%",
+            ],
+        ),
+        geo=dict(
+            bgcolor="rgba(0,0,0,0)",
+            lakecolor="rgba(0,0,0,0)",
+            landcolor="#D9D9D9",
+            showland=True,
+        ),
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True,
+        config={
+            "displayModeBar": False,
+        },
+    )
+
+    st.caption(
+        "Color represents the model's final simulated "
+        "Democratic win probability. States without a "
+        "modeled 2026 Senate race are shown in gray."
+    )
+
+
 def load_data():
     data = {
         "summary": read_csv_safe(OUTPUTS / "forecast_summary.csv"),
@@ -236,6 +650,14 @@ with tab_overview:
     c4.metric("Middle 50% Seats", fmt_seat_range(summary_row.get("dem_seats_p25"), summary_row.get("dem_seats_p75")))
     c5.metric("National Environment", fmt_margin(summary_row.get("national_environment_margin")))
     c6.metric("Days Out", fmt_num(summary_row.get("days_out"), 0))
+
+    st.divider()
+
+    st.subheader("2026 Senate Forecast Map")
+
+    render_senate_forecast_map(
+        race_stats
+    )
 
     st.divider()
 

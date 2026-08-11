@@ -3,10 +3,10 @@
 SENATE BASELINE HISTORICAL POLL AGGREGATE VALIDATION
 ============================================================================================
 
-Snapshots:                         973
-Weighted question rows:            12,987
-Included question rows:            12,987
-Snapshots with polling:            733
+Snapshots:                         966
+Weighted question rows:            12,946
+Included question rows:            12,946
+Snapshots with polling:            726
 Snapshots without polling:         240
 
 CONFIGURATION

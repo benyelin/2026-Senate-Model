@@ -1,2 +1,3 @@
 race_id,field,new_value,reason
-2022_AK,manual_review,TRUE,Ranked-choice election requiring certified final-round results
+2022_AK,manual_review,True,Ranked-choice election requiring certified final-round results
+2018_MS_SPECIAL,election_date,2018-11-27,MIT special-election record contains the Nov. 27 runoff vote totals; use runoff date for historical backtesting

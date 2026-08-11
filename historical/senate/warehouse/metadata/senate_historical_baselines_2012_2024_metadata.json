@@ -32,7 +32,7 @@
     "presidential_baselines": "/Users/benyelin/Desktop/Desktop - Ben\u2019s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_presidential_baselines_by_cycle.csv"
   },
   "input_sha256": {
-    "election_results": "d55eee8d795764e039b13850b4af0f0901186ec75a8d9d93a8134865a3d69570",
+    "election_results": "bc59b955f34cab415367266c5e1579626c20a1f3f95ef16ab7ed4fbe5c7a911a",
     "presidential_baselines": "dc995a5276ee49d344beb954212f4cca6d27fcde10a2192578be8a8a46798d91"
   },
   "validation_status": "passed"

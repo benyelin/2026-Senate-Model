@@ -1,5 +1,6 @@
 from pathlib import Path
 from datetime import date
+import argparse
 import pandas as pd
 import numpy as np
 
@@ -7,8 +8,44 @@ INPUT_DIR = Path("inputs")
 ELECTION_DAY = date(2026, 11, 3)
 
 
-def compute_days_out():
-    return max(0, (ELECTION_DAY - date.today()).days)
+def election_day_for_year(year):
+    """Federal general election: first Tuesday after first Monday in November."""
+    november_first = pd.Timestamp(year=int(year), month=11, day=1)
+    first_monday_offset = (7 - november_first.weekday()) % 7
+    first_monday = november_first + pd.Timedelta(days=first_monday_offset)
+    return (first_monday + pd.Timedelta(days=1)).normalize()
+
+
+def labor_day_for_year(year):
+    """First Monday in September."""
+    september_first = pd.Timestamp(year=int(year), month=9, day=1)
+    offset = (7 - september_first.weekday()) % 7
+    return (september_first + pd.Timedelta(days=offset)).normalize()
+
+
+def resolve_replay_dates(days_out=None, as_of=None):
+    """
+    Resolve the effective model date and days-out value.
+
+    Live production behavior is unchanged when neither argument is supplied.
+    Historical replay can supply --as-of and/or --days-out explicitly.
+    """
+    if as_of is not None:
+        effective_today = pd.Timestamp(as_of).normalize()
+        election_day = election_day_for_year(effective_today.year)
+    else:
+        effective_today = pd.Timestamp(date.today()).normalize()
+        election_day = pd.Timestamp(ELECTION_DAY).normalize()
+
+    if days_out is None:
+        resolved_days_out = max(
+            0,
+            int((election_day - effective_today).days),
+        )
+    else:
+        resolved_days_out = max(0, float(days_out))
+
+    return effective_today, election_day, resolved_days_out
 
 
 def max_polling_weight_for_days_out(days_out):
@@ -151,7 +188,26 @@ def load_race_inputs():
 
 
 def main():
-    days_out = compute_days_out()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--days-out",
+        type=float,
+        default=None,
+        help="Override days until Election Day.",
+    )
+    parser.add_argument(
+        "--as-of",
+        type=str,
+        default=None,
+        help="Historical/current model date in YYYY-MM-DD format.",
+    )
+    args = parser.parse_args()
+
+    effective_today, election_day, days_out = resolve_replay_dates(
+        days_out=args.days_out,
+        as_of=args.as_of,
+    )
+
     max_cycle_cap = max_polling_weight_for_days_out(days_out)
     min_sd = minimum_uncertainty_for_days_out(days_out)
 
@@ -424,7 +480,7 @@ if __name__ == "__main__":
                 & polls["has_named_pollster"]
             ].copy()
 
-            today = pd.Timestamp(datetime.now().date())
+            today = effective_today
             cutoff = today - pd.Timedelta(days=RECENT_DAYS)
 
             recent = usable[usable["poll_end_dt"] >= cutoff].copy()
@@ -490,18 +546,15 @@ if __name__ == "__main__":
             merged["recent_poll_count_45d"] = safe_num(merged["recent_poll_count_45d"], 0).astype(int)
             merged["polling_confidence_boost"] = safe_num(merged["polling_confidence_boost"], 0.0)
 
+            historical_labor_day = labor_day_for_year(today.year)
+
             accelerator_floor_cap = (
                 PRE_LABOR_DAY_ABSOLUTE_CAP
-                if today < LABOR_DAY_2026
+                if today < historical_labor_day
                 else POST_LABOR_DAY_ABSOLUTE_CAP
             )
 
-            # Recompute the ordinary cycle cap inside this finalizer because
-            # the value created inside main() is not in this block's scope.
-            accelerator_days_out = max(
-                0,
-                (pd.Timestamp("2026-11-03") - today).days,
-            )
+            accelerator_days_out = days_out
             accelerator_cycle_cap = max_polling_weight_for_days_out(
                 accelerator_days_out
             )

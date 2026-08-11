@@ -117,7 +117,7 @@ race_id,cycle,election_date,state,senate_class,seat_id,special_election,dem_cand
 2018_MN_SPECIAL,2018,2018-11-06,MN,2,MN_CLASS_2,True,TINA SMITH,KARIN HOUSLEY,,,,,Tina Smith,D,appointment,True,True,False,D,1.0,0.1913,strong_name_match,1,single_match,,,,,,False
 2018_MO,2018,2018-11-06,MO,1,MO_CLASS_1,False,CLAIRE MCCASKILL,JOSH HAWLEY,,,,,Claire McCaskill,D,,False,True,False,D,1.0,0.0815,strong_name_match,1,single_match,,,,,,False
 2018_MS_REGULAR,2018,2018-11-06,MS,1,MS_CLASS_1,False,DAVID BARIA,ROGER F. WICKER,,,,,Roger F. Wicker,R,,False,True,False,R,0.088,1.0,strong_name_match,1,single_match,,,,,,False
-2018_MS_SPECIAL,2018,2018-11-06,MS,2,MS_CLASS_2,True,MIKE ESPY,CINDY HYDE-SMITH,,,,,Cindy Hyde-Smith,R,appointment,True,True,False,R,0.176,1.0,strong_name_match,1,single_match,,,,,,False
+2018_MS_SPECIAL,2018,2018-11-27,MS,2,MS_CLASS_2,True,MIKE ESPY,CINDY HYDE-SMITH,,,,,Cindy Hyde-Smith,R,appointment,True,True,False,R,0.176,1.0,strong_name_match,1,single_match,,,,,,False
 2018_MT,2018,2018-11-06,MT,1,MT_CLASS_1,False,JON TESTER,MATT ROSENDALE,,,,,Jon Tester,D,,False,True,False,D,1.0,0.1375,strong_name_match,1,single_match,,,,,,False
 2018_ND,2018,2018-11-06,ND,1,ND_CLASS_1,False,HEIDI HEITKAMP,KEVIN CRAMER,,,,,Heidi Heitkamp,D,,False,True,False,D,1.0,0.2115,strong_name_match,1,single_match,,,,,,False
 2018_NE,2018,2018-11-06,NE,1,NE_CLASS_1,False,JANE RAYBOULD,DEB FISCHER,,,,,Deb Fischer,R,,False,True,False,R,0.0458,1.0,strong_name_match,1,single_match,,,,,,False

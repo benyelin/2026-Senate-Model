@@ -1,0 +1,56 @@
+
+================================================================================================
+BASELINE POLLING PERFORMANCE
+================================================================================================
+
+Scored snapshots:           719
+Mean absolute error:        5.7115
+Root mean squared error:    7.3272
+Mean error / bias:          +3.3848
+Median absolute error:      4.8682
+Winner accuracy:            92.35%
+Democratic-win accuracy:    98.44%
+Republican-win accuracy:    85.37%
+
+PERFORMANCE BY CYCLE
+------------------------------------------------------------------------------------------------
+ cycle  observations    mae   rmse  mean_error  winner_accuracy
+  2018           197 4.0628 5.3051      0.3100           0.9188
+  2020           164 6.8597 8.3935      6.0448           0.8963
+  2022           168 6.7513 8.9324      3.5280           0.9405
+  2024           190 5.5104 6.5289      4.1502           0.9368
+
+PERFORMANCE BY DAYS BEFORE ELECTION
+------------------------------------------------------------------------------------------------
+ days_before_election  observations    mae   rmse  mean_error  winner_accuracy
+                  120            80 4.8196 5.8231      2.8641           0.9000
+                   90            87 5.9113 7.0334      3.4047           0.9080
+                   60            97 6.3150 8.0650      3.1483           0.9175
+                   30           108 6.1382 8.0798      3.9897           0.9167
+                   14           111 5.7965 7.6698      3.3847           0.9369
+                    7           116 5.4286 7.0341      3.4009           0.9397
+                    0           120 5.4842 7.0452      3.3488           0.9333
+
+BLOCKING CHECKS
+------------------------------------------------------------------------------------------------
+aggregate_row_count_preserved_after_merge:                PASSED
+unique_snapshot_ids:                                      PASSED
+all_polling_snapshots_match_result:                       PASSED
+all_polling_snapshots_match_race:                         PASSED
+eligible_rows_have_poll_margin:                           PASSED
+eligible_rows_have_actual_margin:                         PASSED
+all_eligible_rows_scored:                                 PASSED
+prediction_errors_finite:                                 PASSED
+winner_correct_nonmissing:                                PASSED
+expected_polling_cycles_present:                          PASSED
+
+Polling baseline benchmark: PASSED
+
+Outputs:
+  Scored predictions: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/outputs/polling_baseline/senate_polling_baseline_scored_predictions.csv
+  Overall metrics: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/outputs/polling_baseline/senate_polling_baseline_overall_metrics.csv
+  Metrics by cycle: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/outputs/polling_baseline/senate_polling_baseline_metrics_by_cycle.csv
+  Metrics by days out: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/outputs/polling_baseline/senate_polling_baseline_metrics_by_days_out.csv
+  Cycle/days-out metrics: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/outputs/polling_baseline/senate_polling_baseline_metrics_by_cycle_days_out.csv
+  Poll-count metrics: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/outputs/polling_baseline/senate_polling_baseline_metrics_by_poll_count_bucket.csv
+  Validation JSON: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/backtests/outputs/polling_baseline/senate_polling_baseline_validation.json

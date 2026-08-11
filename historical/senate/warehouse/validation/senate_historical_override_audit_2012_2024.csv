@@ -8,6 +8,7 @@ senate_candidate_alignment_overrides.csv,2022_UT,EVAN MCMULLIN,party_standard,I,
 senate_candidate_alignment_overrides.csv,2024_NE_REGULAR,DAN OSBORN,party_standard,Other,D,1,Democratic-backed independent
 senate_candidate_alignment_overrides.csv,2024_VT,BERNIE SANDERS,party_standard,I,D,1,Democratic caucus independent
 senate_race_metadata_overrides.csv,2022_AK,,manual_review,False,True,1,Ranked-choice election requiring certified final-round results
+senate_race_metadata_overrides.csv,2018_MS_SPECIAL,,election_date,2018-11-06,2018-11-27,1,MIT special-election record contains the Nov. 27 runoff vote totals; use runoff date for historical backtesting
 senate_backtest_scorable_overrides.csv,2012_ME,,backtest_scorable,True,False,1,Independent winner; D-R margin does not represent race outcome
 senate_backtest_scorable_overrides.csv,2014_AL,,backtest_scorable,False,False,1,Republican unopposed
 senate_backtest_scorable_overrides.csv,2016_CA,,backtest_scorable,False,False,1,Top-two election

@@ -21,10 +21,10 @@
   },
   "failure_count": 0,
   "failures": [],
-  "included_question_rows": 12987,
+  "included_question_rows": 12946,
   "passed": true,
-  "snapshot_rows": 973,
-  "snapshots_with_polling": 733,
+  "snapshot_rows": 966,
+  "snapshots_with_polling": 726,
   "snapshots_without_polling": 240,
-  "weighted_question_rows": 12987
+  "weighted_question_rows": 12946
 }

@@ -2,7 +2,7 @@ Senate Historical Baselines 2012-2024 Validation
 ==================================================
 
 Election source: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_historical_election_results_enriched_2012_2024.csv
-Election source SHA-256: d55eee8d795764e039b13850b4af0f0901186ec75a8d9d93a8134865a3d69570
+Election source SHA-256: bc59b955f34cab415367266c5e1579626c20a1f3f95ef16ab7ed4fbe5c7a911a
 Baseline source: /Users/benyelin/Desktop/Desktop - Ben’s MacBook Air/senate_model_python_Q1_auto_calendar_candidate_refresh/historical/senate/warehouse/processed/senate_presidential_baselines_by_cycle.csv
 Baseline source SHA-256: dc995a5276ee49d344beb954212f4cca6d27fcde10a2192578be8a8a46798d91
 
