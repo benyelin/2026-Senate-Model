@@ -65,3 +65,7 @@ TX-Senate,TX,Senate,Texas Pulse,B,TX Bush School,,,False,,,2026-08-07,2026-08-07
 KS-Senate,KS,Senate,GBAO,B,Hamilton,campaign,D,True,D,,2026-07-08,2026-07-13,600,LV,Hamilton,Marshall,,,43.0,47.0,0.0,0.0,10.0,
 NC-Senate,NC,Senate,Change Research,B,,,,False,D,,2026-08-03,2026-08-06,915,LV,Cooper,Whatley,,,50.0,43.0,0.0,7.0,0.0,
 AK-Senate,AK,Senate,Alaska Survey Research,B,,,,False,,,2026-08-02,2026-08-05,1371,LV,Peltola,Sullivan,,,50.8,49.2,0.0,0.0,0.0,
+KS-Senate,KS,Senate,PPP,B-,,super PAC,D,False,D,,2026-08-07,2026-08-08,569,LV,Hamilton,Marshall,,,45.0,46.0,0.0,0.0,9.0,
+NC-Senate,NC,Senate,YouGov,B,Elon,,,False,,,2026-07-23,2026-07-31,800,LV,Cooper,Whatley,,,53.0,42.0,2.0,1.0,2.0,
+OH-Senate,OH,Senate,Tulchin,B,Kulewicz ,campaign,D,False,D,,2026-07-29,2026-08-04,800,LV,Brown,Husted,,,47.0,43.0,4.0,2.0,4.0,
+ME-Senatre,ME,Senate,Beacon/Shaw,A,Fox News,media,,False,,,2026-08-06,2026-08-10,1000,RV,Jackson,Collins,,,48.0,46.0,1.0,0.0,4.0,
