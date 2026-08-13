@@ -2,6 +2,7 @@ canonical_pollster,normalized_pollster_key,aliases,pollster_house_effect_dem,hou
 2Way/Wick,2way wick,2Way/Wick,0.0,low,,True
 Alaska Survey Research,alaska survey research,Alaska Survey Research,0.0,low,,True
 Beacon/Shaw,beacon shaw,Beacon/Shaw|Beacon Shaw,1.5,low,,True
+Carolina Journal/Harper,carolina journal harper,Carolina Journal/Harper,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Change Research,change research,Change Research,0.0,low,,True
 Cygnal,cygnal,Cygnal,0.0,low,,True
 Emerson,emerson,Emerson,0.0,low,Automatically added from manual polls; house effect pending review.,True

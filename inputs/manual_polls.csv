@@ -69,3 +69,7 @@ KS-Senate,KS,Senate,PPP,B-,,super PAC,D,False,D,,2026-08-07,2026-08-08,569,LV,Ha
 NC-Senate,NC,Senate,YouGov,B,Elon,,,False,,,2026-07-23,2026-07-31,800,LV,Cooper,Whatley,,,53.0,42.0,2.0,1.0,2.0,
 OH-Senate,OH,Senate,Tulchin,B,Kulewicz ,campaign,D,False,D,,2026-07-29,2026-08-04,800,LV,Brown,Husted,,,47.0,43.0,4.0,2.0,4.0,
 ME-Senatre,ME,Senate,Beacon/Shaw,A,Fox News,media,,False,,,2026-08-06,2026-08-10,1000,RV,Jackson,Collins,,,48.0,46.0,1.0,0.0,4.0,
+TX-Senate,TX,Senate,Emerson,A,,,,False,,,2026-08-09,2026-08-10,1000,LV,Talarico,Paxton,,,46.0,47.0,2.0,0.0,5.0,
+MI-Senate,MI,Senate,Beacon/Shaw,A,Fox News,,,False,,,2026-08-06,2026-08-10,1006,RV,El Sayed,Rogers,,,47.0,51.0,0.0,0.0,2.0,
+OH-Senate,OH,Senate,Beacon/Shaw,A,Fox News,,,False,,,2026-08-06,2026-08-10,1008,RV,Brown,Husted,,,53.0,45.0,0.0,0.0,2.0,
+NC-Senate,NC,Senate,Carolina Journal/Harper,B,,,,False,,,2026-08-13,2026-08-13,600,LV,Cooper,Whatley,,,52.0,39.0,0.0,0.0,9.0,
