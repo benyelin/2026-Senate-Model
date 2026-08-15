@@ -73,3 +73,4 @@ TX-Senate,TX,Senate,Emerson,A,,,,False,,,2026-08-09,2026-08-10,1000,LV,Talarico,
 MI-Senate,MI,Senate,Beacon/Shaw,A,Fox News,,,False,,,2026-08-06,2026-08-10,1006,RV,El Sayed,Rogers,,,47.0,51.0,0.0,0.0,2.0,,47.0,51.0,-4.0,0.0,1.0,False,No partisan pollster adjustment,-4.0
 OH-Senate,OH,Senate,Beacon/Shaw,A,Fox News,,,False,,,2026-08-06,2026-08-10,1008,RV,Brown,Husted,,,53.0,45.0,0.0,0.0,2.0,,53.0,45.0,8.0,0.0,1.0,False,No partisan pollster adjustment,8.0
 NC-Senate,NC,Senate,Carolina Journal/Harper,B,,,,False,,,2026-08-13,2026-08-13,600,LV,Cooper,Whatley,,,52.0,39.0,0.0,0.0,9.0,,52.0,39.0,13.0,0.0,1.0,False,No partisan pollster adjustment,13.0
+OH-Sen,OH,Senate,Wedgewood,B,,,,False,,,2026-08-11,2026-08-13,800,LV,Brown,Husted,,,48.0,44.0,0.0,0.0,8.0,,48.0,44.0,4.0,0.0,1.0,False,No partisan pollster adjustment,4.0
