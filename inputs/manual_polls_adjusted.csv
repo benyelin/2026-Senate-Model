@@ -77,3 +77,5 @@ OH-Sen,OH,Senate,Wedgewood,B,,,,False,,,2026-08-11,2026-08-13,800,LV,Brown,Huste
 MI-Sen,MI,Senate,GBAO,B,,,D,False,D,,2026-08-06,2026-08-10,800,LV,El-Sayed,Rogers,,,49.0,45.0,0.0,0.0,6.0,,50.0,44.0,6.0,-2.0,0.5,True,D-sponsored poll: applied -2.0 point Dem-margin adjustment and 0.50 weight multiplier,4.0
 AK-Senate,AK,Senate,Data for Progress,B-,,,,False,D,,2026-07-28,2026-08-04,567,LV,Peltola,Sullivan,,,52.0,48.0,0.0,0.0,0.0,,53.0,47.0,6.0,-2.0,0.5,True,D-sponsored poll: applied -2.0 point Dem-margin adjustment and 0.50 weight multiplier,4.0
 GA-Senate,GA,Senate,Insider Advantage,B+,,,,False,,,2026-08-16,2026-08-17,800,LV,Ossoff,Collins,,,50.1,42.6,0.0,0.0,0.0,,50.1,42.6,7.5,0.0,1.0,False,No partisan pollster adjustment,7.5
+MI-Senate,MI,Senate,TIPP,A-,,,,False,,,2026-08-06,2026-08-10,1215,LV,El-Sayed,Rogers,,,45.4,42.3,0.0,0.0,0.0,,45.4,42.3,3.1000000000000014,0.0,1.0,False,No partisan pollster adjustment,3.1000000000000014
+MN-Senate,MN,Senate,SurveyUSA,A,,,,False,,,2026-08-13,2026-08-17,661,LV,Flanagan,Tafoya,,,46.0,41.0,0.0,0.0,13.0,,46.0,41.0,5.0,0.0,1.0,False,No partisan pollster adjustment,5.0
