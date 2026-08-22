@@ -2,12 +2,15 @@ canonical_pollster,normalized_pollster_key,aliases,pollster_house_effect_dem,hou
 2Way/Wick,2way wick,2Way/Wick,0.0,low,,True
 Alaska Survey Research,alaska survey research,Alaska Survey Research,0.0,low,,True
 Beacon/Shaw,beacon shaw,Beacon/Shaw|Beacon Shaw,1.5,low,,True
+Bullfinch,bullfinch,Bullfinch,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Carolina Journal/Harper,carolina journal harper,Carolina Journal/Harper,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Change Research,change research,Change Research,0.0,low,,True
 Cygnal,cygnal,Cygnal,0.0,low,,True
 Data for Progress,data for progress,Data for Progress,0.0,low,Automatically added from manual polls; house effect pending review.,True
+Deep Root,deep root,Deep Root,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Emerson,emerson,Emerson,0.0,low,Automatically added from manual polls; house effect pending review.,True
 EPIC-MRA,epic mra,EPIC-MRA,0.0,low,Automatically added from manual polls; house effect pending review.,True
+Fabrizio,fabrizio,Fabrizio,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Fabrizio Lee,fabrizio lee,Fabrizio Lee,0.0,low,,True
 Fabrizio Ward,fabrizio ward,Fabrizio Ward|Fabrizio/Ward,0.0,low,,True
 Fox News,fox news,Fox News,1.0,low,,True
@@ -16,6 +19,7 @@ GrayHouse,grayhouse,GrayHouse,0.0,low,,True
 GSG,gsg,GSG,0.0,low,,True
 GSG Poll,gsg poll,GSG Poll,0.0,low,,True
 Hart,hart,Hart,0.0,low,Automatically added from manual polls; house effect pending review.,True
+High Point,high point,High Point,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Insider Advantage,insider advantage,Insider Advantage,0.0,low,Automatically added from manual polls; house effect pending review.,True
 McLaughlin,mclaughlin,McLaughlin,-2.0,low,,True
 MIRS/Mitchell Research,mirs mitchell research,MIRS/Mitchell Research,0.0,low,Automatically added from manual polls; house effect pending review.,True
