@@ -1,7 +1,7 @@
 {
   "n_sims": 12000,
   "days_out": 69,
-  "expected_dem_seats": 49.304916666666664,
+  "expected_dem_seats": 49.306333333333335,
   "median_dem_seats": 49.0,
   "dem_seats_p25": 48.0,
   "dem_seats_p50": 49.0,
