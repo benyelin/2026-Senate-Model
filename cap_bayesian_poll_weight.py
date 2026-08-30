@@ -480,7 +480,33 @@ if __name__ == "__main__":
                 & polls["has_named_pollster"]
             ].copy()
 
-            today = effective_today
+            # The accelerator finalizer runs outside main(), so the
+            # date variables created inside main() are not in scope here.
+            # Resolve the same replay date directly from argv so historical
+            # --as-of / --days-out runs remain aligned with the cap step.
+            accelerator_parser = argparse.ArgumentParser(add_help=False)
+            accelerator_parser.add_argument(
+                "--days-out",
+                type=float,
+                default=None,
+            )
+            accelerator_parser.add_argument(
+                "--as-of",
+                type=str,
+                default=None,
+            )
+            accelerator_args, _ = accelerator_parser.parse_known_args()
+
+            (
+                accelerator_today,
+                accelerator_election_day,
+                accelerator_days_out,
+            ) = resolve_replay_dates(
+                days_out=accelerator_args.days_out,
+                as_of=accelerator_args.as_of,
+            )
+
+            today = accelerator_today
             cutoff = today - pd.Timedelta(days=RECENT_DAYS)
 
             recent = usable[usable["poll_end_dt"] >= cutoff].copy()
@@ -554,7 +580,6 @@ if __name__ == "__main__":
                 else POST_LABOR_DAY_ABSOLUTE_CAP
             )
 
-            accelerator_days_out = days_out
             accelerator_cycle_cap = max_polling_weight_for_days_out(
                 accelerator_days_out
             )

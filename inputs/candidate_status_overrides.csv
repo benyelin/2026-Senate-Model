@@ -1,3 +1,4 @@
-state,candidate_status,affected_candidate,exclude_current_polling,uncertainty_penalty,notes,dem_candidate_override,gop_candidate_override,exclude_mismatched_candidate_polls
-ME,presumptive_nominee,Graham Platner,False,0.0,Troy Jackson is the presumptive Democratic nominee. Jackson-specific polling is active. Polls naming former candidate Graham Platner remain archived but are excluded from the live average.,Troy Jackson,Susan Collins,True
-SC,gop_replacement_pending,,True,0.5,,,Republican nominee TBD,False
+state,candidate_status,affected_candidate,exclude_current_polling,uncertainty_penalty,notes,dem_candidate_override,gop_candidate_override,exclude_mismatched_candidate_polls,dem_nominee_confirmed_override,gop_nominee_confirmed_override,candidate_status_as_of_override,notes_override
+ME,presumptive_nominee,Graham Platner,False,0.0,Troy Jackson is the presumptive Democratic nominee. Jackson-specific polling is active. Polls naming former candidate Graham Platner remain archived but are excluded from the live average.,Troy Jackson,Susan Collins,True,,,,
+SC,nominees_confirmed,,False,0.0,Republican replacement process complete; Darline Graham won the GOP runoff.,Annie Andrews,Darline Graham,True,True,True,2026-08-25,General-election matchup: Annie Andrews (D) vs. Darline Graham (R).
+WY,nominees_confirmed,,False,0.0,"Wyoming Senate primaries completed August 18, 2026.",James Byrd,Harriet Hageman,True,True,True,2026-08-18,General-election matchup: James Byrd (D) vs. Harriet Hageman (R).

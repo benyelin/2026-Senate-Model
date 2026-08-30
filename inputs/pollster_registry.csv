@@ -1,5 +1,6 @@
 canonical_pollster,normalized_pollster_key,aliases,pollster_house_effect_dem,house_effect_confidence,house_effect_notes,active
 2Way/Wick,2way wick,2Way/Wick,0.0,low,,True
+Abacus,abacus,Abacus,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Alaska Survey Research,alaska survey research,Alaska Survey Research,0.0,low,,True
 Beacon/Shaw,beacon shaw,Beacon/Shaw|Beacon Shaw,1.5,low,,True
 Bullfinch,bullfinch,Bullfinch,0.0,low,Automatically added from manual polls; house effect pending review.,True

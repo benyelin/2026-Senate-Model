@@ -47,6 +47,10 @@ def main():
         "poll_count": 0,
         "polling_active": False,
         "candidate_status": "",
+        "candidate_status_as_of": "",
+        "dem_nominee_confirmed": False,
+        "gop_nominee_confirmed": False,
+        "notes": "",
         "candidate_uncertainty_penalty": 0.0,
         "total_poll_weight": 0.0,
         "bayesian_polling_weight": 0.0,
@@ -79,6 +83,19 @@ def main():
         dem_override = clean_str(override.get("dem_candidate_override", ""))
         gop_override = clean_str(override.get("gop_candidate_override", ""))
 
+        dem_confirmed_override = clean_str(
+            override.get("dem_nominee_confirmed_override", "")
+        )
+        gop_confirmed_override = clean_str(
+            override.get("gop_nominee_confirmed_override", "")
+        )
+        status_as_of_override = clean_str(
+            override.get("candidate_status_as_of_override", "")
+        )
+        notes_override = clean_str(
+            override.get("notes_override", "")
+        )
+
         if status:
             races.loc[mask, "candidate_status"] = status
 
@@ -90,6 +107,24 @@ def main():
 
         if gop_override:
             races.loc[mask, "gop_candidate"] = gop_override
+
+        if dem_confirmed_override:
+            races.loc[mask, "dem_nominee_confirmed"] = truthy(
+                dem_confirmed_override
+            )
+
+        if gop_confirmed_override:
+            races.loc[mask, "gop_nominee_confirmed"] = truthy(
+                gop_confirmed_override
+            )
+
+        if status_as_of_override:
+            races.loc[mask, "candidate_status_as_of"] = (
+                status_as_of_override
+            )
+
+        if notes_override:
+            races.loc[mask, "notes"] = notes_override
 
         # Backward-compatible defaults.
         if status_lower in {"replacement_pending", "dem_replacement_pending", "democratic_replacement_pending"}:
