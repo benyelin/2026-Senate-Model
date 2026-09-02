@@ -92,10 +92,11 @@ SD-Senate,SD,Senate,Impact Researxh,B,Bengs,campaign,D,False,D,,2026-08-13,2026-
 SD-Senate,SD,Senate,Impact Researxh,B,Bengs,campaign,D,True,D,,2026-08-13,2026-08-17,500,LV,Bengs (I),Rounds,,,42.75,5.25,0.0,0.0,12.0,,44.0,4.0,40.0,-2.5,0.5,True,D-sponsored internal/campaign poll: applied -2.5 point Dem-margin adjustment and 0.50 weight multiplier,37.5
 MS-Senate,MS,Senate,Data for Progress,B,,,D,False,D,,2026-08-05,2026-08-15,1018,LV,Colom,Hyde-Smith,,,37.0,45.0,7.0,0.0,0.0,,38.0,44.0,-6.0,-2.0,0.5,True,D-sponsored poll: applied -2.0 point Dem-margin adjustment and 0.50 weight multiplier,-8.0
 MI-Senate,MI,Senate,EPIC-MRA,A-,,,,False,,,2026-08-22,2026-08-28,600,LV,El-Sayed,Rogers,,,47.0,43.0,0.0,0.0,10.0,,47.0,43.0,4.0,0.0,1.0,False,No partisan pollster adjustment,4.0
-IA-Senate,IA,Senate,Wedgewood,B-,,,,False,,,2026-08-27,2026-08-29,600,LV,48,50,,,0.0,0.0,0.0,0.0,2.0,,0.0,0.0,0.0,0.0,1.0,False,No partisan pollster adjustment,0.0
 IA-Senate,IA,Senate,Abacus,C,,,,False,,,2026-08-26,2026-08-28,300,LV,Turek,Hinson,,,54.0,45.0,0.0,0.0,1.0,,54.0,45.0,9.0,0.0,1.0,False,No partisan pollster adjustment,9.0
 ME-Senate,ME,Senate,Abacus,C,,,,False,,,2026-08-26,2026-08-28,300,LV,Jackson,Collins,,,52.0,43.0,0.0,0.0,5.0,,52.0,43.0,9.0,0.0,1.0,False,No partisan pollster adjustment,9.0
 MI-Senate,MI,Senate,Abacus,C,,,,False,,,2026-08-26,2026-08-28,300,LV,El-Sayed,Rogers,,,49.0,45.0,0.0,0.0,6.0,,49.0,45.0,4.0,0.0,1.0,False,No partisan pollster adjustment,4.0
 OH-Senate,OH,Senate,Abacus,C,,,,False,,,2026-08-26,2026-08-28,300,LV,Brown,Husted,,,52.0,46.0,0.0,0.0,2.0,,52.0,46.0,6.0,0.0,1.0,False,No partisan pollster adjustment,6.0
 SC-Senate,SC,Senate,Abacus,C,,,,False,,,2026-08-26,2026-08-28,300,LV,Andrews,Graham,,,42.0,55.0,0.0,0.0,3.0,,42.0,55.0,-13.0,0.0,1.0,False,No partisan pollster adjustment,-13.0
 SC-Senate,SC,Senate,Impact Research,B,,,D,False,D,,2026-08-14,2026-09-22,900,LV,Andrews,Graham,,,41.0,40.0,6.0,0.0,13.0,,42.0,39.0,3.0,-2.0,0.5,True,D-sponsored poll: applied -2.0 point Dem-margin adjustment and 0.50 weight multiplier,1.0
+MI-Senate,MI,Senate,Michigan State,A-,,,,False,,,2026-09-01,2026-09-01,1000,LV,El-Sayed,Rogers,,,50.0,45.0,0.0,0.0,5.0,,50.0,45.0,5.0,0.0,1.0,False,No partisan pollster adjustment,5.0
+NM-Senate,NM,Senate,Research and Polling Inc.,A,,,,False,,,2026-08-21,2026-08-28,516,LV,Lujan,Marker,,,53.0,38.0,0.0,0.0,9.0,,53.0,38.0,15.0,0.0,1.0,False,No partisan pollster adjustment,15.0
