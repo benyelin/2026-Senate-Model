@@ -111,3 +111,4 @@ MI-Senate,MI,Senate,Glengariff,B+,,,,False,,,2026-08-31,2026-09-03,600,LV,El-Say
 IA-Senate,IA,Senate,GSG,B,Turek,campaign,D,True,D,,2026-08-27,2026-08-31,800,LV,Turek,Hinson,,Laehn,44.75,43.25,6.0,0.0,6.0,,46.0,42.0,4.0,-2.5,0.5,True,D-sponsored internal/campaign poll: applied -2.5 point Dem-margin adjustment and 0.50 weight multiplier,1.5
 MI-Senate,MI,Senate,SSRS,A-,CNN,,,False,,,2026-08-31,2026-09-06,843,LV,El-Sayed,Rogers,,,47.0,44.0,0.0,0.0,9.0,,47.0,44.0,3.0,0.0,1.0,False,No partisan pollster adjustment,3.0
 ME-Senate,ME,Senate,SSRS,B,CNN,,,False,,,2026-08-31,2026-09-06,880,LV,Jackson,Collins,,,48.0,45.0,0.0,0.0,7.0,,48.0,45.0,3.0,0.0,1.0,False,No partisan pollster adjustment,3.0
+TX-Sen,TX,Senate,YouGov,B+,Univision,,,False,,,2026-08-27,2026-09-04,1000,RV,Talarico,Paxton,,,48.0,43.0,0.0,0.0,9.0,,48.0,43.0,5.0,0.0,1.0,False,No partisan pollster adjustment,5.0
