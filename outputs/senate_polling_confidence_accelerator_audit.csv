@@ -1,5 +1,5 @@
 state_norm,recent_poll_count_45d,most_recent_poll_end_date,polling_confidence_boost,polling_confidence_absolute_cap,bayesian_polling_weight_capped_before_polling_confidence_accelerator,bayesian_polling_weight_capped_after_polling_confidence_accelerator,polling_confidence_weight_change,polling_confidence_margin_change_dem,bayesian_model_margin_dem_capped_before_polling_confidence_accelerator,bayesian_model_margin_dem_capped
-MI,10,2026-09-01,0.09,0.45,0.37,0.45,0.08000000000000002,-0.2935305074909218,4.658156696972133,4.3646261894812115
+MI,11,2026-09-03,0.09,0.45,0.37,0.45,0.08000000000000002,-0.33853002355741424,4.4500339351646065,4.111503911607192
 TX,8,2026-09-01,0.09,0.45,0.37,0.45,0.08000000000000002,0.7012469340038514,-3.322232930232187,-2.6209859962283355
 NC,7,2026-08-13,0.09,0.45,0.37,0.45,0.08000000000000002,0.34130694000023354,4.792544597501078,5.133851537501312
 IA,6,2026-09-01,0.09,0.45,0.37,0.45,0.08000000000000002,0.4730446415652434,-4.884996276663184,-4.411951635097941
