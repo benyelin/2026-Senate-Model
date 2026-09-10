@@ -112,3 +112,5 @@ IA-Senate,IA,Senate,GSG,B,Turek,campaign,D,True,D,,2026-08-27,2026-08-31,800,LV,
 MI-Senate,MI,Senate,SSRS,A-,CNN,,,False,,,2026-08-31,2026-09-06,843,LV,El-Sayed,Rogers,,,47.0,44.0,0.0,0.0,9.0,,47.0,44.0,3.0,0.0,1.0,False,No partisan pollster adjustment,3.0
 ME-Senate,ME,Senate,SSRS,B,CNN,,,False,,,2026-08-31,2026-09-06,880,LV,Jackson,Collins,,,48.0,45.0,0.0,0.0,7.0,,48.0,45.0,3.0,0.0,1.0,False,No partisan pollster adjustment,3.0
 TX-Sen,TX,Senate,YouGov,B+,Univision,,,False,,,2026-08-27,2026-09-04,1000,RV,Talarico,Paxton,,,48.0,43.0,0.0,0.0,9.0,,48.0,43.0,5.0,0.0,1.0,False,No partisan pollster adjustment,5.0
+ME-Senate,ME,Senate,YouGov,B,,,,False,,,2026-09-02,2026-09-08,1335,LV,Jackson,Collins,,,48.0,44.0,0.0,0.0,6.0,,48.0,44.0,4.0,0.0,1.0,False,No partisan pollster adjustment,4.0
+NC-Sen,NC,Senate,YouGov,B,Elon,,,False,,,2026-08-21,2026-08-31,565,LV,Cooper,Whatley,,,49.0,38.0,2.0,2.0,7.0,,49.0,38.0,11.0,0.0,1.0,False,No partisan pollster adjustment,11.0
