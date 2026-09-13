@@ -39,9 +39,10 @@ Public Opinion Strategies,public opinion strategies,Public Opinion Strategies,0.
 Public Opinion Strategies (D),public opinion strategies d,Public Opinion Strategies (D),0.0,low,,True
 Quantus,quantus,Quantus,0.0,low,,True
 Quantus Insights,quantus insights,Quantus Insights,0.0,low,,True
-Rasmussen,rasmussen,Rasmussen,0.0,low,Automatically added from manual polls; house effect pending review.,True
+Rasmussen,rasmussen,Rasmussen,-1.0,low,Automatically added from manual polls; house effect pending review.,True
 ReconMR,reconmr,ReconMR,0.0,low,,True
 Research and Polling Inc.,research and polling inc,Research and Polling Inc.,0.0,low,Automatically added from manual polls; house effect pending review.,True
+Rutgers University,rutgers university,Rutgers University,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Siena,siena,Siena,0.0,low,,True
 SSRS,ssrs,SSRS,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Strategy Group,strategy group,Strategy Group,0.0,low,Automatically added from manual polls; house effect pending review.,True
