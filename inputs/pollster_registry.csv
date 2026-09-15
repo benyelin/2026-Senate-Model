@@ -6,8 +6,8 @@ Beacon/Shaw,beacon shaw,Beacon/Shaw|Beacon Shaw,1.5,low,,True
 Bullfinch,bullfinch,Bullfinch,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Carolina Journal/Harper,carolina journal harper,Carolina Journal/Harper,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Change Research,change research,Change Research,0.0,low,,True
-Co-Efficient,co efficient,Co-Efficient,0.0,low,Automatically added from manual polls; house effect pending review.,True
-Co/Efficent,co efficent,Co/Efficent,0.0,low,Automatically added from manual polls; house effect pending review.,True
+Co-Efficient,co efficient,Co-Efficient,-1.0,low,Automatically added from manual polls; house effect pending review.,True
+Co/Efficent,co efficent,Co/Efficent,-1.0,low,Automatically added from manual polls; house effect pending review.,True
 Cygnal,cygnal,Cygnal,0.0,low,,True
 Data for Progress,data for progress,Data for Progress,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Deep Root,deep root,Deep Root,0.0,low,Automatically added from manual polls; house effect pending review.,True
@@ -54,6 +54,7 @@ SurveyUSA,surveyusa,SurveyUSA,0.0,low,Automatically added from manual polls; hou
 Susquehanna,susquehanna,Susquehanna,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Tavern,tavern,Tavern,0.0,low,,True
 Tavern Research,tavern research,Tavern Research,0.0,low,,True
+Telemundo/Mason Dixon,telemundo mason dixon,Telemundo/Mason Dixon,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Texas Public Opinion Research,texas public opinion research,Texas Public Opinion Research,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Texas Pulse,texas pulse,Texas Pulse,0.0,low,Automatically added from manual polls; house effect pending review.,True
 TIPP,tipp,TIPP,0.0,low,Automatically added from manual polls; house effect pending review.,True
