@@ -3,6 +3,7 @@ canonical_pollster,normalized_pollster_key,aliases,pollster_house_effect_dem,hou
 Abacus,abacus,Abacus,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Alaska Survey Research,alaska survey research,Alaska Survey Research,0.0,low,,True
 Beacon/Shaw,beacon shaw,Beacon/Shaw|Beacon Shaw,1.5,low,,True
+BGSU/YouGov,bgsu yougov,BGSU/YouGov,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Bullfinch,bullfinch,Bullfinch,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Carolina Journal/Harper,carolina journal harper,Carolina Journal/Harper,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Change Research,change research,Change Research,0.0,low,,True

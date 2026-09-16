@@ -140,3 +140,6 @@ MN-Senate,MN,Senate,Co/Efficient,B,,,R,False,R,,2026-09-14,2026-09-15,833,LV,Fla
 IA-Senate,IA,Senate,Cygnal,B,,,R,False,R,,2026-09-09,2026-09-11,500,LV,Turek,Hinson,,,42.9,42.9,0.0,3.6,0.0,
 GA-Senate,GA,Senate,Rasmussen,Unknown,,,,False,,,2026-09-14,2026-09-15,1000,LV,Jon Ossoff,Mike Collins,,,51.0,42.0,0.0,0.0,0.0,
 SC-Senate,SC,Senate,Rasmussen,B,,,,False,,,2026-09-14,2026-09-15,1000,LV,Annie Andrews,Darline Graham,,,43.0,48.0,0.0,0.0,0.0,
+OH-Senate,OH,Senate,BGSU/YouGov,B,,,,False,,,2026-09-01,2026-09-10,1000,LV,Sherrod Brown,Jon Husted,,,48.0,45.0,0.0,7.0,0.0,
+NE-Senate,NE,Senate,Wedgewood,Unknown,,,,False,,,2026-09-14,2026-09-16,500,LV,Dan Osborn (I),Pete Ricketts,Dan Osborn,,48.0,52.0,0.0,0.0,0.0,
+IA-Senate,IA,Senate,Co/Efficient,Unknown,,,R,False,R,,2026-09-14,2026-09-16,831,LV,Josh Turek,Ashley Hinson,,,42.0,46.0,2.0,0.0,0.0,

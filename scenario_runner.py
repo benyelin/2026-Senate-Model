@@ -53,6 +53,11 @@ def read_current_environment():
 def set_environment(value, scenario_name):
     env = pd.read_csv(NATIONAL_ENV_PATH)
 
+    # source_notes can be entirely blank, causing pandas to infer
+    # float64. Scenario runs temporarily write text into this field.
+    if "source_notes" in env.columns:
+        env["source_notes"] = env["source_notes"].astype("object")
+
     if env.empty:
         raise ValueError(f"{NATIONAL_ENV_PATH} is empty")
 
