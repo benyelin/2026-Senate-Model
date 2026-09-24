@@ -1,7 +1,9 @@
 canonical_pollster,normalized_pollster_key,aliases,pollster_house_effect_dem,house_effect_confidence,house_effect_notes,active
 2Way/Wick,2way wick,2Way/Wick,0.0,low,,True
 Abacus,abacus,Abacus,0.0,low,Automatically added from manual polls; house effect pending review.,True
+Advanced Targeting Research,advanced targeting research,Advanced Targeting Research,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Alaska Survey Research,alaska survey research,Alaska Survey Research,0.0,low,,True
+Aspect Strategic,aspect strategic,Aspect Strategic,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Beacon/Shaw,beacon shaw,Beacon/Shaw|Beacon Shaw,1.5,low,,True
 BGSU/YouGov,bgsu yougov,BGSU/YouGov,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Bullfinch,bullfinch,Bullfinch,0.0,low,Automatically added from manual polls; house effect pending review.,True
@@ -18,21 +20,26 @@ EPIC-MRA,epic mra,EPIC-MRA,0.0,low,Automatically added from manual polls; house 
 Fabrizio,fabrizio,Fabrizio,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Fabrizio Lee,fabrizio lee,Fabrizio Lee,0.0,low,,True
 Fabrizio Ward,fabrizio ward,Fabrizio Ward|Fabrizio/Ward,0.0,low,,True
+Fabrizio/Impact,fabrizio impact,Fabrizio/Impact,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Fox News,fox news,Fox News,1.0,low,,True
 GBAO,gbao,GBAO,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Glengariff,glengariff,Glengariff,0.0,low,Automatically added from manual polls; house effect pending review.,True
 GrayHouse,grayhouse,GrayHouse,0.0,low,,True
 GSG,gsg,GSG,0.0,low,,True
 GSG Poll,gsg poll,GSG Poll,0.0,low,,True
+Harper Polling,harper polling,Harper Polling,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Hart,hart,Hart,0.0,low,Automatically added from manual polls; house effect pending review.,True
 High Point,high point,High Point,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Impact Research,impact research,Impact Research,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Impact Researxh,impact researxh,Impact Researxh,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Insider Advantage,insider advantage,Insider Advantage,0.0,low,Automatically added from manual polls; house effect pending review.,True
+Marist,marist,Marist,0.0,low,Automatically added from manual polls; house effect pending review.,True
 McLaughlin,mclaughlin,McLaughlin,-2.0,low,,True
 Michigan State,michigan state,Michigan State,0.0,low,Automatically added from manual polls; house effect pending review.,True
 MIRS/Mitchell Research,mirs mitchell research,MIRS/Mitchell Research,0.0,low,Automatically added from manual polls; house effect pending review.,True
 MPRC,mprc,MPRC,0.0,low,,True
+NY Times/Seina,ny times seina,NY Times/Seina,0.0,low,Automatically added from manual polls; house effect pending review.,True
+NY Times/Siena,ny times siena,NY Times/Siena,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Overton Insights/Texas Policy Foundation,overton insights texas policy foundation,Overton Insights/Texas Policy Foundation,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Pan Atlantic,pan atlantic,Pan Atlantic,0.0,low,,True
 Peak Insights,peak insights,Peak Insights,0.0,low,,True
@@ -44,11 +51,14 @@ Quantus,quantus,Quantus,0.0,low,,True
 Quantus Insights,quantus insights,Quantus Insights,0.0,low,,True
 Rasmussen,rasmussen,Rasmussen,-1.0,low,Automatically added from manual polls; house effect pending review.,True
 ReconMR,reconmr,ReconMR,0.0,low,,True
+ReconMR/Siena,reconmr siena,ReconMR/Siena,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Research and Polling Inc.,research and polling inc,Research and Polling Inc.,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Rutgers University,rutgers university,Rutgers University,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Siena,siena,Siena,0.0,low,,True
 SoCal Strategies,socal strategies,SoCal Strategies,0.0,low,Automatically added from manual polls; house effect pending review.,True
 SSRS,ssrs,SSRS,0.0,low,Automatically added from manual polls; house effect pending review.,True
+St. Pete Polls,st pete polls,St. Pete Polls,0.0,low,Automatically added from manual polls; house effect pending review.,True
+Stetson University,stetson university,Stetson University,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Strategy Group,strategy group,Strategy Group,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Suffolk,suffolk,Suffolk,0.0,low,,True
 SurveyUSA,surveyusa,SurveyUSA,0.0,low,Automatically added from manual polls; house effect pending review.,True
@@ -58,6 +68,7 @@ Tavern Research,tavern research,Tavern Research,0.0,low,,True
 Telemundo/Mason Dixon,telemundo mason dixon,Telemundo/Mason Dixon,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Texas Public Opinion Research,texas public opinion research,Texas Public Opinion Research,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Texas Pulse,texas pulse,Texas Pulse,0.0,low,Automatically added from manual polls; house effect pending review.,True
+Texas Southern,texas southern,Texas Southern,0.0,low,Automatically added from manual polls; house effect pending review.,True
 TIPP,tipp,TIPP,0.0,low,Automatically added from manual polls; house effect pending review.,True
 TPSI,tpsi,TPSI,0.0,low,,True
 Trafalgar,trafalgar,Trafalgar,-1.0,low,Automatically added from manual polls; house effect pending review.,True
@@ -66,5 +77,6 @@ Tulchin,tulchin,Tulchin,0.0,low,,True
 UMASS Lowell,umass lowell,UMASS Lowell,0.0,low,,True
 UNH,unh,UNH,0.0,low,,True
 UT,ut,UT,0.0,low,Automatically added from manual polls; house effect pending review.,True
+Washington Post/GMU,washington post gmu,Washington Post/GMU,0.0,low,Automatically added from manual polls; house effect pending review.,True
 Wedgewood,wedgewood,Wedgewood,0.0,low,Automatically added from manual polls; house effect pending review.,True
 YouGov,yougov,YouGov,0.0,low,,True
