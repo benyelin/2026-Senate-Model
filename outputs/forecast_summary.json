@@ -1,19 +1,19 @@
 {
   "n_sims": 12000,
-  "days_out": 40,
-  "expected_dem_seats": 50.3915,
+  "days_out": 39,
+  "expected_dem_seats": 50.424416666666666,
   "median_dem_seats": 50.0,
   "dem_seats_p25": 49.0,
   "dem_seats_p50": 50.0,
   "dem_seats_p75": 52.0,
-  "dem_control_probability": 0.47841666666666666,
+  "dem_control_probability": 0.4835833333333333,
   "dem_control_threshold": 51,
   "dem_baseline_seats": 34,
-  "total_error_sd": 3.9666666666666663,
-  "national_error_sd": 3.5330807037568865,
-  "race_error_sd": 1.8032706910459073,
-  "implied_correlation": 0.7933333333333333,
+  "total_error_sd": 3.9499999999999997,
+  "national_error_sd": 3.519713766771383,
+  "race_error_sd": 1.792795303429814,
+  "implied_correlation": 0.794,
   "national_environment_margin": 8.19,
-  "polling_weight": 0.23528571428571426,
-  "fundamentals_weight": 0.7647142857142857
+  "polling_weight": 0.23940714285714282,
+  "fundamentals_weight": 0.7605928571428572
 }
