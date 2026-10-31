@@ -214,20 +214,78 @@ def update_race_inputs_from_polls(
 
     days_out = max(0, int((ELECTION_DATE - as_of_timestamp).days))
 
-    # Prefer validator-computed age when present, but recompute when absent.
-    if "days_old" in polls.columns:
-        polls["poll_age_days"] = pd.to_numeric(
-            polls["days_old"],
-            errors="coerce",
+    # Eligibility and recency must use the SAME forecast as-of date.
+    # Never use validator-generated days_old: that field may have been
+    # computed relative to the machine's current date.
+    invalid_dates = polls["end_date"].isna()
+
+    if invalid_dates.any():
+        examples = polls.loc[
+            invalid_dates,
+            ["state", "pollster", "end_date"],
+        ].head(10)
+
+        raise ValueError(
+            "Senate polling ingestion found invalid end_date values. "
+            "Refusing to assign these polls an artificial age.\\n"
+            + examples.to_string(index=False)
         )
-    else:
-        polls["poll_age_days"] = pd.NA
 
-    calculated_age = (as_of_timestamp - polls["end_date"]).dt.days.clip(lower=0)
+    future_mask = polls["end_date"] > as_of_timestamp
+    future_count = int(future_mask.sum())
 
-    polls["poll_age_days"] = polls["poll_age_days"].fillna(
-        calculated_age
-    ).clip(lower=0)
+    if future_count:
+        examples = polls.loc[
+            future_mask,
+            ["state", "pollster", "end_date"],
+        ].head(10)
+
+        print(
+            f"Excluded {future_count} poll(s) ending after "
+            f"forecast as-of date {as_of_timestamp.date()}."
+        )
+        print(examples.to_string(index=False))
+
+        polls = polls.loc[~future_mask].copy()
+
+    # Use the fieldwork midpoint to represent when respondents
+    # were surveyed. Eligibility remains based on end_date.
+    if "start_date" not in polls.columns:
+        raise ValueError(
+            "Senate polling ingestion requires start_date "
+            "for midpoint-based poll aging."
+        )
+
+    polls["start_date"] = pd.to_datetime(
+        polls["start_date"],
+        errors="coerce",
+    )
+
+    invalid_start = polls["start_date"].isna()
+
+    if invalid_start.any():
+        raise ValueError(
+            f"Senate polling ingestion found "
+            f"{int(invalid_start.sum())} invalid start_date value(s)."
+        )
+
+    reversed_dates = polls["start_date"] > polls["end_date"]
+
+    if reversed_dates.any():
+        raise ValueError(
+            f"Senate polling ingestion found "
+            f"{int(reversed_dates.sum())} poll(s) "
+            "with start_date after end_date."
+        )
+
+    midpoint = (
+        polls["start_date"]
+        + (polls["end_date"] - polls["start_date"]) / 2
+    )
+
+    polls["poll_age_days"] = (
+        as_of_timestamp - midpoint
+    ).dt.days.astype(float)
 
     # Environment translation is deliberately inactive for now.
     polls["current_national_environment_dem"] = pd.NA

@@ -85,6 +85,27 @@ def main():
 
     df = pd.read_csv(INPUT)
 
+    # Fail closed if an excluded pollster reappears.
+    if "pollster" not in df.columns:
+        raise ValueError(
+            "Senate polling input lacks pollster column."
+        )
+
+    excluded_mask = (
+        df["pollster"]
+        .fillna("")
+        .astype(str)
+        .str.strip()
+        .str.lower()
+        .isin({"wedgewood", "wedgewood polls"})
+    )
+
+    if excluded_mask.any():
+        raise RuntimeError(
+            "Excluded Wedgewood pollster detected in Senate "
+            "raw polling input. Quarantine before adjustment."
+        )
+
     required_metadata = {
         "poll_sponsor_type": "",
         "pollster_partisan_affiliation": "",

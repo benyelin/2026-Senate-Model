@@ -80,6 +80,27 @@ def normalize_manual_polls():
 
     df = pd.read_csv(RAW_PATH)
 
+    # Independent safeguard for direct validator execution.
+    if "pollster" not in df.columns:
+        raise ValueError(
+            "Senate polling input lacks pollster column."
+        )
+
+    excluded_mask = (
+        df["pollster"]
+        .fillna("")
+        .astype(str)
+        .str.strip()
+        .str.lower()
+        .isin({"wedgewood", "wedgewood polls"})
+    )
+
+    if excluded_mask.any():
+        raise RuntimeError(
+            "Excluded Wedgewood pollster detected in Senate "
+            "polling validation input. Quarantine before validation."
+        )
+
     # Apply the canonical pollster registry before margin
     # calculations. The registry supplies the default pollster-wide
     # house effect for every matching poll.
@@ -179,6 +200,81 @@ def normalize_manual_polls():
 
     for col in PCT_COLUMNS:
         df[col] = df[col].apply(pct_to_number)
+
+
+    # 2026 Democratic-aligned independent Senate candidates.
+    # These candidates retain independent ballot affiliation.
+    # Their poll support is represented in dem_pct for the
+    # two-party-aligned forecast margin.
+    ALIGNED_INDEPENDENT_CANDIDATES = {
+        "NE": "OSBORN",
+        "SD": "BENGS",
+    }
+
+    def alignment_candidate_matches(value, surname):
+        if pd.isna(value):
+            return False
+
+        import re
+
+        expected_names = {
+            "OSBORN": ("DAN", "OSBORN"),
+            "BENGS": ("BRIAN", "BENGS"),
+        }
+
+        expected = expected_names.get(surname)
+
+        if expected is None:
+            return False
+
+        name = str(value).upper()
+        name = re.sub(r"\(\s*I\s*\)", "", name)
+        name = re.sub(r"[^A-Z ]", " ", name)
+        parts = name.split()
+
+        # Accept surname-only labels or the complete expected name.
+        return (
+            parts == [expected[1]]
+            or parts == list(expected)
+        )
+
+    for idx, row in df.iterrows():
+        state = row["state"]
+
+        if state not in ALIGNED_INDEPENDENT_CANDIDATES:
+            continue
+
+        surname = ALIGNED_INDEPENDENT_CANDIDATES[state]
+        row_number = idx + 2
+
+        if not alignment_candidate_matches(
+            row["dem_candidate"],
+            surname,
+        ):
+            errors.append(
+                f"Row {row_number} [{state}]: "
+                f"Expected Democratic-aligned independent "
+                f"candidate ending in {surname} in dem_candidate."
+            )
+
+        if row["ind_pct"] > 0:
+            if alignment_candidate_matches(
+                row["ind_candidate"],
+                surname,
+            ):
+                warnings.append(
+                    f"Row {row_number} [{state}]: "
+                    f"Aligned independent candidate also appears "
+                    f"in ind_candidate with ind_pct="
+                    f"{row['ind_pct']}. Verify source poll."
+                )
+            else:
+                warnings.append(
+                    f"Row {row_number} [{state}]: "
+                    f"Additional independent support "
+                    f"ind_pct={row['ind_pct']} requires "
+                    f"candidate verification."
+                )
 
     df["start_date"] = pd.to_datetime(df["start_date"], errors="coerce")
     df["end_date"] = pd.to_datetime(df["end_date"], errors="coerce")
