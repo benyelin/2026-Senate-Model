@@ -1,2 +1,2 @@
 n_sims,days_out,expected_dem_seats,median_dem_seats,dem_seats_p25,dem_seats_p50,dem_seats_p75,dem_control_probability,dem_control_threshold,dem_baseline_seats,total_error_sd,national_error_sd,race_error_sd,implied_correlation,national_environment_margin,polling_weight,fundamentals_weight
-12000,3,51.321,51.0,50.0,51.0,53.0,0.62425,51,34,3.2600000000000002,2.9484532894383797,1.390763531302141,0.818,8.370000000000001,0.4311282888237503,0.5688717111762497
+12000,1,51.4935,51.0,50.0,51.0,53.0,0.6535,51,34,3.22,2.9146484750880908,1.3686578340354714,0.8193333333333332,8.46,0.4578994413190064,0.5421005586809936
